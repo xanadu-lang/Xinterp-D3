@@ -27,7 +27,7 @@ fun
 <a:vt>
 p2tr_succ
 (p0: p2tr(a)): p2tr(a)
-
+(* ****** ****** *)
 #extern
 fun
 <a:vt>
@@ -38,7 +38,6 @@ fun
 <a:vt>
 p2tr_set_at
 (p0: p2tr(a), i0: nint, x0: a): void
-
 (* ****** ****** *)
 
 abstype argv_tbox
@@ -84,7 +83,8 @@ let
   forall$test<x0>
   (p2tr_get_at(arg0, i0))
 in
-  if test then loop(succ(i0)) else false
+  if test
+  then loop(succ(i0)) else false
 end // end of [else] // end of [if]
 end
 } (* end of [gseq_forall<argv><string>] *)
