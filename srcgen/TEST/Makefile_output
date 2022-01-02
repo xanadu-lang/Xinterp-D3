@@ -328,6 +328,14 @@ test-2020-09-19: ; \
 $(XINTERP) -d ./xatslib_githwxi/test-2020-09-19.dats
 
 ######
+
+test:: \
+test-2022-01-01
+test-2022-01-01: ; \
+$(ECHO) "hello!" | \
+$(XINTERP) -d ./xatslib_githwxi/test-2022-01-01.dats
+
+######
 #
 # HX: for cleaning up
 #
