@@ -70,7 +70,6 @@ STDIO =
 //
 #staload "./../SATS/intrep0.sats"
 //
-#staload "./../SATS/interp0.sats"
 #staload "./../SATS/xinterp.sats"
 //
 (* ****** ****** *)
@@ -761,6 +760,18 @@ val
 p3kg =
 trans03_package(p0kg)
 //
+(*
+HX: for type-errors
+*)
+val () =
+tread33_package(p3kg)
+//
+(*
+HX: for timp-errors
+*)
+val () =
+tread3x_package(p3kg)
+//
 val+D3TRANSD(rcd) = p3kg
 //
 in
@@ -1100,87 +1111,92 @@ end // end of [auxkey2]
 in
 //
 case+ arg0 of
-| _ when
-    isinpwait(st0) => let
-    val
-    stadyn =
-    waitknd_get_stadyn(st0.wtk0)
-    val nif = st0.ninpfil
-  in
-    case+ arg0 of
+|
+_ when
+  isinpwait(st0) => let
+  val
+  stadyn =
+  waitknd_get_stadyn(st0.wtk0)
+  val nif = st0.ninpfil
+in
+  case+ arg0 of
 //
-    | COMMARG(1, key)
-        when nif > 0 =>
-      (
-        auxkey1(st0, key)
-      )
-    | COMMARG(2, key)
-        when nif > 0 =>
-      (
-        auxkey2(st0, key)
-      )
-//
-    | COMMARG(_, "-") =>
-      (
-      process_cmdline(st0, args)
-      ) where
-      {
-        val () =
-        (st0.ninpfil := nif+1)
-        val () = process_stdin(st0)
-      } (* end of [COMMARG(_,-)] *)
-//
-    | COMMARG(_, given) =>
-      (
-      process_cmdline(st0, args)
-      ) where
-      {
-        val () =
-        (st0.ninpfil := nif+1)
-        val () =
-        (
-          process_given(st0, given)
-        )
-      } (* end of [COMMARG(_,_)] *)
-  end // end of [isinpwait]
-//
-| _ when
-    isoutwait(st0) => let
-    val () =
-    st0.wtk0 := WTKnone()
-//
-    val+COMMARG(_, given) = arg0
-//
-    val ((*void*)) =
+  | COMMARG(1, key)
+      when nif > 0 =>
     (
-      theOutFname_set(opt)
+      auxkey1(st0, key)
+    )
+  | COMMARG(2, key)
+      when nif > 0 =>
+    (
+      auxkey2(st0, key)
+    )
+//
+  | COMMARG(_, "-") =>
+    (
+    process_cmdline(st0, args)
     ) where
     {
-      val opt = stropt_some(given)
-    }
+      val () =
+      (st0.ninpfil := nif+1)
+      val () = process_stdin(st0)
+    } (* end of [COMMARG(_,-)] *)
 //
-    val _new_ =
-    outchan_make_fname(st0, given)
-    val ((*void*)) =
-    cmdstate_set_outchan(st0, _new_)
-//
-  in
+  | COMMARG(_, given) =>
+    (
     process_cmdline(st0, args)
-  end // end of [_ when isoutwait]
+    ) where
+    {
+      val () =
+      (st0.ninpfil := nif+1)
+      val () =
+      (
+        process_given(st0, given)
+      )
+    } (* end of [COMMARG(_,_)] *)
+end // end of [isinpwait]
 //
-| COMMARG(1, key) => auxkey1(st0, key)
-| COMMARG(2, key) => auxkey2(st0, key)
+|
+_ when
+  isoutwait(st0) => let
+  val () =
+  st0.wtk0 := WTKnone()
 //
-| COMMARG(_, key) =>
+  val+COMMARG(_, given) = arg0
+//
+  val ((*void*)) =
   (
-    process_cmdline(st0, args)
+    theOutFname_set(opt)
   ) where
   {
-    val () =
-    st0.wtk0 := WTKnone()
-    val () =
-    xatsopt_commarg_warning(stderr_ref, key)
-  } (* end of [COMMARG] *)
+    val opt = stropt_some(given)
+  }
+//
+  val _new_ =
+  outchan_make_fname(st0, given)
+  val ((*void*)) =
+  cmdstate_set_outchan(st0, _new_)
+//
+in
+  process_cmdline(st0, args)
+end // end of [_ when isoutwait]
+//
+|
+COMMARG(1, key) => auxkey1(st0, key)
+|
+COMMARG(2, key) => auxkey2(st0, key)
+//
+|
+COMMARG(_, key) =>
+(
+  process_cmdline(st0, args)
+) where
+{
+  val () =
+  st0.wtk0 := WTKnone()
+  val () =
+  xatsopt_commarg_warning(stderr_ref, key)
+} (* end of [COMMARG] *)
 //
 end // end of [process_cmdline2]
 //
