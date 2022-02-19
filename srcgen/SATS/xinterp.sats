@@ -298,20 +298,25 @@ xinterp_insert_d2var
 //
 fun
 xinterp_irdcl
-(env: !intpenv, irc: irdcl): void
+( env:
+! intpenv, irc: irdcl): void
 fun
 xinterp_irdclist
-(env: !intpenv, ircs: irdclist): void
+( env:
+! intpenv, ircs: irdclist): void
 //
 fun
 xinterp_irexp
-(env: !intpenv, ire: irexp): irval
+( env:
+! intpenv, ire: irexp): irval
 fun
 xinterp_irexplst
-(env: !intpenv, ires: irexplst): irvalist
+( env:
+! intpenv, ires: irexplst): irvalist
 fun
 xinterp_irexpopt
-(env: !intpenv, opt0: irexpopt): irvalopt
+( env:
+! intpenv, opt0: irexpopt): irvalopt
 //
 (* ****** ****** *)
 //
