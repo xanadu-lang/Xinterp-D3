@@ -70,8 +70,8 @@ STDIO =
 //
 #staload "./../SATS/intrep0.sats"
 //
-#staload "./../SATS/xinterp.sats"
 #staload "./../SATS/interp0.sats"
+#staload "./../SATS/xinterp.sats"
 //
 (* ****** ****** *)
 implement
@@ -778,9 +778,9 @@ println!
 ("process_fpath: irdcls = ", irdcls)
 //
 val () =
-interp0_program(irdcls)
+xinterp_program(irdcls)
 val () =
-interp0_fprint_d2varmap(stdout_ref)
+xinterp_fprint_d2varmap(stdout_ref)
 val () = fprint_newline(stdout_ref)
 //
 } (* end of [then] *)

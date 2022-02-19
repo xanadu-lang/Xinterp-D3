@@ -45,26 +45,26 @@
 local
 
 absimpl
-i0pat_tbox = $rec
-{ i0pat_loc= loc_t
-, i0pat_node= i0pat_node
+irpat_tbox = $rec
+{ irpat_loc= loc_t
+, irpat_node= irpat_node
 } (* end of [absimpl] *)
 
 in(*in-of-local*)
 //
 implement
-i0pat_get_loc
-  (x0) = x0.i0pat_loc
+irpat_get_loc
+  (x0) = x0.irpat_loc
 implement
-i0pat_get_node
-  (x0) = x0.i0pat_node
+irpat_get_node
+  (x0) = x0.irpat_node
 //  
 implement
-i0pat_make_node
+irpat_make_node
 (loc0, node) = $rec
 {
-i0pat_loc= loc0, i0pat_node= node
-} (* i0pat_make_node *)
+irpat_loc= loc0, irpat_node= node
+} (* irpat_make_node *)
 //
 end // end of [local]
 
@@ -73,26 +73,26 @@ end // end of [local]
 local
 
 absimpl
-i0exp_tbox = $rec
-{ i0exp_loc= loc_t
-, i0exp_node= i0exp_node
+irexp_tbox = $rec
+{ irexp_loc= loc_t
+, irexp_node= irexp_node
 } (* end of [absimpl] *)
 
 in(*in-of-local*)
 //
 implement
-i0exp_get_loc
-  (x0) = x0.i0exp_loc
+irexp_get_loc
+  (x0) = x0.irexp_loc
 implement
-i0exp_get_node
-  (x0) = x0.i0exp_node
+irexp_get_node
+  (x0) = x0.irexp_node
 //  
 implement
-i0exp_make_node
+irexp_make_node
 (loc0, node) = $rec
 {
-i0exp_loc= loc0, i0exp_node= node
-} (* i0exp_make_node *)
+irexp_loc= loc0, irexp_node= node
+} (* irexp_make_node *)
 //
 end // end of [local]
 
@@ -101,24 +101,24 @@ end // end of [local]
 local
 
 absimpl
-i0gua_tbox = $rec
-{ i0gua_loc= loc_t
-, i0gua_node= i0gua_node
+irgua_tbox = $rec
+{ irgua_loc= loc_t
+, irgua_node= irgua_node
 } (* end of [absimpl] *)
 
 in (* in-of-local *)
 
 implement
-i0gua_get_loc(x0) = x0.i0gua_loc
+irgua_get_loc(x0) = x0.irgua_loc
 implement
-i0gua_get_node(x0) = x0.i0gua_node
+irgua_get_node(x0) = x0.irgua_node
 
 implement
-i0gua_make_node
+irgua_make_node
   (loc0, node) = $rec
 {
-  i0gua_loc= loc0, i0gua_node= node
-} (* i0gua_make_node *)
+  irgua_loc= loc0, irgua_node= node
+} (* irgua_make_node *)
 
 end // end of [local]
 
@@ -127,24 +127,24 @@ end // end of [local]
 local
 
 absimpl
-i0clau_tbox = $rec
-{ i0clau_loc= loc_t
-, i0clau_node= i0clau_node
+irclau_tbox = $rec
+{ irclau_loc= loc_t
+, irclau_node= irclau_node
 } (* end of [absimpl] *)
 
 in (* in-of-local *)
 
 implement
-i0clau_get_loc(x0) = x0.i0clau_loc
+irclau_get_loc(x0) = x0.irclau_loc
 implement
-i0clau_get_node(x0) = x0.i0clau_node
+irclau_get_node(x0) = x0.irclau_node
 
 implement
-i0clau_make_node
+irclau_make_node
   (loc0, node) = $rec
 {
-  i0clau_loc= loc0, i0clau_node= node
-} (* i0clau_make_node *)
+  irclau_loc= loc0, irclau_node= node
+} (* irclau_make_node *)
 
 end // end of [local]
 
@@ -153,24 +153,24 @@ end // end of [local]
 local
 
 absimpl
-i0gpat_tbox = $rec
-{ i0gpat_loc= loc_t
-, i0gpat_node= i0gpat_node
+irgpat_tbox = $rec
+{ irgpat_loc= loc_t
+, irgpat_node= irgpat_node
 } (* end of [absimpl] *)
 
 in (* in-of-local *)
 
 implement
-i0gpat_get_loc(x0) = x0.i0gpat_loc
+irgpat_get_loc(x0) = x0.irgpat_loc
 implement
-i0gpat_get_node(x0) = x0.i0gpat_node
+irgpat_get_node(x0) = x0.irgpat_node
 
 implement
-i0gpat_make_node
+irgpat_make_node
   (loc0, node) = $rec
 {
-  i0gpat_loc= loc0, i0gpat_node= node
-} (* i0gpat_make_node *)
+  irgpat_loc= loc0, irgpat_node= node
+} (* irgpat_make_node *)
 
 end // end of [local]
 
@@ -179,26 +179,26 @@ end // end of [local]
 local
 
 absimpl
-i0dcl_tbox = $rec
-{ i0dcl_loc= loc_t
-, i0dcl_node= i0dcl_node
+irdcl_tbox = $rec
+{ irdcl_loc= loc_t
+, irdcl_node= irdcl_node
 } (* end of [absimpl] *)
 
 in(*in-of-local*)
 //
 implement
-i0dcl_get_loc
-  (x0) = x0.i0dcl_loc
+irdcl_get_loc
+  (x0) = x0.irdcl_loc
 implement
-i0dcl_get_node
-  (x0) = x0.i0dcl_node
+irdcl_get_node
+  (x0) = x0.irdcl_node
 //  
 implement
-i0dcl_make_node
+irdcl_make_node
 (loc0, node) = $rec
 {
-i0dcl_loc= loc0, i0dcl_node= node
-} (* i0dcl_make_node *)
+irdcl_loc= loc0, irdcl_node= node
+} (* irdcl_make_node *)
 //
 end // end of [local]
 

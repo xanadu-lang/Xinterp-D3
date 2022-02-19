@@ -39,6 +39,404 @@ HX-2019-11-02: level-1 interpreter
 //
 (* ****** ****** *)
 //
+#define
+XATSOPT_targetloc
+"./../../xatsopt/srcgen/xats"
+//
+(* ****** ****** *)
+
+#staload
+LAB =
+"{$XATSOPT}/SATS/xlabel0.sats"
+#staload
+D2E =
+"{$XATSOPT}/SATS/dynexp2.sats"
+
+(* ****** ****** *)
+
+typedef label = $LAB.label
+
+(* ****** ****** *)
+
+typedef d2var = $D2E.d2var
+typedef d2con = $D2E.d2con
+typedef d2cst = $D2E.d2cst
+
+(* ****** ****** *)
+
+#staload INT = "./intrep0.sats"
+
+(* ****** ****** *)
+
+typedef irpat = $INT.irpat
+typedef irarg = $INT.irarg
+typedef irexp = $INT.irexp
+typedef irdcl = $INT.irdcl
+
+typedef irgua = $INT.irgua
+typedef irgpat = $INT.irgpat
+typedef irclau = $INT.irclau
+
+typedef irpatlst = $INT.irpatlst
+typedef irarglst = $INT.irarglst
+typedef irexplst = $INT.irexplst
+typedef irexpopt = $INT.irexpopt
+typedef irdclist = $INT.irdclist
+
+typedef irgualst = $INT.irgualst
+typedef irclaulst = $INT.irclaulst
+
+typedef irvaldecl = $INT.irvaldecl
+typedef irvardecl = $INT.irvardecl
+typedef irfundecl = $INT.irfundecl
+typedef irvaldeclist = $INT.irvaldeclist
+typedef irvardeclist = $INT.irvardeclist
+typedef irfundeclist = $INT.irfundeclist
+
+(* ****** ****** *)
+
+abstype irenv_tbox = ptr
+typedef irenv = irenv_tbox
+
+(* ****** ****** *)
+//
+datatype
+irval =
+//
+| IRVnil of ()
+//
+| IRVint of int
+| IRVptr of ptr
+//
+| IRVbtf of bool
+| IRVchr of char
+//
+| IRVflt of double
+| IRVstr of string
+//
+(*
+| IRVvar of d2var
+| IRVcon of d2con
+| IRVcst of d2cst
+*)
+//
+| IRVlft of irlftval
+//
+| IRVcon of
+    (d2con, irvalist)
+//
+| IRVfun of irvalfun
+//
+| IRVtuple of
+  (int(*knd*), irvalist)
+//
+|
+IRVlam of
+  (irenv, irarglst, irexp)
+|
+IRVfix of
+(irenv, d2var, irarglst, irexp)
+(*
+| IRVfix2 of
+  ( irenv
+  , d2var(*f*)
+  , irarglst, irexp, irexp)
+*)
+|
+IRVfixs of
+( irenv
+, d2var(*f*)
+, irarglst, irexp, irexplst)
+//
+|
+IRVlazy of ref(irlazval)
+|
+IRVllazy of
+( irenv
+, irexp(*eval*), irexplst(*frees*))
+//
+| IRVerror of () | IRVnone1 of (irexp)
+//
+and
+irlftval =
+| IRLVref of ref(irvalopt)
+//
+| IRLVpcon of (irval, label)
+//
+| IRLVpbox of
+  (irval, label, int(*index*))
+| IRLVpflt of
+  (irlftval, label, int(*index*))
+//
+and
+irlazval =
+| IRLVval of irval(*value*)
+| IRLVexp of (irenv, irexp) // thunk
+//
+where
+//
+irvalist = List0(irval)
+and
+irvalopt = Option(irval)
+and
+irvalfun = (irvalist -<cloref1> irval)
+//
+(* ****** ****** *)
+//
+fun
+print_irval: print_type(irval)
+fun
+prerr_irval: prerr_type(irval)
+overload print with print_irval
+overload prerr with prerr_irval
+//
+fun
+fprint_irval: fprint_type(irval)
+overload fprint with fprint_irval
+//
+(* ****** ****** *)
+//
+fun
+print_irlftval(irlftval): void
+fun
+prerr_irlftval(irlftval): void
+fun
+fprint_irlftval: fprint_type irlftval
+//
+overload print with print_irlftval
+overload prerr with prerr_irlftval
+overload fprint with fprint_irlftval
+//
+(* ****** ****** *)
+
+exception IREXN of irval
+
+(* ****** ****** *)
+
+absvtype
+intpenv_vtbox = ptr
+vtypedef
+intpenv = intpenv_vtbox
+
+(* ****** ****** *)
+//
+fun
+irenv_make_nil
+  ((*void*)): irenv
+//
+fun
+intpenv_make_nil
+  ((*void*)): intpenv
+fun
+intpenv_make_fenv
+  (env: irenv): intpenv
+//
+(* ****** ****** *)
+//
+fun
+intpenv_take_fenv
+  (env: !intpenv): irenv
+//
+(* ****** ****** *)
+//
+fun
+intpenv_bind_fix
+(env: !intpenv, irv: irval): void
+fun
+intpenv_bind_fixs
+(env: !intpenv, irv: irval): void
+//
+(* ****** ****** *)
+//
+fun
+intpenv_pop0_let1(!intpenv): void
+fun
+intpenv_push_let1(!intpenv): void
+//
+(* ****** ****** *)
+//
+fun
+intpenv_pop0_try1(!intpenv): void
+fun
+intpenv_push_try1(!intpenv): void
+//
+(* ****** ****** *)
+//
+fun
+intpenv_free_nil(env: intpenv): void
+fun
+intpenv_free_fenv(env: intpenv): void
+//
+(* ****** ****** *)
+
+fun
+xinterp_search_d2cst
+( env:
+! intpenv
+, d2c: d2cst): Option_vt(irval)
+fun
+xinterp_search_d2var
+( env:
+! intpenv
+, d2v: d2var): Option_vt(irval)
+
+(* ****** ****** *)
+//
+fun
+xinterp_insert_d2cst
+( env:
+! intpenv
+, d2c: d2cst, irv: irval): void
+//
+fun
+xinterp_insert_d2var
+( env:
+! intpenv
+, d2v: d2var, irv: irval): void
+//
+(* ****** ****** *)
+//
+fun
+xinterp_irdcl
+(env: !intpenv, irc: irdcl): void
+fun
+xinterp_irdclist
+(env: !intpenv, ircs: irdclist): void
+//
+fun
+xinterp_irexp
+(env: !intpenv, ire: irexp): irval
+fun
+xinterp_irexplst
+(env: !intpenv, ires: irexplst): irvalist
+fun
+xinterp_irexpopt
+(env: !intpenv, opt0: irexpopt): irvalopt
+//
+(* ****** ****** *)
+//
+fun
+xinterp_fcall_lam
+(irf0: irval, irvs: irvalist): irval
+fun
+xinterp_fcall_fix
+(irf0: irval, irvs: irvalist): irval
+fun
+xinterp_fcall_fixs
+(irf0: irval, irvs: irvalist): irval
+//
+(* ****** ****** *)
+//
+fun
+xinterp_irpat_ck0
+(irp0: irpat, irv0: irval): bool
+fun
+xinterp_irpatlst_ck0
+(irps: irpatlst, irvs: irvalist): bool
+//
+fun
+xinterp_irpat_ck1
+( env:
+! intpenv
+, irp0: irpat, irv0: irval): void
+fun
+xinterp_irpatlst_ck1
+( env:
+! intpenv
+, irps: irpatlst, irvs: irvalist): void
+//
+(* ****** ****** *)
+//
+fun
+xinterp_irgpat_ck2
+( env:
+! intpenv
+, irgp: irgpat, irv0: irval): bool
+//
+fun
+xinterp_irgua_ck2
+(env: !intpenv, irg0: irgua): bool
+fun
+xinterp_irgualst_ck2
+(env: !intpenv, irgs: irgualst): bool
+//
+(* ****** ****** *)
+//
+fun
+xinterp_irclau
+( env:
+! intpenv
+, irv0: irval
+, ircl: irclau): Option_vt(irval)
+fun
+xinterp_irclaulst
+( env:
+! intpenv
+, irv0: irval
+, ircls: irclaulst): Option_vt(irval)
+//
+(* ****** ****** *)
+
+fun
+xinterp_irvaldecl
+( env
+: !intpenv, irvd: irvaldecl): void
+fun
+xinterp_irvaldeclist
+( env
+: !intpenv, irvds: irvaldeclist): void
+
+(* ****** ****** *)
+
+fun
+xinterp_irvardecl
+( env
+: !intpenv, irvd: irvardecl): void
+fun
+xinterp_irvardeclist
+( env
+: !intpenv, irvds: irvardeclist): void
+
+(* ****** ****** *)
+fun
+xinterp_irfundecl
+( env:
+! intpenv, irfd: irfundecl): void
+fun
+xinterp_irfundeclist
+( env:
+! intpenv, irfds: irfundeclist): void
+(* ****** ****** *)
+//
+fun
+xinterp_irimpdecl3
+( env:
+! intpenv, irdcl: irdcl(*impdecl3*)): void
+//
+(* ****** ****** *)
+//
+fun
+xinterp_initize(): void
+//
+fun
+xinterp_initize_gint(): void
+//
+(* ****** ****** *)
+//
+fun
+xinterp_fprint_d2cstmap
+  (out: FILEref): void
+fun
+xinterp_fprint_d2varmap
+  (out: FILEref): void
+//
+(* ****** ****** *)
+//
+fun
+xinterp_program(irdclist): void
+//
+(* ****** ****** *)
+//
 fun
 the_XATSHOME_get((*void*)): string
 //

@@ -85,7 +85,7 @@ overload
 (* ****** ****** *)
 //
 #staload "./../SATS/intrep0.sats"
-#staload "./../SATS/interp0.sats"
+#staload "./../SATS/xinterp.sats"
 //
 (* ****** ****** *)
 
@@ -96,27 +96,27 @@ _(*TMP*) =
 (* ****** ****** *)
 //
 implement
-fprint_val<i0val> = fprint_i0val
+fprint_val<irval> = fprint_irval
 //
 (* ****** ****** *)
 //
 extern
 fun
 the_d2cstdef_search
-(k0: d2cst): Option_vt(i0val)
+(k0: d2cst): Option_vt(irval)
 extern
 fun
 the_d2cstdef_insert
-(d2c: d2cst, def: i0val): void
+(d2c: d2cst, def: irval): void
 //
 extern
 fun
 the_d2vardef_search
-(k0: d2var): Option_vt(i0val)
+(k0: d2var): Option_vt(irval)
 extern
 fun
 the_d2vardef_insert
-(d2v: d2var, def: i0val): void
+(d2v: d2var, def: irval): void
 //
 (* ****** ****** *)
 //
@@ -130,8 +130,8 @@ d2key =
 local
 //
 absimpl
-i0env_tbox =
-List0(@(d2key, i0val))
+irenv_tbox =
+List0(@(d2key, irval))
 //
 datavtype
 intpenv =
@@ -151,15 +151,17 @@ intplst =
 *)
 //
 | intplst_cons of
-  (d2key, i0val, intplst)
+  (d2key, irval, intplst)
 //
 absimpl
 intpenv_vtbox = intpenv
 //
 in(*in-of-local*)
 
+(* ****** ****** *)
+
 implement
-i0env_make_nil
+irenv_make_nil
 ((*void*)) = list_nil()
 implement
 intpenv_make_nil
@@ -170,7 +172,7 @@ INTPENV(0, intplst_nil())
 
 fun
 intplst_make_fenv
-(kxs: i0env): intplst =
+(kxs: irenv): intplst =
 (
 auxlst
 (kxs, intplst_fun())
@@ -179,7 +181,7 @@ auxlst
 //
 fun
 auxlst
-( kxs: i0env
+( kxs: irenv
 , env: intplst): intplst =
 (
 case+ kxs of
@@ -198,7 +200,7 @@ case+ kxs of
 
 fun
 intplst_take_fenv
-(env: !intplst): i0env =
+(env: !intplst): irenv =
 (
 list_vt2t
 (
@@ -208,7 +210,7 @@ auxenv(env, list_vt_nil())
 {
 vtypedef
 res =
-List0_vt(@(d2key, i0val))
+List0_vt(@(d2key, irval))
 fun
 auxenv
 (env: !intplst, res: res): res =
@@ -266,7 +268,7 @@ intpenv_bind_fix
   (env0, irv0) =
 let
 val-
-I0Vfix
+IRVfix
 (fenv, d2v0, _, _) = irv0
 in
 (
@@ -293,7 +295,7 @@ intpenv_bind_fixs
 {
 //
 val-
-I0Vfixs
+IRVfixs
 ( fenv
 , d2v0, iras
 , body, irdfs) = irv0
@@ -303,7 +305,7 @@ auxirdfs
 ( env0
 : !intpenv
 , ires
-: i0explst): void =
+: irexplst): void =
 (
 case+ ires of
 | list_nil
@@ -326,11 +328,11 @@ case+ ires of
   } where
   {
   val-
-  I0Efix
+  IREfix
   ( knd1, d2v1
   , iras, body) = ire1.node()
   val irv1 =
-  I0Vfixs
+  IRVfixs
   (fenv, d2v1, iras, body, irdfs)
   }
 ) (* end of [auxirdfs] *)
@@ -459,13 +461,13 @@ val+~INTPENV(l0, xs) = env
 (* ****** ****** *)
 
 implement
-interp0_search_d2cst
+xinterp_search_d2cst
   (env0, d2c0) =
   (auxlst(xs)) where
 {
 //
   vtypedef
-  res = Option_vt(i0val)
+  res = Option_vt(irval)
   val+INTPENV(l0, xs) = env0
 //
   fun
@@ -497,18 +499,18 @@ interp0_search_d2cst
     )
   ) (* end of [auxlst] *)
 //
-} (* end of [interp0_search_d2cst] *)
+} (* end of [xinterp_search_d2cst] *)
 
 (* ****** ****** *)
 
 implement
-interp0_search_d2var
+xinterp_search_d2var
   (env0, d2v0) =
   (auxlst(xs)) where
 {
 //
   vtypedef
-  res = Option_vt(i0val)
+  res = Option_vt(irval)
   val+INTPENV(l0, xs) = env0
 //
   fun
@@ -540,12 +542,12 @@ interp0_search_d2var
     )
   ) (* end of [auxlst] *)
 //
-} (* end of [interp0_search_d2var] *)
+} (* end of [xinterp_search_d2var] *)
 
 (* ****** ****** *)
 
 implement
-interp0_insert_d2cst
+xinterp_insert_d2cst
   (env0, d2c0, irv0) =
 let
 //
@@ -574,12 +576,12 @@ fold@(env0)
   )
 } (* non-intplst_nil *)
 //
-end // end of [interp0_insert_d2cst]
+end // end of [xinterp_insert_d2cst]
 
 (* ****** ****** *)
 
 implement
-interp0_insert_d2var
+xinterp_insert_d2var
   (env0, d2v0, irv0) =
 let
 //
@@ -608,7 +610,7 @@ fold@(env0)
   )
 } (* non-intplst_nil *)
 //
-end // end of [interp0_insert_d2var]
+end // end of [xinterp_insert_d2var]
 
 (* ****** ****** *)
 
@@ -624,40 +626,40 @@ end // end of [local]
 
 fun
 bool_neg
-(x: i0val): i0val =
+(x: irval): irval =
 let
 val-
-I0Vbtf(x)=x in I0Vbtf(not(x))
+IRVbtf(x)=x in IRVbtf(not(x))
 end // end of [bool_neg]
 
 fun
 bool_add
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
 val-
-I0Vbtf(x) = x
+IRVbtf(x) = x
 val-
-I0Vbtf(y) = y in I0Vbtf(x + y)
+IRVbtf(y) = y in IRVbtf(x + y)
 end // end of [bool_add]
 fun
 bool_mul
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
 val-
-I0Vbtf(x) = x
+IRVbtf(x) = x
 val-
-I0Vbtf(y) = y in I0Vbtf(x * y)
+IRVbtf(y) = y in IRVbtf(x * y)
 end // end of [bool_mul]
 
 fun
 bool_print
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vbtf(x) = x in
+val-IRVbtf(x) = x in
 let
-val () = print(x) in I0Vnil() end
+val () = print(x) in IRVnil() end
 end // end of [bool_print]
 
 (* ****** ****** *)
@@ -670,70 +672,70 @@ end // end of [bool_print]
 //
 fun
 char_make_sint
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(c) = x
+val-IRVint(c) = x
 in
-  I0Vchr(int2char0(c))
+  IRVchr(int2char0(c))
 end // end of [char_make_sint]
 //
 fun
 sint_make_char
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vchr(c) = x
+val-IRVchr(c) = x
 in
-  I0Vint(char2int0(c))
+  IRVint(char2int0(c))
 end // end of [sint_make_char]
 //
 (* ****** ****** *)
 
 fun
 char_eqzq
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vchr(c) = x
+val-IRVchr(c) = x
 in
-  I0Vbtf(char0_iseqz(c))
+  IRVbtf(char0_iseqz(c))
 end // end of [char_eqzq]
 fun
 char_neqzq
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vchr(c) = x
+val-IRVchr(c) = x
 in
-  I0Vbtf(char0_isneqz(c))
+  IRVbtf(char0_isneqz(c))
 end // end of [char_neqzq]
 fun
 char_print
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vchr(x) = x in
+val-IRVchr(x) = x in
 let
-val () = print(x) in I0Vnil() end
+val () = print(x) in IRVnil() end
 end // end of [char_print]
 
 fun
 char_cmp
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vchr(x) = x
-val-I0Vchr(y) = y in I0Vint(x - y) end
+val-IRVchr(x) = x
+val-IRVchr(y) = y in IRVint(x - y) end
 fun
 char_equal
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vchr(x) = x
-val-I0Vchr(y) = y in I0Vbtf(x = y) end
+val-IRVchr(x) = x
+val-IRVchr(y) = y in IRVbtf(x = y) end
 fun
 char_noteq
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vchr(x) = x
-val-I0Vchr(y) = y in I0Vbtf(x != y) end
+val-IRVchr(x) = x
+val-IRVchr(y) = y in IRVbtf(x != y) end
 
 (* ****** ****** *)
 //
@@ -745,142 +747,142 @@ val-I0Vchr(y) = y in I0Vbtf(x != y) end
 
 fun
 gint_print_sint
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x in
+val-IRVint(x) = x in
 let
-val () = print(x) in I0Vnil() end
+val () = print(x) in IRVnil() end
 end // end of [gint_print_sint]
 
 (* ****** ****** *)
 //
 fun
 gint_neg_sint
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x in I0Vint(~x) end
+val-IRVint(x) = x in IRVint(~x) end
 //
 fun
 gint_abs_sint
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x in I0Vint(abs(x))
+val-IRVint(x) = x in IRVint(abs(x))
 end
 //
 (* ****** ****** *)
 //
 fun
 gint_succ_sint
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x in I0Vint(x + 1) end
+val-IRVint(x) = x in IRVint(x + 1) end
 fun
 gint_pred_sint
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x in I0Vint(x - 1) end
+val-IRVint(x) = x in IRVint(x - 1) end
 //
 (* ****** ****** *)
 //
 fun
 gint_lt_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vbtf(x < y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVbtf(x < y) end
 fun
 gint_gt_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vbtf(x > y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVbtf(x > y) end
 //
 fun
 gint_eq_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vbtf(x = y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVbtf(x = y) end
 //
 fun
 gint_lte_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vbtf(x <= y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVbtf(x <= y) end
 fun
 gint_gte_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vbtf(x >= y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVbtf(x >= y) end
 //
 fun
 gint_neq_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vbtf(x != y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVbtf(x != y) end
 //
 (* ****** ****** *)
 //
 fun
 gint_cmp_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vint(compare(x, y)) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVint(compare(x, y)) end
 //
 (* ****** ****** *)
 
 fun
 gint_add_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vint(x + y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVint(x + y) end
 
 fun
 gint_sub_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vint(x - y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVint(x - y) end
 
 (* ****** ****** *)
 
 fun
 gint_mul_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vint(x * y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVint(x * y) end
 
 fun
 gint_div_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vint(x / y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVint(x / y) end
 
 fun
 gint_mod_sint_sint
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vint(x) = x
-val-I0Vint(y) = y in I0Vint(x % y) end
+val-IRVint(x) = x
+val-IRVint(y) = y in IRVint(x % y) end
 
 (* ****** ****** *)
 //
@@ -892,143 +894,143 @@ val-I0Vint(y) = y in I0Vint(x % y) end
 //
 fun
 gflt_i_dflt
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x
+val-IRVint(x) = x
 in
-I0Vflt(g0int2float_int_double(x))
+IRVflt(g0int2float_int_double(x))
 end
 //
 (* ****** ****** *)
 //
 fun
 gflt_neg_dflt
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vflt(x) = x in I0Vflt(~x) end
+val-IRVflt(x) = x in IRVflt(~x) end
 //
 fun
 gflt_abs_dflt
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vflt(x) = x in I0Vflt(abs(x))
+val-IRVflt(x) = x in IRVflt(abs(x))
 end
 //
 (* ****** ****** *)
 //
 fun
 gflt_succ_dflt
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vflt(x) = x in I0Vflt(x + 1) end
+val-IRVflt(x) = x in IRVflt(x + 1) end
 fun
 gflt_pred_dflt
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vflt(x) = x in I0Vflt(x - 1) end
+val-IRVflt(x) = x in IRVflt(x - 1) end
 //
 (* ****** ****** *)
 //
 fun
 gflt_lt_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vbtf(x < y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVbtf(x < y) end
 fun
 gflt_gt_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vbtf(x > y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVbtf(x > y) end
 //
 fun
 gflt_eq_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vbtf(x = y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVbtf(x = y) end
 //
 fun
 gflt_lte_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vbtf(x <= y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVbtf(x <= y) end
 fun
 gflt_gte_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vbtf(x >= y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVbtf(x >= y) end
 //
 fun
 gflt_neq_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vbtf(x != y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVbtf(x != y) end
 //
 (* ****** ****** *)
 //
 fun
 gflt_cmp_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vint(compare(x, y)) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVint(compare(x, y)) end
 //
 (* ****** ****** *)
 
 fun
 gflt_add_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vflt(x + y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVflt(x + y) end
 
 fun
 gflt_sub_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vflt(x - y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVflt(x - y) end
 
 (* ****** ****** *)
 
 fun
 gflt_mul_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vflt(x * y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVflt(x * y) end
 
 fun
 gflt_div_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vflt(x / y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVflt(x / y) end
 
 (*
 fun
 gflt_mod_dflt_dflt
-( x: i0val
-, y: i0val): i0val =
+( x: irval
+, y: irval): irval =
 let
-val-I0Vflt(x) = x
-val-I0Vflt(y) = y in I0Vflt(x % y) end
+val-IRVflt(x) = x
+val-IRVflt(y) = y in IRVflt(x % y) end
 *)
 
 (* ****** ****** *)
@@ -1041,57 +1043,57 @@ val-I0Vflt(y) = y in I0Vflt(x % y) end
 //
 fun
 string_head_opt
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vstr(x) = x
+val-IRVstr(x) = x
 val p = string2ptr(x)
 in
-  I0Vchr
+  IRVchr
   ($UN.ptr0_get<char>(p))
 end // end of [string_head_opt]
 fun
 string_head_raw
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vstr(x) = x
+val-IRVstr(x) = x
 val p = string2ptr(x)
 in
-  I0Vchr
+  IRVchr
   ($UN.ptr0_get<char>(p))
 end // end of [string_head_raw]
 fun
 string_tail_raw
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vstr(x) = x
+val-IRVstr(x) = x
 val p = string2ptr(x)
 in
-I0Vstr
+IRVstr
 ($UN.cast(ptr0_succ<char>(p)))
 end // end of [string_tail_raw]
 //
 fun
 string_print
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vstr(x) = x in
+val-IRVstr(x) = x in
 let
-val () = print(x) in I0Vnil() end
+val () = print(x) in IRVnil() end
 end // end of [ string_print ]
 //
 (* ****** ****** *)
 //
 fun
 string_get_at
-(x: i0val
-,i: i0val): i0val =
+(x: irval
+,i: irval): irval =
 let
-val-I0Vstr(x) = x
-val-I0Vint(i) = i in
+val-IRVstr(x) = x
+val-IRVint(i) = i in
 let
 val p = string2ptr(x)
 in
-I0Vchr($UN.ptr0_get_at<char>(p, i))
+IRVchr($UN.ptr0_get_at<char>(p, i))
 end
 end // end of [ string_get_at ]
 //
@@ -1099,9 +1101,9 @@ end // end of [ string_get_at ]
 
 fun
 strtmp_vt_alloc
-(x: i0val): i0val =
+(x: irval): irval =
 let
-val-I0Vint(x) = x in
+val-IRVint(x) = x in
 let
 val x0 =
 g1ofg0(x)
@@ -1113,21 +1115,21 @@ $UN.castvwtp0{ptr}
 val c0 = '\000'
 val s0 = $UN.cast{string}(p0)
 val () =
-$UN.ptr0_set_at<char>(p0, x0, c0) in I0Vstr(s0)
+$UN.ptr0_set_at<char>(p0, x0, c0) in IRVstr(s0)
 end
 end // end of [strtmp_vt_alloc]
 fun
 strtmp_vt_set_at
-( x: i0val
-, i: i0val
-, c: i0val): i0val =
+( x: irval
+, i: irval
+, c: irval): irval =
 let
-val-I0Vstr(x) = x
-val-I0Vint(i) = i
-val-I0Vchr(c) = c in
+val-IRVstr(x) = x
+val-IRVint(i) = i
+val-IRVchr(c) = c in
 let
 val p0 = $UN.cast{ptr}(x)
-val () = $UN.ptr0_set_at<char>(p0, i, c) in I0Vnil()
+val () = $UN.ptr0_set_at<char>(p0, i, c) in IRVnil()
 end
 end // end of [strtmp_vt_set_at]
 
@@ -1135,32 +1137,32 @@ end // end of [strtmp_vt_set_at]
 //
 fun
 a0ptr_alloc
-((*void*)): i0val =
-I0Vptr
+((*void*)): irval =
+IRVptr
 (
 $UN.castvwtp0
-(array_ptr_alloc<i0val>(i2sz(1)))
+(array_ptr_alloc<irval>(i2sz(1)))
 )
 //
 fun
 a0ref_get_raw
-(A: i0val): i0val =
+(A: irval): irval =
 let
 val-
-I0Vptr(A) = A
+IRVptr(A) = A
 in
-  $UN.ptr0_get<i0val>(A)
+  $UN.ptr0_get<irval>(A)
 end
 fun
 a0ref_set_raw
-( A: i0val
-, x: i0val): i0val =
+( A: irval
+, x: irval): irval =
 let
-val-I0Vptr(A) = A
+val-IRVptr(A) = A
 in
-I0Vnil() where
+IRVnil() where
 {
-val () = $UN.ptr0_set<i0val>(A, x)
+val () = $UN.ptr0_set<irval>(A, x)
 }
 end
 //
@@ -1168,78 +1170,78 @@ end
 //
 fun
 a1ptr_alloc
-(n: i0val): i0val =
+(n: irval): irval =
 let
 val-
-I0Vint(n) = n
+IRVint(n) = n
 val n = g1ofg0(n)
 val () = assert(n >= 0)
 in
-I0Vptr
+IRVptr
 (
 $UN.castvwtp0
 (
-arrayptr_make_uninitized<i0val>(i2sz(n))
+arrayptr_make_uninitized<irval>(i2sz(n))
 )
 )
 end // end of [a1ptr_alloc]
 //
 fun
 a1ref_head_raw
-(A: i0val): i0val =
+(A: irval): irval =
 let
-  val-I0Vptr(A) = A
+  val-IRVptr(A) = A
 in
-  $UN.ptr0_get<i0val>(A)
+  $UN.ptr0_get<irval>(A)
 end // end of [a1ref_head_raw]
 fun
 a1ref_tail_raw
-(A: i0val): i0val =
+(A: irval): irval =
 let
-  val-I0Vptr(A) = A
+  val-IRVptr(A) = A
 in
-  I0Vptr(ptr_succ<i0val>(A))
+  IRVptr(ptr_succ<irval>(A))
 end // end of [a1ref_tail_raw]
 //
 fun
 a1ref_get_at_raw
-( A: i0val
-, i: i0val): i0val =
+( A: irval
+, i: irval): irval =
 (
   a1ptr_get_at_raw(A, i)
 )
 and
 a1ptr_get_at_raw
-( A: i0val
-, i: i0val): i0val =
+( A: irval
+, i: irval): irval =
 let
-  val-I0Vptr(A) = A
-  val-I0Vint(i) = i
+  val-IRVptr(A) = A
+  val-IRVint(i) = i
 in
-  $UN.ptr0_get_at<i0val>(A, i)
+  $UN.ptr0_get_at<irval>(A, i)
 end // end of [a1ref_get_at_raw]
 //
 fun
 a1ref_set_at_raw
-( A: i0val
-, i: i0val
-, x: i0val): i0val =
+( A: irval
+, i: irval
+, x: irval): irval =
 (
   a1ptr_set_at_raw(A, i, x)
 )
 and
 a1ptr_set_at_raw
-( A: i0val
-, i: i0val
-, x: i0val): i0val =
+( A: irval
+, i: irval
+, x: irval): irval =
 let
-  val-I0Vptr(A) = A
-  val-I0Vint(i) = i
+  val-IRVptr(A) = A
+  val-IRVint(i) = i
 in
-  I0Vnil where
+  IRVnil where
   {
   val () =
-  $UN.ptr0_set_at<i0val>(A, i, x)
+  $UN.ptr0_set_at<irval>(A, i, x)
   }
 end // end of [a1ref_set_at_raw]
 //
@@ -1258,32 +1260,32 @@ in(*in-of-local*)
 //
 fun
 g_stdin() =
-I0Vptr($UN.cast(stdin_ref))
+IRVptr($UN.cast(stdin_ref))
 fun
 g_stdout() =
-I0Vptr($UN.cast(stdout_ref))
+IRVptr($UN.cast(stdout_ref))
 fun
 g_stderr() =
-I0Vptr($UN.cast(stderr_ref))
+IRVptr($UN.cast(stderr_ref))
 //
 fun
 fgetc_ref
-(fr: i0val): i0val =
+(fr: irval): irval =
 let
-val-I0Vptr(fr) = fr
+val-IRVptr(fr) = fr
 in
-I0Vint($STDIO.fgetc0($UN.cast(fr)))
+IRVint($STDIO.fgetc0($UN.cast(fr)))
 end
 //
 fun
 fputc_ref
-( c0: i0val
-, fr: i0val): i0val =
+( c0: irval
+, fr: irval): irval =
 let
-val-I0Vint(c0) = c0
-val-I0Vptr(fr) = fr
+val-IRVint(c0) = c0
+val-IRVptr(fr) = fr
 in
-I0Vint
+IRVint
 ($STDIO.fputc0_int(c0, $UN.cast(fr)))
 end
 //
@@ -1291,10 +1293,10 @@ end
 //
 fun
 nint_rand_limit
-( x0 : i0val ): i0val  =
+( x0 : irval ): irval  =
 let
 //
-val-I0Vint(x0) = x0
+val-IRVint(x0) = x0
 //
 val x0 = g1ofg0(x0)
 val () = assert(x0 > 0)
@@ -1304,7 +1306,7 @@ val x0 = $UN.cast{uint}(x0)
 val r0 = $UN.cast{uint}(r0)
 //
 in
-I0Vint
+IRVint
 ($UN.cast{int}(g0uint_mod_uint(r0, x0)))
 end
 //
@@ -1315,7 +1317,7 @@ end // end of [local]
 local
 //
 typedef key = d2cst
-typedef itm = i0val
+typedef itm = irval
 //
 #define D2CSTMAPSZ 1024
 //
@@ -1344,7 +1346,7 @@ hashtbl_make_nil<key,itm>(i2sz(D2CSTMAPSZ))
 in (*in-of-local*)
 
 implement
-interp0_fprint_d2cstmap
+xinterp_fprint_d2cstmap
   (out) =
 (
   fprint_hashtbl(out, the_d2cstdef_map)
@@ -1385,7 +1387,7 @@ end // end of [local]
 local
 //
 typedef key = d2var
-typedef itm = i0val
+typedef itm = irval
 //
 #define D2VARMAPSZ 1024
 //
@@ -1414,7 +1416,7 @@ hashtbl_make_nil<key,itm>(i2sz(D2VARMAPSZ))
 in (*in-of-local*)
 
 implement
-interp0_fprint_d2varmap
+xinterp_fprint_d2varmap
   (out) =
 (
   fprint_hashtbl(out, the_d2vardef_map)
@@ -1450,7 +1452,7 @@ the_flag = ref<int>(0)
 in
 
 implement
-interp0_initize() =
+xinterp_initize() =
 let
 val n0 = the_flag[]
 val () = the_flag[] := n0+1
@@ -1459,9 +1461,9 @@ if
 (n0 = 0)
 then
 {
-val () = interp0_initize_gint()
+val () = xinterp_initize_gint()
 }
-end // end of [interp0_initize]
+end // end of [xinterp_initize]
 
 end // end of [local]
 
@@ -1472,9 +1474,9 @@ local
 fun
 firfun0
 (
-f0: () -> i0val
+f0: () -> irval
 )
-: i0valist -<cloref1> i0val =
+: irvalist -<cloref1> irval =
 lam(vs) =>
 let
 val-list_nil() = vs in f0((*void*))
@@ -1484,9 +1486,9 @@ fun
 firfun1
 (
 f1:
-(i0val) -> i0val
+(irval) -> irval
 )
-: i0valist -<cloref1> i0val =
+: irvalist -<cloref1> irval =
 lam(vs) =>
 let
 val-list_cons(v1, vs) = vs in f1(v1)
@@ -1496,10 +1498,10 @@ fun
 firfun2
 (
 f2:
-( i0val
-, i0val) -> i0val
+( irval
+, irval) -> irval
 )
-: i0valist -<cloref1> i0val =
+: irvalist -<cloref1> irval =
 lam(vs) =>
 let
 val-list_cons(v1, vs) = vs
@@ -1510,11 +1512,11 @@ fun
 firfun3
 (
 f3:
-( i0val
-, i0val
-, i0val) -> i0val
+( irval
+, irval
+, irval) -> irval
 )
-: i0valist -<cloref1> i0val =
+: irvalist -<cloref1> irval =
 lam(vs) =>
 let
 val-list_cons(v1, vs) = vs
@@ -1567,7 +1569,7 @@ the_flag = ref<int>(0)
 in(*in-of-local*)
 
 implement
-interp0_initize_gint() =
+xinterp_initize_gint() =
 let
 val n0 = the_flag[]
 val () = the_flag[] := n0+1
@@ -1591,25 +1593,25 @@ the_d2cstdef_insert
 (
 d2cst("XINTERP_bool_neg")
 ,
-I0Vfun(firfun1(bool_neg)))
+IRVfun(firfun1(bool_neg)))
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_bool_add")
 ,
-I0Vfun(firfun2(bool_add)))
+IRVfun(firfun2(bool_add)))
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_bool_mul")
 ,
-I0Vfun(firfun2(bool_mul)))
+IRVfun(firfun2(bool_mul)))
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_bool_print")
 ,
-I0Vfun(firfun1(bool_print)))
+IRVfun(firfun1(bool_print)))
 //
 (* ****** ****** *)
 //
@@ -1624,52 +1626,52 @@ the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_char_make_sint"),
-I0Vfun
+IRVfun
 (firfun1(char_make_sint)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_sint_make_char"),
-I0Vfun
+IRVfun
 (firfun1(sint_make_char)))
 //
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_char_eqzq"),
-I0Vfun(firfun1(char_eqzq)))
+IRVfun(firfun1(char_eqzq)))
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_char_neqzq"),
-I0Vfun(firfun1(char_neqzq)))
+IRVfun(firfun1(char_neqzq)))
 //
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_char_cmp")
 ,
-I0Vfun(firfun2(char_cmp)))
+IRVfun(firfun2(char_cmp)))
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_char_equal")
 ,
-I0Vfun(firfun2(char_equal)))
+IRVfun(firfun2(char_equal)))
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_char_noteq")
 ,
-I0Vfun(firfun2(char_noteq)))
+IRVfun(firfun2(char_noteq)))
 //
 val () =
 the_d2cstdef_insert
 (
 d2cst("XINTERP_char_print")
 ,
-I0Vfun(firfun1(char_print)))
+IRVfun(firfun1(char_print)))
 //
 (* ****** ****** *)
 //
@@ -1685,7 +1687,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_print_sint")
 ,
-I0Vfun
+IRVfun
 (firfun1(gint_print_sint)))
 //
 (* ****** ****** *)
@@ -1696,7 +1698,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_neg_sint")
 ,
-I0Vfun
+IRVfun
 (firfun1(gint_neg_sint)))
 //
 val () =
@@ -1705,7 +1707,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_abs_sint")
 ,
-I0Vfun
+IRVfun
 (firfun1(gint_abs_sint)))
 //
 val () =
@@ -1714,7 +1716,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_succ_sint")
 ,
-I0Vfun
+IRVfun
 (firfun1(gint_succ_sint)))
 val () =
 the_d2cstdef_insert
@@ -1722,7 +1724,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_pred_sint")
 ,
-I0Vfun
+IRVfun
 (firfun1(gint_pred_sint)))
 //
 (* ****** ****** *)
@@ -1733,7 +1735,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_lt_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_lt_sint_sint)))
 val () =
 the_d2cstdef_insert
@@ -1741,7 +1743,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_gt_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_gt_sint_sint)))
 //
 val () =
@@ -1750,7 +1752,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_eq_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_eq_sint_sint)))
 //
 val () =
@@ -1759,7 +1761,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_lte_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_lte_sint_sint)))
 val () =
 the_d2cstdef_insert
@@ -1767,7 +1769,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_gte_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_gte_sint_sint)))
 //
 val () =
@@ -1776,7 +1778,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_neq_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_neq_sint_sint)))
 //
 (* ****** ****** *)
@@ -1787,7 +1789,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_cmp_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_cmp_sint_sint)))
 //
 (* ****** ****** *)
@@ -1798,7 +1800,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_add_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_add_sint_sint)))
 val () =
 the_d2cstdef_insert
@@ -1806,7 +1808,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_sub_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_sub_sint_sint)))
 val () =
 the_d2cstdef_insert
@@ -1814,7 +1816,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_mul_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_mul_sint_sint)))
 val () =
 the_d2cstdef_insert
@@ -1822,7 +1824,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_div_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_div_sint_sint)))
 val () =
 the_d2cstdef_insert
@@ -1830,7 +1832,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gint_mod_sint_sint")
 ,
-I0Vfun
+IRVfun
 (firfun2(gint_mod_sint_sint)))
 //
 (* ****** ****** *)
@@ -1847,7 +1849,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_i_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun1(gflt_i_dflt)))
 //
 (* ****** ****** *)
@@ -1858,7 +1860,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_neg_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun1(gflt_neg_dflt)))
 //
 val () =
@@ -1867,7 +1869,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_abs_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun1(gflt_abs_dflt)))
 //
 (* ****** ****** *)
@@ -1878,7 +1880,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_succ_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun1(gflt_succ_dflt)))
 //
 val () =
@@ -1887,7 +1889,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_pred_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun1(gflt_pred_dflt)))
 //
 (* ****** ****** *)
@@ -1898,7 +1900,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_lt_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_lt_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1906,7 +1908,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_gt_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_gt_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1914,7 +1916,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_eq_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_eq_dflt_dflt)))
 //
 val () =
@@ -1923,7 +1925,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_lte_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_lte_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1931,7 +1933,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_gte_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_gte_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1939,7 +1941,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_neq_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_neq_dflt_dflt)))
 //
 (* ****** ****** *)
@@ -1950,7 +1952,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_cmp_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_cmp_dflt_dflt)))
 //
 (* ****** ****** *)
@@ -1961,7 +1963,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_add_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_add_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1969,7 +1971,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_sub_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_sub_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1977,7 +1979,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_mul_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_mul_dflt_dflt)))
 val () =
 the_d2cstdef_insert
@@ -1985,7 +1987,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_div_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_div_dflt_dflt)))
 (*
 val () =
@@ -1994,7 +1996,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_gflt_mod_dflt_dflt")
 ,
-I0Vfun
+IRVfun
 (firfun2(gflt_mod_dflt_dflt)))
 *)
 //
@@ -2011,21 +2013,21 @@ the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_string_head_opt"),
-I0Vfun
+IRVfun
 (firfun1(string_head_opt)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_string_head_raw"),
-I0Vfun
+IRVfun
 (firfun1(string_head_raw)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_string_tail_raw"),
-I0Vfun
+IRVfun
 (firfun1(string_tail_raw)))
 //
 (* ****** ****** *)
@@ -2035,7 +2037,7 @@ the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_string_print"),
-I0Vfun
+IRVfun
 (firfun1(string_print)))
 //
 val () =
@@ -2043,7 +2045,7 @@ the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_string_get_at"),
-I0Vfun
+IRVfun
 (firfun2(string_get_at)))
 //
 (* ****** ****** *)
@@ -2053,14 +2055,14 @@ the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_strtmp_vt_alloc"),
-I0Vfun
+IRVfun
 (firfun1(strtmp_vt_alloc)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_strtmp_vt_set_at"),
-I0Vfun
+IRVfun
 (firfun3(strtmp_vt_set_at)))
 
 (* ****** ****** *)
@@ -2071,7 +2073,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a0ptr_alloc")
 ,
-I0Vfun(firfun0(a0ptr_alloc)))
+IRVfun(firfun0(a0ptr_alloc)))
 //
 val () =
 the_d2cstdef_insert
@@ -2079,7 +2081,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ptr_alloc")
 ,
-I0Vfun(firfun1(a1ptr_alloc)))
+IRVfun(firfun1(a1ptr_alloc)))
 //
 (* ****** ****** *)
 //
@@ -2089,7 +2091,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a0ref_get_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun1( a0ref_get_raw )) )
 val () =
 the_d2cstdef_insert
@@ -2097,7 +2099,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a0ref_set_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun2( a0ref_set_raw )) )
 //
 (* ****** ****** *)
@@ -2108,7 +2110,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ref_head_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun1( a1ref_head_raw )) )
 val () =
 the_d2cstdef_insert
@@ -2116,7 +2118,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ref_tail_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun1( a1ref_tail_raw )) )
 //
 val () =
@@ -2125,7 +2127,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ref_get_at_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun2(a1ref_get_at_raw)) )
 val () =
 the_d2cstdef_insert
@@ -2133,7 +2135,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ptr_get_at_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun2(a1ptr_get_at_raw)) )
 //
 val () =
@@ -2142,7 +2144,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ref_set_at_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun3(a1ref_set_at_raw)) )
 val () =
 the_d2cstdef_insert
@@ -2150,7 +2152,7 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_a1ptr_set_at_raw")
 ,
-I0Vfun
+IRVfun
 ( firfun3(a1ptr_set_at_raw)) )
 //
 (* ****** ****** *)
@@ -2161,21 +2163,21 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_g_stdin")
 ,
-I0Vfun(firfun0(g_stdin)))
+IRVfun(firfun0(g_stdin)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_g_stdout")
 ,
-I0Vfun(firfun0(g_stdout)))
+IRVfun(firfun0(g_stdout)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_g_stderr")
 ,
-I0Vfun( firfun0(g_stderr)) )
+IRVfun( firfun0(g_stderr)) )
 //
 val () =
 the_d2cstdef_insert
@@ -2183,14 +2185,14 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_fgetc_ref")
 ,
-I0Vfun( firfun1(fgetc_ref)) )
+IRVfun( firfun1(fgetc_ref)) )
 val () =
 the_d2cstdef_insert
 (
 d2cst
 ("XINTERP_fputc_ref")
 ,
-I0Vfun( firfun2(fputc_ref)) )
+IRVfun( firfun2(fputc_ref)) )
 //
 val () =
 the_d2cstdef_insert
@@ -2198,11 +2200,11 @@ the_d2cstdef_insert
 d2cst
 ("XINTERP_nint_rand_limit")
 ,
-I0Vfun(firfun1(nint_rand_limit)))
+IRVfun(firfun1(nint_rand_limit)))
 //
 } (* end of [then] *) 
 //
-end (* end of [interp0_initize_gint] *)
+end (* end of [xinterp_initize_gint] *)
 
 (* ****** ****** *)
 
@@ -2214,4 +2216,4 @@ end // end of [local]
 
 (* ****** ****** *)
 
-(* end of [xint_interp0_envmap.dats] *)
+(* end of [xint_xinterp_envmap.dats] *)

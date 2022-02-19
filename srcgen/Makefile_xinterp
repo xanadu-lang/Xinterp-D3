@@ -40,7 +40,6 @@ LIBGC=-lgc
 
 SRCSATS := \
 intrep0.sats \
-interp0.sats \
 xinterp.sats \
 
 SRCDATS := \
@@ -48,9 +47,9 @@ intrep0.dats \
 intrep0_print.dats \
 intrep0_dynexp.dats \
 xinterp_main0.dats \
-interp0_print.dats \
-interp0_envmap.dats \
-interp0_dynexp.dats \
+xinterp_print.dats \
+xinterp_envmap.dats \
+xinterp_dynexp.dats \
 
 ######
 

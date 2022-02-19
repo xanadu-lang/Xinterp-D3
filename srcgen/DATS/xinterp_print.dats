@@ -63,120 +63,124 @@ fprint with $D2E.fprint_d2cst
 (* ****** ****** *)
 //
 #staload "./../SATS/intrep0.sats"
-#staload "./../SATS/interp0.sats"
+#staload "./../SATS/xinterp.sats"
 //
 (* ****** ****** *)
 //
 implement
-fprint_val<i0val> = fprint_i0val
+fprint_val<irval> = fprint_irval
 //
 (* ****** ****** *)
 //
 implement
-print_i0val(x0) = 
-fprint_i0val(stdout_ref, x0)
+print_irval(x0) = 
+fprint_irval(stdout_ref, x0)
 implement
-prerr_i0val(x0) = 
-fprint_i0val(stderr_ref, x0)
+prerr_irval(x0) = 
+fprint_irval(stderr_ref, x0)
 //
 implement
-fprint_i0val
+fprint_irval
   (out, x0) =
 (
 case+ x0 of
 //
-| I0Vnil() =>
-  fprint!(out, "I0Vnil()")
+| IRVnil() =>
+  fprint!(out, "IRVnil()")
 //
-| I0Vint(i0) =>
-  fprint!(out, "I0Vint(", i0, ")")
-| I0Vptr(p0) =>
-  fprint!(out, "I0Vptr(", p0, ")")
+| IRVint(i0) =>
+  fprint!(out, "IRVint(", i0, ")")
+| IRVptr(p0) =>
+  fprint!(out, "IRVptr(", p0, ")")
 //
-| I0Vbtf(b0) =>
-  fprint!(out, "I0Vbtf(", b0, ")")
-| I0Vchr(c0) =>
-  fprint!(out, "I0Vchr(", c0, ")")
+| IRVbtf(b0) =>
+  fprint!(out, "IRVbtf(", b0, ")")
+| IRVchr(c0) =>
+  fprint!(out, "IRVchr(", c0, ")")
 //
-| I0Vflt(f0) =>
-  fprint!(out, "I0Vflt(", f0, ")")
-| I0Vstr(s0) =>
-  fprint!(out, "I0Vstr(", s0, ")")
+| IRVflt(f0) =>
+  fprint!(out, "IRVflt(", f0, ")")
+| IRVstr(s0) =>
+  fprint!(out, "IRVstr(", s0, ")")
 //
-| I0Vlft(x0) =>
-  fprint!(out, "I0Vlft(", x0, ")")
+| IRVlft(x0) =>
+  fprint!(out, "IRVlft(", x0, ")")
 //
-| I0Vcon(d2c, arg) =>
+| IRVcon(d2c, arg) =>
   fprint!
   ( out
-  , "I0Vcon(", d2c, "; ", arg, ")")
+  , "IRVcon(", d2c, "; ", arg, ")")
 //
-| I0Vfun(fopr) =>
-  fprint!(out, "I0Vfun(", "...", ")")
+| IRVfun(fopr) =>
+  fprint!(out, "IRVfun(", "...", ")")
 //
-| I0Vtuple(knd, irvs) =>
+| IRVtuple(knd, irvs) =>
   fprint!
   ( out
-  , "I0Vtuple(", knd, "; ", irvs, ")")
+  , "IRVtuple(", knd, "; ", irvs, ")")
 //
-| I0Vlam
+| IRVlam
   (fenv, iras, ire1) =>
-  fprint!(out, "I0Vlam(", "...", ")")
-| I0Vfix
+  fprint!(out, "IRVlam(", "...", ")")
+| IRVfix
   (fenv, d2v0, iras, ire1) =>
-  fprint!(out, "I0Vfix(", "...", ")")
-| I0Vfixs
+  fprint!(out, "IRVfix(", "...", ")")
+| IRVfixs
   (fenv, d2v0, iras, ire1, ires) =>
-  fprint!(out, "I0Vfixs(", "...", ")")
+  fprint!(out, "IRVfixs(", "...", ")")
 //
-| I0Vlazy(irlz) =>
-  fprint!(out, "I0Vlazy(", "...", ")")
-| I0Vllazy(_, _, _) =>
-  fprint!(out, "I0Vllazy(", "...", ")")
+| IRVlazy(irlz) =>
+  fprint!(out, "IRVlazy(", "...", ")")
+| IRVllazy(_, _, _) =>
+  fprint!(out, "IRVllazy(", "...", ")")
 //
-| I0Verror() =>
-  fprint!(out, "I0Verror(", ")")
-| I0Vnone1(ire1) =>
-  fprint!(out, "I0Vnone1(", ire1, ")")
+| IRVerror() =>
+  fprint!(out, "IRVerror(", ")")
+| IRVnone1(ire1) =>
+  fprint!(out, "IRVnone1(", ire1, ")")
 //
-) (* end of [fprint_i0val] *)
+) (* end of [fprint_irval] *)
 //
 (* ****** ****** *)
 //
 implement
-print_i0lftval(x0) = 
-fprint_i0lftval(stdout_ref, x0)
+print_irlftval(x0) = 
+fprint_irlftval(stdout_ref, x0)
 implement
-prerr_i0lftval(x0) = 
-fprint_i0lftval(stderr_ref, x0)
+prerr_irlftval(x0) = 
+fprint_irlftval(stderr_ref, x0)
 //
 implement
-fprint_i0lftval
+fprint_irlftval
   (out, x0) =
 (
 case+ x0 of
-| I0LVref(r0) =>
-  fprint!
-  ( out
-  , "I0LVref(", ref_get_ptr(r0), ")")
+|
+IRLVref(r0) =>
+fprint!
+( out
+, "IRLVref(", ref_get_ptr(r0), ")")
 //
-| I0LVpcon
-  (x1, lab) =>
-  fprint!
-  (out, "I0LVpcon(", x1, "; ", lab, ")")
+|
+IRLVpcon
+(x1, lab) =>
+fprint!
+(out, "IRLVpcon(", x1, "; ", lab, ")")
 //
-| I0LVpbox
-  (x1, lab, idx) =>
-  fprint!
-  ( out
-  , "I0LVpbox(", x1, "; ", lab, "; ", idx, ")")
-| I0LVpflt
-  (x1, lab, idx) =>
-  fprint!
-  ( out
-  , "I0LVpflt(", x1, "; ", lab, "; ", idx, ")")
+|
+IRLVpbox
+(x1, lab, idx) =>
+fprint!
+( out
+, "IRLVpbox(", x1, "; ", lab, "; ", idx, ")")
+|
+IRLVpflt
+(x1, lab, idx) =>
+fprint!
+( out
+, "IRLVpflt(", x1, "; ", lab, "; ", idx, ")")
 //
-) (* end of [fprint_i0lftval] *)
+) (* end of [fprint_irlftval] *)
 //
 (* ****** ****** *)
 

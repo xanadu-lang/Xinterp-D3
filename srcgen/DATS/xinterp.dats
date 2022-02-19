@@ -50,7 +50,6 @@ UN = "prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 //
 #staload "./../SATS/xinterp.sats"
-#staload "./../SATS/interp0.sats"
 //
 (* ****** ****** *)
 //
@@ -60,9 +59,9 @@ UN = "prelude/SATS/unsafe.sats"
 //
 #dynload "./../DATS/xinterp_main0.dats"
 //
-#dynload "./../DATS/interp0_print.dats"
-#dynload "./../DATS/interp0_envmap.dats"
-#dynload "./../DATS/interp0_dynexp.dats"
+#dynload "./../DATS/xinterp_print.dats"
+#dynload "./../DATS/xinterp_envmap.dats"
+#dynload "./../DATS/xinterp_dynexp.dats"
 //
 (* ****** ****** *)
 //
