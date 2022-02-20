@@ -285,33 +285,34 @@ irexp_node =
   ( irexp
   , int(*npf*), irexplst)
 //
+| IREtrcd of
+  ( int(*knd*)
+  , int(*npf*), irexplst)
+//
 | IREpcon of
   ( irexp, label(*proj*))
 | IREpbox of
-  ( irexp//rcd
+  ( irexp//trcd
   , label(*proj*), int(*index*))
 //
 | IREproj of
-  ( irexp//rcd
+  ( irexp//trcd
   , label(*proj*), int(*index*))
 | IREplft of
-  ( irexp//rcd
+  ( irexp//trcd
   , label(*proj*), int(*index*))
 | IREpptr of
-  ( irexp//rcd
+  ( irexp//trcd
   , label(*proj*), int(*index*))
 //
 | IRElet of (irdclist, irexp)
 | IREwhere of (irexp, irdclist)
 //
 | IREseqn of
-  (irexplst(*semi*), irexp(*last*))
-//
-| IREtuple of
-  (int(*knd*), int(*npf*), irexplst)
+  (irexplst(*semi*), irexp(*ret*))
 //
 | IREassgn of
-  (irexp(*left*), irexp(*right*))
+  (irexp(*l-val*), irexp(*r-val*))
 //
 | IREift1 of
   ( irexp(*cond*)
@@ -320,7 +321,8 @@ irexp_node =
 //
 | IREcase of
   ( int(*knd*)
-  , irexp(*val*), irclaulst)
+  , irexp(*case*)
+  , irclaulst(*clauses*))
 //
 | IRElam of
   (int(*knd*), irarglst, irexp)

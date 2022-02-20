@@ -268,8 +268,9 @@ intpenv_bind_fix
   (env0, irv0) =
 let
 val-
-IRVfix
-(fenv, d2v0, _, _) = irv0
+IRVfix1
+( fenv
+, d2v0, _, _) = irv0
 in
 (
   fold@(env0)
@@ -279,9 +280,9 @@ val+
 @INTPENV(l0, xs) = env0
 val () =
 (
-  xs :=
-  intplst_cons
-  (D2Kvar(d2v0), irv0, xs)
+xs :=
+intplst_cons
+(D2Kvar(d2v0), irv0, xs)
 )
 } (* end of [where] *)
 end // end of [intpenv_bind_fix]
@@ -290,7 +291,7 @@ implement
 intpenv_bind_fixs
   (env0, irv0) =
 (
-  auxirdfs(env0, irdfs)
+auxirdfs(env0, irdfs)
 ) where
 {
 //
@@ -466,38 +467,38 @@ xinterp_search_d2cst
   (auxlst(xs)) where
 {
 //
-  vtypedef
-  res = Option_vt(irval)
-  val+INTPENV(l0, xs) = env0
+vtypedef
+res = Option_vt(irval)
+val+INTPENV(l0, xs) = env0
 //
-  fun
-  auxlst
-  (xs: !intplst): res =
-  (
-  case+ xs of
-  | intplst_nil() =>
-    the_d2cstdef_search(d2c0)
-  | intplst_fun() =>
-    the_d2cstdef_search(d2c0)
+fun
+auxlst
+(xs: !intplst): res =
+(
+case+ xs of
+| intplst_nil() =>
+  the_d2cstdef_search(d2c0)
+| intplst_fun() =>
+  the_d2cstdef_search(d2c0)
 //
-  | intplst_let1(xs) => auxlst(xs)
-  | intplst_try1(xs) => auxlst(xs)
+| intplst_let1(xs) => auxlst(xs)
+| intplst_try1(xs) => auxlst(xs)
 //
 (*
-  | intplst_loc1(xs) => auxlst(xs)
-  | intplst_loc2(xs) => auxlst(xs)
+| intplst_loc1(xs) => auxlst(xs)
+| intplst_loc2(xs) => auxlst(xs)
 *)
-  | intplst_cons
-    (d2k1, irv1, xs) =>
-    (
-    case+ d2k1 of
-    | D2Kcst(d2c1) =>
-      if
-      (d2c0 = d2c1)
-      then Some_vt(irv1) else auxlst(xs)
-    | D2Kvar(d2v1) => auxlst(xs)
-    )
-  ) (* end of [auxlst] *)
+| intplst_cons
+  (d2k1, irv1, xs) =>
+  (
+  case+ d2k1 of
+  | D2Kcst(d2c1) =>
+    if
+    (d2c0 = d2c1)
+    then Some_vt(irv1) else auxlst(xs)
+  | D2Kvar(d2v1) => auxlst(xs)
+  )
+) (* end of [auxlst] *)
 //
 } (* end of [xinterp_search_d2cst] *)
 
@@ -506,41 +507,42 @@ xinterp_search_d2cst
 implement
 xinterp_search_d2var
   (env0, d2v0) =
-  (auxlst(xs)) where
+(
+  auxlst(xs)) where
 {
 //
-  vtypedef
-  res = Option_vt(irval)
-  val+INTPENV(l0, xs) = env0
+vtypedef
+res = Option_vt(irval)
+val+INTPENV(l0, xs) = env0
 //
-  fun
-  auxlst
-  (xs: !intplst): res =
-  (
-  case+ xs of
-  | intplst_nil() =>
-    the_d2vardef_search(d2v0)
-  | intplst_fun() =>
-    the_d2vardef_search(d2v0)
+fun
+auxlst
+(xs: !intplst): res =
+(
+case+ xs of
+| intplst_nil() =>
+  the_d2vardef_search(d2v0)
+| intplst_fun() =>
+  the_d2vardef_search(d2v0)
 //
-  | intplst_let1(xs) => auxlst(xs)
-  | intplst_try1(xs) => auxlst(xs)
+| intplst_let1(xs) => auxlst(xs)
+| intplst_try1(xs) => auxlst(xs)
 //
 (*
-  | intplst_loc1(xs) => auxlst(xs)
-  | intplst_loc2(xs) => auxlst(xs)
+| intplst_loc1(xs) => auxlst(xs)
+| intplst_loc2(xs) => auxlst(xs)
 *)
-  | intplst_cons
-    (d2k1, irv1, xs) =>
-    (
-    case+ d2k1 of
-    | D2Kcst(d2c1) => auxlst(xs)
-    | D2Kvar(d2v1) =>
-      if
-      (d2v0 = d2v1)
-      then Some_vt(irv1) else auxlst(xs)
-    )
-  ) (* end of [auxlst] *)
+| intplst_cons
+  (d2k1, irv1, xs) =>
+  (
+  case+ d2k1 of
+  | D2Kcst(d2c1) => auxlst(xs)
+  | D2Kvar(d2v1) =>
+    if
+    (d2v0 = d2v1)
+    then Some_vt(irv1) else auxlst(xs)
+  )
+) (* end of [auxlst] *)
 //
 } (* end of [xinterp_search_d2var] *)
 
@@ -569,11 +571,11 @@ _(*non-intplst_nil*) =>
 fold@(env0)
 ) where
 {
-  val () =
-  (
-  xs :=
-  intplst_cons(D2Kcst(d2c0), irv0, xs)
-  )
+val () =
+(
+xs :=
+intplst_cons(D2Kcst(d2c0), irv0, xs)
+)
 } (* non-intplst_nil *)
 //
 end // end of [xinterp_insert_d2cst]
@@ -603,11 +605,11 @@ _(*non-intplst_nil*) =>
 fold@(env0)
 ) where
 {
-  val () =
-  (
-  xs :=
-  intplst_cons(D2Kvar(d2v0), irv0, xs)
-  )
+val () =
+(
+xs :=
+intplst_cons(D2Kvar(d2v0), irv0, xs)
+)
 } (* non-intplst_nil *)
 //
 end // end of [xinterp_insert_d2var]

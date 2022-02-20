@@ -125,16 +125,16 @@ irval =
 | IRVcon of
     (d2con, irvalist)
 //
-| IRVfun of irvalfun
+| IRVfun of (irvalfun)
 //
-| IRVtuple of
+| IRVtrcd of
   (int(*knd*), irvalist)
 //
 |
-IRVlam of
+IRVlam1 of
   (irenv, irarglst, irexp)
 |
-IRVfix of
+IRVfix1 of
 (irenv, d2var, irarglst, irexp)
 (*
 | IRVfix2 of

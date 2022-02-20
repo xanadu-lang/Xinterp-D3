@@ -154,7 +154,7 @@ irval_tup_arg
   auxget_at(irvs, i0)
 ) where
 {
-val-IRVtuple(knd0, irvs) = irv0
+val-IRVtrcd(knd0, irvs) = irv0
 }
 //
 end // end of [local]
@@ -555,11 +555,11 @@ body.node() of
 |
 IRElam
 (knd, iras, body) =>
-IRVfix(fenv, nam, iras, body)
+IRVfix1(fenv, nam, iras, body)
 )
 |
 list_cons _ =>
-IRVfix(fenv, nam, iras, body)
+IRVfix1(fenv, nam, iras, body)
 //
 end // end of [auxirfd0]
 //
@@ -777,7 +777,7 @@ val
 fenv =
 intpenv_take_fenv(env0)
 in
-  IRVlam(fenv, iras, body)
+  IRVlam1(fenv, iras, body)
 end
 //
 ) (* IRCimpdecl3 *)
@@ -831,9 +831,9 @@ case- irf0 of
 //
 | IRVfun(fopr) => fopr(irvs)
 //
-| IRVlam(_, _, _) =>
+| IRVlam1(_, _, _) =>
   xinterp_fcall_lam(irf0, irvs)
-| IRVfix(_, _, _, _) =>
+| IRVfix1(_, _, _, _) =>
   xinterp_fcall_fix(irf0, irvs)
 | IRVfixs(_, _, _, _, _) =>
   xinterp_fcall_fixs(irf0, irvs)
@@ -956,7 +956,7 @@ in
 //
 case- irv1 of
 |
-IRVtuple
+IRVtrcd
 (knd, irvs) =>
 auxget_at(irvs, idx2)
 //
@@ -991,7 +991,7 @@ in
 //
 case- irv1 of
 |
-IRVtuple
+IRVtrcd
 (knd, irvs) => auxget_at(irvs, idx2)
 //
 end // end of [auxproj]
@@ -1172,7 +1172,7 @@ aux_tuple
 let
 //
 val-
-IREtuple
+IREtrcd
 ( knd0
 , npf1
 , ires) = ire0.node()
@@ -1216,14 +1216,14 @@ in
 if
 (knd0 > 0)
 then
-IRVtuple(knd0, irvs)
+IRVtrcd(knd0, irvs)
 else
 (
 case+ irvs of
 |
 list_nil _ => IRVnil()
 |
-list_cons _ => IRVtuple(knd0, irvs)
+list_cons _ => IRVtrcd(knd0, irvs)
 )
 ) where
 {
@@ -1457,7 +1457,7 @@ IRLVpbox
 (irv1, _, idx2) = irlv
 //
 val-
-IRVtuple(knd, irvs) = irv1
+IRVtrcd(knd, irvs) = irv1
 val () = assertloc(knd > 0)
 //
 in
@@ -1515,7 +1515,7 @@ case- irlv of
   in
   //
   case- irv1 of
-  | IRVtuple
+  | IRVtrcd
     (knd, xs) =>
     list_cons
     (auxget_at(xs, idx2), irvs)
@@ -1545,9 +1545,9 @@ auxlst_dn
   val irvr = 
   let
   val-
-  IRVtuple(knd, xs) = irv1
+  IRVtrcd(knd, xs) = irv1
   in
-  IRVtuple
+  IRVtrcd
   ( knd
   , auxfset_at(xs, idx2, irvr))
   end
@@ -1670,7 +1670,7 @@ IRElam
 , iras, body) = ire0.node()
 in
 (
-  IRVlam
+  IRVlam1
   (fenv, iras(*arg*), body)
 ) where
 {
@@ -1693,7 +1693,7 @@ IREfix
 , iras, body) = ire0.node()
 in
 (
-IRVfix
+IRVfix1
 ( fenv
 , d2v0(*fid*), iras(*arg*), body)
 ) where
@@ -1924,7 +1924,7 @@ in
 //
 case- irv1 of
 |
-IRVtuple(knd, irvs) =>
+IRVtrcd(knd, irvs) =>
 let
 val () = // flat
 assertloc(knd=0) in auxget_at(irvs, idx2)
@@ -2160,7 +2160,7 @@ IRLVpbox
   auxget_at(irvs, idx2)
 ) where
 {
-val-IRVtuple(knd0, irvs) = irv1
+val-IRVtrcd(knd0, irvs) = irv1
 } (* end of [IRLVpbox] *)
 //
 (*
@@ -2180,7 +2180,7 @@ irv1 = aux_flat_main(env0, ire1)
 in
 case- irv1 of
 |
-IRVtuple
+IRVtrcd
 (knd, irvs) => auxget_at(irvs, idx2)
 end // end of [IREplft]
 //
@@ -2302,7 +2302,7 @@ ire0.node() of
 | IREseqn
   (ires, ire1) => aux_seqn(env0, ire0)
 //
-| IREtuple
+| IREtrcd
   (_, _, ires) => aux_tuple(env0, ire0)
 //
 | IREassgn
@@ -2408,7 +2408,7 @@ xinterp_fcall_lam
   (irf0, irvs) =
 let
 val-
-IRVlam
+IRVlam1
 ( fenv
 , iras, body) = irf0
 val env0 =
@@ -2442,7 +2442,7 @@ list_nil() =>
 |
 list_cons _ =>
 (
-  IRVlam(fenv, iras, body)
+  IRVlam1(fenv, iras, body)
 ) where
 {
   val fenv = intpenv_take_fenv(env0)
@@ -2464,7 +2464,7 @@ xinterp_fcall_fix
   (irf0, irvs) =
 let
 val-
-IRVfix
+IRVfix1
 ( fenv
 , d2v0
 , iras, body) = irf0
@@ -2495,7 +2495,7 @@ let
     }
   | list_cons _ =>
     (
-    IRVlam(fenv, iras, body)
+    IRVlam1(fenv, iras, body)
     ) where
     {
       val fenv = intpenv_take_fenv(env0)
@@ -2550,7 +2550,7 @@ let
     }
   | list_cons _ =>
     (
-    IRVlam(fenv, iras, body)
+    IRVlam1(fenv, iras, body)
     ) where
     {
       val fenv = intpenv_take_fenv(env0)
@@ -2829,7 +2829,7 @@ IRPtuple(knd0, irps) =>
 (
 case- irv0 of
 |
-IRVtuple(knd1, irvs) =>
+IRVtrcd(knd1, irvs) =>
 let
 val () =
 assertloc(knd0 = knd1)
@@ -3271,7 +3271,7 @@ else
 (
 case- irv0 of
 |
-IRVtuple(knd1, irvs) =>
+IRVtrcd(knd1, irvs) =>
 let
 val () = assertloc(knd0 = knd1)
 in
@@ -3618,7 +3618,7 @@ let
 val fenv =
 intpenv_take_fenv(env0)
 in
-IRVfix(fenv, nam, iras, body)
+IRVfix1(fenv, nam, iras, body)
 end // end of [IRElam]
 //
 (*
@@ -3656,7 +3656,7 @@ let
 val fenv =
 intpenv_take_fenv(env0)
 val irv0 =
-IRVfix(fenv, nam, iras, body)
+IRVfix1(fenv, nam, iras, body)
 in
   xinterp_insert_d2cst(env0, d2c, irv0)
 end
@@ -3946,7 +3946,7 @@ Some(d2c0) = opt3 in d2c0 end
 ) : d2cst // end of [val]
 //
 val
-irv0 = IRVlam(fenv, iras, body)
+irv0 = IRVlam1(fenv, iras, body)
 //
 in
 xinterp_insert_d2cst(env0, d2c0, irv0)

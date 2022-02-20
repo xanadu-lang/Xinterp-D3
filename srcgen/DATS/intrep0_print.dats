@@ -275,6 +275,13 @@ x0.node() of
   , "IREdapp("
   , irf0, "; ", npf1, "; ", ires, ")")
 //
+| IREtrcd
+  (knd0, npf1, ires) =>
+  fprint!
+  ( out
+  , "IREtrcd("
+  , knd0, "; ", npf1, "; ", ires, ")")
+//
 | IREpcon
   (ire1, lab2) =>
   fprint!
@@ -320,13 +327,6 @@ x0.node() of
   fprint!
   ( out
   , "IREseqn(", ires, "; ", ire1, ")")
-//
-| IREtuple
-  (knd0, npf1, ires) =>
-  fprint!
-  ( out
-  , "IREtuple("
-  , knd0, "; ", npf1, "; ", ires, ")")
 //
 | IREassgn(irel, irer) =>
   fprint!
@@ -410,10 +410,14 @@ x0.node() of
   (
     fprint!(out, "IREnone0(", ")")
   )
-| IREnone1(d3e1) =>
-  (
-    fprint!(out, "IREnone1(", d3e1, ")")
-  )
+|
+IREnone1(d3e1) =>
+let
+  val loc1 = x0.loc()
+in
+  fprint!
+  (out, "IREnone1(", loc1, ":", d3e1, ")")
+end
 //
 )
 //

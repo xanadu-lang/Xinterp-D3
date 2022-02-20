@@ -627,7 +627,7 @@ d3e0.node() of
   in
     irexp_make_node
     ( loc0
-    , IREtuple(knd0, npf1, ires))
+    , IREtrcd(knd0, npf1, ires))
   end
 //
 | D3Eassgn(d3el, d3er) =>

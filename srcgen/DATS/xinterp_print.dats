@@ -114,17 +114,17 @@ case+ x0 of
 | IRVfun(fopr) =>
   fprint!(out, "IRVfun(", "...", ")")
 //
-| IRVtuple(knd, irvs) =>
+| IRVtrcd(knd, irvs) =>
   fprint!
   ( out
   , "IRVtuple(", knd, "; ", irvs, ")")
 //
-| IRVlam
+| IRVlam1
   (fenv, iras, ire1) =>
-  fprint!(out, "IRVlam(", "...", ")")
-| IRVfix
+  fprint!(out, "IRVlam1(", "...", ")")
+| IRVfix1
   (fenv, d2v0, iras, ire1) =>
-  fprint!(out, "IRVfix(", "...", ")")
+  fprint!(out, "IRVfix1(", "...", ")")
 | IRVfixs
   (fenv, d2v0, iras, ire1, ires) =>
   fprint!(out, "IRVfixs(", "...", ")")

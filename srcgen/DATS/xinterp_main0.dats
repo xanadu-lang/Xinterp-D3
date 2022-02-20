@@ -761,16 +761,15 @@ p3kg =
 trans03_package(p0kg)
 //
 (*
-HX: for type-errors
-*)
-val () =
-tread33_package(p3kg)
-//
 (*
+HX: for type-errors
 HX: for timp-errors
 *)
 val () =
+tread33_package(p3kg)
+val () =
 tread3x_package(p3kg)
+*)
 //
 val+D3TRANSD(rcd) = p3kg
 //
