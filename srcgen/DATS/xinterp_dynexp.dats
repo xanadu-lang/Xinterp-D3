@@ -1016,7 +1016,7 @@ in
 case- irv1 of
 |
 IRVlft(irlv) =>
-IRVlft(IRLVpflt(irlv, lab2, idx2))
+IRVlft(IRLFTpflt(irlv, lab2, idx2))
 //
 end // end of [auxplft]
 
@@ -1040,7 +1040,7 @@ in
 case- irv1 of
 |
 IRVlft(irlv) =>
-IRVlft(IRLVpflt(irlv, lab2, idx2))
+IRVlft(IRLFTpflt(irlv, lab2, idx2))
 //
 end // end of [auxpptr]
 
@@ -1359,17 +1359,17 @@ IRVlft(irlv) =>
 (
 case+ irlv of
 |
-IRLVref(r0) =>
+IRLFTref(r0) =>
 (
   IRVnil(*void*)
 ) where
 {
   val () =
   ( r0[] := Some(irvr) )
-} (* end of [IRLVref] *)
+} (* end of [IRLFTref] *)
 |
 //
-IRLVpcon
+IRLFTpcon
 (_, lab2) =>
 (
   IRVnil(*void*)
@@ -1380,7 +1380,7 @@ aux_assgn_pcon(irvr, irlv)
 }
 //
 |
-IRLVpbox
+IRLFTpbox
 (_, _, _) =>
 (
   IRVnil(*void*)
@@ -1390,7 +1390,7 @@ val () =
 aux_assgn_pbox(irvr, irlv)
 }
 |
-IRLVpflt
+IRLFTpflt
 (_, _, _) =>
 (
   IRVnil(*void*)
@@ -1415,11 +1415,11 @@ end // end of [aux_assgn]
 and
 aux_assgn_pcon
 ( irvr: irval
-, irlv: irlval): void =
+, irlv: irlftv): void =
 let
 //
 val-
-IRLVpcon
+IRLFTpcon
 (irv1, lab2) = irlv
 val
 idx2 = pcon_lab2idx(lab2)
@@ -1449,11 +1449,11 @@ end
 and
 aux_assgn_pbox
 ( irvr: irval
-, irlv: irlval): void =
+, irlv: irlftv): void =
 let
 //
 val-
-IRLVpbox
+IRLFTpbox
 (irv1, _, idx2) = irlv
 //
 val-
@@ -1481,7 +1481,7 @@ end
 and
 aux_assgn_pflt
 ( irvr: irval
-, irlv: irlval) : void =
+, irlv: irlftv) : void =
 let
 val
 irvs = auxlst_up(irlv)
@@ -1495,17 +1495,17 @@ end where
 fun
 auxlst_up
 ( irlv
-: irlval): irvalist =
+: irlftv): irvalist =
 (
 case- irlv of
-| IRLVref(r0) =>
+| IRLFTref(r0) =>
   (
     list_sing(x0)
   ) where
   {
     val-Some(x0) = r0[]
   }
-| IRLVpflt
+| IRLFTpflt
   (irlv, lab2, idx2) =>
   let
   val
@@ -1527,14 +1527,14 @@ fun
 auxlst_dn
 ( irvr: irval
 , irvs: irvalist
-, irlv: irlval): void =
+, irlv: irlftv): void =
 (
 case- irlv of
 |
-IRLVref(r0) =>
+IRLFTref(r0) =>
 (r0[] := Some(irvr))
 |
-IRLVpflt
+IRLFTpflt
 (irlv, lab2, idx2) =>
 auxlst_dn
 (irvr, irvs, irlv) where
@@ -1802,7 +1802,7 @@ val
 irv2 =
 xinterp_irexp(env0, ire2)
 in
-IRVlft(IRLVpcon(irv2, lab2))
+IRVlft(IRLFTpcon(irv2, lab2))
 end
 |
 IREpbox
@@ -1812,7 +1812,7 @@ val
 irv2 =
 xinterp_irexp(env0, ire2)
 in
-IRVlft(IRLVpbox(irv2, lab2, idx2))
+IRVlft(IRLFTpbox(irv2, lab2, idx2))
 end
 //
 end // end of [aux_addr]
@@ -1867,7 +1867,7 @@ end // end of [aux_eval]
 //
 and
 aux_eval_irlv
-(x0: irlval): irval =
+(x0: irlftv): irval =
 let
 //
 fun
@@ -1895,12 +1895,12 @@ else auxget_at(irvs, i0-1)
 in
 case- x0 of
 |
-IRLVref(r0) =>
+IRLFTref(r0) =>
 let
   val-Some(irv0) = r0[] in irv0
 end
 |
-IRLVpcon
+IRLFTpcon
 (irv1, lab2) =>
 let
 val-
@@ -1915,7 +1915,7 @@ in
 }
 end
 |
-IRLVpflt
+IRLFTpflt
 (x1, lab2, idx2) =>
 let
 val
@@ -1936,15 +1936,15 @@ end (* end of [aux_eval_irlv] *)
 and
 aux_eval_lazy
 ( r0
-: ref(irlazval)): irval =
+: ref(irlazv)): irval =
 (
 case+ r0[] of
 //
 |
-IRLVval(irv2) => irv2
+IRLAZval(irv2) => irv2
 //
 |
-IRLVexp(fenv, ire2) =>
+IRLAZexp(fenv, ire2) =>
 let
   val env0 =
   intpenv_make_fenv(fenv)
@@ -1952,11 +1952,11 @@ let
   irv2 =
   xinterp_irexp_fun(env0, ire2)
 in
-  r0[] := IRLVval(irv2);
+  r0[] := IRLAZval(irv2);
   let
   val () = intpenv_free_fenv(env0) in irv2
   end
-end // IRLVexp(fenv, ire2)
+end // IRLFTexp(fenv, ire2)
 ) (* end of [aux_eval_lazy] *)
 
 and
@@ -2035,7 +2035,7 @@ val
 fenv = intpenv_take_fenv(env0)
 //
 in
-IRVlazy(ref(IRLVexp(fenv, ire1)))
+IRVlazy(ref(IRLAZexp(fenv, ire1)))
 end
 //
 fun
@@ -2134,12 +2134,12 @@ IRVlft
 (
 case- irlv of
 |
-IRLVref(r0) =>
+IRLFTref(r0) =>
 let
 val-Some(irv1) = r0[] in irv1
 end
 |
-IRLVpcon
+IRLFTpcon
 (irv1, lab2) =>
 let
 val-
@@ -2151,21 +2151,21 @@ in
 {
   val idx2 = pcon_lab2idx(lab2)
 }
-end // end of [IRLVpcon]
+end // end of [IRLFTpcon]
 //
 |
-IRLVpbox
+IRLFTpbox
 (irv1, lab2, idx2) =>
 (
   auxget_at(irvs, idx2)
 ) where
 {
 val-IRVtrcd1(knd0, irvs) = irv1
-} (* end of [IRLVpbox] *)
+} (* end of [IRLFTpbox] *)
 //
 (*
 |
-IRLVpflt _ => // can it happen?
+IRLFTpflt _ => // can it happen?
 *)
 //
 ) (* end of [IRVlft] *)
@@ -2221,7 +2221,7 @@ val
 irv1 =
 xinterp_irexp(env0, ire1)
 in
-IRVlft(IRLVpcon(irv1, lab2))
+IRVlft(IRLFTpcon(irv1, lab2))
 end // end of [IREpcon]
 |
 IREpbox
@@ -2230,7 +2230,7 @@ let
 val
 irv1 = xinterp_irexp(env0, ire1)
 in
-IRVlft(IRLVpbox(irv1, lab2, idx2))
+IRVlft(IRLFTpbox(irv1, lab2, idx2))
 end // end of [IREpbox]
 |
 IREeval(knd0, ire1) =>
@@ -2961,7 +2961,7 @@ xinterp_insert_d2var
   val lab2 =
   label_make_int(i0)
   val irv1 =
-  IRVlft(IRLVpcon(irv0, lab2))
+  IRVlft(IRLFTpcon(irv0, lab2))
 }
 |
 _(*non-IRPvar*) =>
@@ -3036,7 +3036,7 @@ xinterp_insert_d2var
   val lab2 =
   label_make_int(i0)
   val irv1 =
-  IRVlft(IRLVpcon(irv0, lab2))
+  IRVlft(IRLFTpcon(irv0, lab2))
 }
 |
 _(*non-IRPvar*) =>
@@ -3119,7 +3119,7 @@ xinterp_insert_d2var
 val lab2 =
 label_make_int(i0)
 val irv1 =
-IRVlft(IRLVpbox(irv0, lab2, i0))
+IRVlft(IRLFTpbox(irv0, lab2, i0))
 }
 |
 _(*non-IRPvar*) =>
@@ -3565,7 +3565,7 @@ in
 //
 xinterp_insert_d2var
 ( env0
-, d2v, IRVlft(IRLVref(ref(ini))))
+, d2v, IRVlft(IRLFTref(ref(ini))))
 //
 end // end of [xinterp_irvardecl]
 

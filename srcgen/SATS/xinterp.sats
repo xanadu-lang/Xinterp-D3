@@ -120,7 +120,7 @@ irval =
 | IRVcst of d2cst
 *)
 //
-| IRVlft of irlval
+| IRVlft of irlftv
 //
 | IRVcon of
     (d2con, irvalist)
@@ -149,7 +149,7 @@ IRVfixs of
 , irarglst, irexp, irexplst)
 //
 |
-IRVlazy of ref(irlazval)
+IRVlazy of ref(irlazv)
 |
 IRVllazy of
 ( irenv
@@ -158,20 +158,20 @@ IRVllazy of
 | IRVerror of () | IRVnone1 of (irexp)
 //
 and
-irlval =
-| IRLVref of ref(irvalopt)
+irlftv =
+| IRLFTref of ref(irvalopt)
 //
-| IRLVpcon of (irval, label)
+| IRLFTpcon of (irval, label)
 //
-| IRLVpbox of
+| IRLFTpbox of
   (irval, label, int(*index*))
-| IRLVpflt of
-  (irlval, label, int(*index*))
+| IRLFTpflt of
+  (irlftv, label, int(*index*))
 //
 and
-irlazval =
-| IRLVval of irval(*value*)
-| IRLVexp of (irenv, irexp) // thunk
+irlazv =
+| IRLAZval of irval(*value*)
+| IRLAZexp of (irenv, irexp) // thunk
 //
 where
 //
@@ -197,15 +197,15 @@ overload fprint with fprint_irval
 (* ****** ****** *)
 //
 fun
-print_irlval(irlval): void
+print_irlftv(irlftv): void
 fun
-prerr_irlval(irlval): void
+prerr_irlftv(irlftv): void
 fun
-fprint_irlval: fprint_type irlval
+fprint_irlftv: fprint_type irlftv
 //
-overload print with print_irlval
-overload prerr with prerr_irlval
-overload fprint with fprint_irlval
+overload print with print_irlftv
+overload prerr with prerr_irlftv
+overload fprint with fprint_irlftv
 //
 (* ****** ****** *)
 

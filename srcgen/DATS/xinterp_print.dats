@@ -144,43 +144,43 @@ case+ x0 of
 (* ****** ****** *)
 //
 implement
-print_irlval(x0) = 
-fprint_irlval(stdout_ref, x0)
+print_irlftv(x0) = 
+fprint_irlftv(stdout_ref, x0)
 implement
-prerr_irlval(x0) = 
-fprint_irlval(stderr_ref, x0)
+prerr_irlftv(x0) = 
+fprint_irlftv(stderr_ref, x0)
 //
 implement
-fprint_irlval
+fprint_irlftv
   (out, x0) =
 (
 case+ x0 of
 |
-IRLVref(r0) =>
+IRLFTref(r0) =>
 fprint!
 ( out
-, "IRLVref(", ref_get_ptr(r0), ")")
+, "IRLFTref(", ref_get_ptr(r0), ")")
 //
 |
-IRLVpcon
+IRLFTpcon
 (x1, lab) =>
 fprint!
-(out, "IRLVpcon(", x1, "; ", lab, ")")
+(out, "IRLFTpcon(", x1, "; ", lab, ")")
 //
 |
-IRLVpbox
+IRLFTpbox
 (x1, lab, idx) =>
 fprint!
 ( out
-, "IRLVpbox(", x1, "; ", lab, "; ", idx, ")")
+, "IRLFTpbox(", x1, "; ", lab, "; ", idx, ")")
 |
-IRLVpflt
+IRLFTpflt
 (x1, lab, idx) =>
 fprint!
 ( out
-, "IRLVpflt(", x1, "; ", lab, "; ", idx, ")")
+, "IRLFTpflt(", x1, "; ", lab, "; ", idx, ")")
 //
-) (* end of [fprint_irlval] *)
+) (* end of [fprint_irlftv] *)
 //
 (* ****** ****** *)
 
