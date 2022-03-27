@@ -114,10 +114,10 @@ case+ x0 of
 | IRVfun(fopr) =>
   fprint!(out, "IRVfun(", "...", ")")
 //
-| IRVtrcd(knd, irvs) =>
+| IRVtrcd1(knd, irvs) =>
   fprint!
   ( out
-  , "IRVtuple(", knd, "; ", irvs, ")")
+  , "IRVtrcd1(", knd, "; ", irvs, ")")
 //
 | IRVlam1
   (fenv, iras, ire1) =>
@@ -144,14 +144,14 @@ case+ x0 of
 (* ****** ****** *)
 //
 implement
-print_irlftval(x0) = 
-fprint_irlftval(stdout_ref, x0)
+print_irlval(x0) = 
+fprint_irlval(stdout_ref, x0)
 implement
-prerr_irlftval(x0) = 
-fprint_irlftval(stderr_ref, x0)
+prerr_irlval(x0) = 
+fprint_irlval(stderr_ref, x0)
 //
 implement
-fprint_irlftval
+fprint_irlval
   (out, x0) =
 (
 case+ x0 of
@@ -180,7 +180,7 @@ fprint!
 ( out
 , "IRLVpflt(", x1, "; ", lab, "; ", idx, ")")
 //
-) (* end of [fprint_irlftval] *)
+) (* end of [fprint_irlval] *)
 //
 (* ****** ****** *)
 

@@ -147,14 +147,14 @@ val-IRVcon(d2c1, irvs) = irv0
 }
 //
 fun
-irval_tup_arg
+irval_trcd1_arg
 ( irv0
 : irval, i0: int): irval =
 (
   auxget_at(irvs, i0)
 ) where
 {
-val-IRVtrcd(knd0, irvs) = irv0
+val-IRVtrcd1(knd0, irvs) = irv0
 }
 //
 end // end of [local]
@@ -956,7 +956,7 @@ in
 //
 case- irv1 of
 |
-IRVtrcd
+IRVtrcd1
 (knd, irvs) =>
 auxget_at(irvs, idx2)
 //
@@ -991,7 +991,7 @@ in
 //
 case- irv1 of
 |
-IRVtrcd
+IRVtrcd1
 (knd, irvs) => auxget_at(irvs, idx2)
 //
 end // end of [auxproj]
@@ -1164,7 +1164,7 @@ end // end of [aux_seqn]
 (* ****** ****** *)
 
 fun
-aux_tuple
+aux_trcd1
 ( env0
 : !intpenv
 , ire0
@@ -1172,7 +1172,7 @@ aux_tuple
 let
 //
 val-
-IREtrcd
+IREtrcd1
 ( knd0
 , npf1
 , ires) = ire0.node()
@@ -1216,20 +1216,20 @@ in
 if
 (knd0 > 0)
 then
-IRVtrcd(knd0, irvs)
+IRVtrcd1(knd0, irvs)
 else
 (
 case+ irvs of
 |
 list_nil _ => IRVnil()
 |
-list_cons _ => IRVtrcd(knd0, irvs)
+list_cons _ => IRVtrcd1(knd0, irvs)
 )
 ) where
 {
   val irvs = auxlst(env0, npf1, ires)
 }
-end // end of [aux_tuple]
+end // end of [aux_trcd1]
 
 (* ****** ****** *)
 
@@ -1415,7 +1415,7 @@ end // end of [aux_assgn]
 and
 aux_assgn_pcon
 ( irvr: irval
-, irlv: irlftval): void =
+, irlv: irlval): void =
 let
 //
 val-
@@ -1449,7 +1449,7 @@ end
 and
 aux_assgn_pbox
 ( irvr: irval
-, irlv: irlftval): void =
+, irlv: irlval): void =
 let
 //
 val-
@@ -1457,7 +1457,7 @@ IRLVpbox
 (irv1, _, idx2) = irlv
 //
 val-
-IRVtrcd(knd, irvs) = irv1
+IRVtrcd1(knd, irvs) = irv1
 val () = assertloc(knd > 0)
 //
 in
@@ -1481,7 +1481,7 @@ end
 and
 aux_assgn_pflt
 ( irvr: irval
-, irlv: irlftval) : void =
+, irlv: irlval) : void =
 let
 val
 irvs = auxlst_up(irlv)
@@ -1495,7 +1495,7 @@ end where
 fun
 auxlst_up
 ( irlv
-: irlftval): irvalist =
+: irlval): irvalist =
 (
 case- irlv of
 | IRLVref(r0) =>
@@ -1515,7 +1515,7 @@ case- irlv of
   in
   //
   case- irv1 of
-  | IRVtrcd
+  | IRVtrcd1
     (knd, xs) =>
     list_cons
     (auxget_at(xs, idx2), irvs)
@@ -1527,7 +1527,7 @@ fun
 auxlst_dn
 ( irvr: irval
 , irvs: irvalist
-, irlv: irlftval): void =
+, irlv: irlval): void =
 (
 case- irlv of
 |
@@ -1545,9 +1545,9 @@ auxlst_dn
   val irvr = 
   let
   val-
-  IRVtrcd(knd, xs) = irv1
+  IRVtrcd1(knd, xs) = irv1
   in
-  IRVtrcd
+  IRVtrcd1
   ( knd
   , auxfset_at(xs, idx2, irvr))
   end
@@ -1850,7 +1850,7 @@ case- irv1 of
 //
 | IRVlft
   (irlv) =>
-  aux_eval_left(irlv)
+  aux_eval_irlv(irlv)
 //
 | IRVptr
   (ptr0) =>
@@ -1866,8 +1866,8 @@ case- irv1 of
 end // end of [aux_eval]
 //
 and
-aux_eval_left
-(x0: irlftval): irval =
+aux_eval_irlv
+(x0: irlval): irval =
 let
 //
 fun
@@ -1919,19 +1919,19 @@ IRLVpflt
 (x1, lab2, idx2) =>
 let
 val
-irv1 = aux_eval_left(x1)
+irv1 = aux_eval_irlv(x1)
 in
 //
 case- irv1 of
 |
-IRVtrcd(knd, irvs) =>
+IRVtrcd1(knd, irvs) =>
 let
 val () = // flat
 assertloc(knd=0) in auxget_at(irvs, idx2)
 end
 //
 end
-end (* end of [aux_eval_left] *)
+end (* end of [aux_eval_irlv] *)
 //
 and
 aux_eval_lazy
@@ -2160,7 +2160,7 @@ IRLVpbox
   auxget_at(irvs, idx2)
 ) where
 {
-val-IRVtrcd(knd0, irvs) = irv1
+val-IRVtrcd1(knd0, irvs) = irv1
 } (* end of [IRLVpbox] *)
 //
 (*
@@ -2180,7 +2180,7 @@ irv1 = aux_flat_main(env0, ire1)
 in
 case- irv1 of
 |
-IRVtrcd
+IRVtrcd1
 (knd, irvs) => auxget_at(irvs, idx2)
 end // end of [IREplft]
 //
@@ -2294,25 +2294,35 @@ ire0.node() of
 | IREplft _ => auxplft(env0, ire0)
 | IREpptr _ => auxpptr(env0, ire0)
 //
-| IRElet
-  (ircs, ire1) => aux_let(env0, ire0)
-| IREwhere
-  (ire1, ircs) => aux_where(env0, ire0)
+|
+IRElet
+(ircs, ire1) => aux_let(env0, ire0)
+|
+IREwhere
+(ire1, ircs) => aux_where(env0, ire0)
 //
-| IREseqn
-  (ires, ire1) => aux_seqn(env0, ire0)
+|
+IREseqn
+(ires, ire1) => aux_seqn(env0, ire0)
 //
-| IREtrcd
-  (_, _, ires) => aux_tuple(env0, ire0)
+|
+IREtrcd1
+(_, _, ires) => aux_trcd1(env0, ire0)
+(*
+|
+IREtrcd2
+(_, _, ires) => aux_trcd2(env0, ire0)
+*)
 //
-| IREassgn
-  (irel, irer) => aux_assgn(env0, ire0)
+|
+IREassgn
+(irel, irer) => aux_assgn(env0, ire0)
 //
 | IREift1
-    (_, _, _) => aux_ift1(env0, ire0)
+  ( _, _, _ ) => aux_ift1(env0, ire0)
   // IREift1
 | IREcase
-    (_, _, _) => aux_case(env0, ire0)
+  ( _, _, _ ) => aux_case(env0, ire0)
   // IREcase
 //
 | IRElam
@@ -2574,8 +2584,8 @@ local
 
 fun
 aux_include
-( env0
-: !intpenv
+( env0:
+! intpenv
 , irdcl: irdcl): void =
 let
 //
@@ -2598,8 +2608,8 @@ end // end of [aux_include]
 
 fun
 aux_valdecl
-( env0
-: !intpenv
+( env0:
+! intpenv
 , irdcl: irdcl): void =
 let
 val-
@@ -2615,8 +2625,8 @@ end // end of [aux_valdecl]
 
 fun
 aux_vardecl
-( env0
-: !intpenv
+( env0:
+! intpenv
 , irdcl: irdcl): void =
 let
 val-
@@ -2632,8 +2642,8 @@ end // end of [aux_vardecl]
 
 fun
 aux_fundecl
-( env0
-: !intpenv
+( env0:
+! intpenv
 , irdcl: irdcl): void =
 let
 val-
@@ -2825,11 +2835,11 @@ else false
 )
 //
 |
-IRPtuple(knd0, irps) =>
+IRPtrcd1(knd0, irps) =>
 (
 case- irv0 of
 |
-IRVtrcd(knd1, irvs) =>
+IRVtrcd1(knd1, irvs) =>
 let
 val () =
 assertloc(knd0 = knd1)
@@ -2877,13 +2887,13 @@ IRPcapp
 (d2c0, irps) => auxlst(irps)
 //
 |
-IRPtuple
+IRPtrcd1
 (knd0, irps) =>
 if
 (knd0 != 0)
 then auxlst(irps) else false
 //
-| _ (* non-con-tup *) => false
+| _ (* non-con-trcd1 *) => false
 ) where
 {
 fun
@@ -2916,7 +2926,7 @@ in the following patterns,
 *)
 (*
 fun
-irpat_leftize0
+irpat_irlvize0
 ( env0
 : !intpenv
 , irp1: irpat
@@ -2980,13 +2990,13 @@ case+ irps of
     val () = auxirp1(env0, i0, irp1)
   }
 )
-} (* end of [irpat_leftize0] *)
+} (* end of [irpat_irlvize0] *)
 *)
 //
 (* ****** ****** *)
 
 fun
-irpat_leftize1_con
+irpat_irlvize1_con
 ( env0
 : !intpenv
 , irp1: irpat
@@ -3064,12 +3074,12 @@ case+ irps of
     val () = auxirp1(env0, i0, irp1)
   }
 )
-} (* end of [irpat_leftize1_con] *)
+} (* end of [irpat_irlvize1_con] *)
 
 (* ****** ****** *)
 
 fun
-irpat_leftize1_tup
+irpat_irlvize1_trcd1
 ( env0
 : !intpenv
 , irp1: irpat
@@ -3078,7 +3088,7 @@ irpat_leftize1_tup
 case+
 irp1.node() of
 |
-IRPtuple
+IRPtrcd1
 (knd0, irps) =>
 auxirps(env0, 0(*ir*), irps)
 |
@@ -3115,7 +3125,7 @@ IRVlft(IRLVpbox(irv0, lab2, i0))
 _(*non-IRPvar*) =>
 let
 val
-irv1 = irval_tup_arg(irv0, i0)
+irv1 = irval_trcd1_arg(irv0, i0)
 in
 xinterp_irpat_ck1(env0, irp1, irv1)
 end
@@ -3124,7 +3134,7 @@ end
 _(*non-IRPbang*) =>
 let
 val
-irv1 = irval_tup_arg(irv0, i0)
+irv1 = irval_trcd1_arg(irv0, i0)
 in
 xinterp_irpat_ck1(env0, irp1, irv1)
 end
@@ -3147,7 +3157,7 @@ case+ irps of
     val () = auxirp1(env0, i0, irp1)
   }
 )
-} (* end of [irpat_leftize1_tup] *)
+} (* end of [irpat_irlvize1_trcd1] *)
 
 (* ****** ****** *)
 
@@ -3215,7 +3225,7 @@ case- irv0 of
 IRPflat(irp1) =>
 (
 (*
-irpat_leftize0(env0, irp1, irv0)
+irpat_irlvize0(env0, irp1, irv0)
 *)
 ) where
 {
@@ -3241,7 +3251,7 @@ if
 test
 then
 (
-irpat_leftize1_con(env0, irp0, irv0)
+irpat_irlvize1_con(env0, irp0, irv0)
 )
 else
 (
@@ -3254,7 +3264,7 @@ end // end of [let]
 )
 //
 |
-IRPtuple(knd0, irps) =>
+IRPtrcd1(knd0, irps) =>
 (
 let
 val
@@ -3265,13 +3275,14 @@ if
 test
 then
 (
-irpat_leftize1_tup(env0, irp0, irv0)
+irpat_irlvize1_trcd1
+( env0, irp0, irv0 )
 )
 else
 (
 case- irv0 of
 |
-IRVtrcd(knd1, irvs) =>
+IRVtrcd1(knd1, irvs) =>
 let
 val () = assertloc(knd0 = knd1)
 in

@@ -184,7 +184,7 @@ irpat_node =
 //
 | IRPcapp of (d2con, irpatlst)
 //
-| IRPtuple of (int(*knd*), irpatlst)
+| IRPtrcd1 of (int(*knd*), irpatlst)
 //
 | IRPnone0 of () | IRPnone1 of (d3pat)
 //
@@ -285,7 +285,7 @@ irexp_node =
   ( irexp
   , int(*npf*), irexplst)
 //
-| IREtrcd of
+| IREtrcd1 of
   ( int(*knd*)
   , int(*npf*), irexplst)
 //

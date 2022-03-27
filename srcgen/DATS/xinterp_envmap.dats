@@ -135,8 +135,9 @@ List0(@(d2key, irval))
 //
 datavtype
 intpenv =
-| INTPENV of
-  (int(*level*), intplst)
+|
+INTPENV of
+(int(*level*), intplst)
 //
 and
 intplst =
@@ -238,7 +239,7 @@ case+ env of
     (env, list_vt_cons((k0, x0), res))
   )
 )
-} (* end of [intplst_take_env] *)
+} (* end of [intplst_take_fenv] *)
 
 (* ****** ****** *)
 
@@ -1451,7 +1452,7 @@ local
 val
 the_flag = ref<int>(0)
 
-in
+in(*in-of-local*)
 
 implement
 xinterp_initize() =

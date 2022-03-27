@@ -160,10 +160,10 @@ case+ x0.node() of
   ( out
   , "IRPcapp(", d2c0, "; ", irps, ")")
 //
-| IRPtuple(knd, irps) =>
+| IRPtrcd1(knd, irps) =>
   fprint!
   ( out
-  , "IRPtuple(", knd, "; ", irps, ")")
+  , "IRPtrcd1(", knd, "; ", irps, ")")
 //
 | IRPnone0() =>
     fprint!(out, "IRPnone0(", ")")
@@ -275,11 +275,11 @@ x0.node() of
   , "IREdapp("
   , irf0, "; ", npf1, "; ", ires, ")")
 //
-| IREtrcd
+| IREtrcd1
   (knd0, npf1, ires) =>
   fprint!
   ( out
-  , "IREtrcd("
+  , "IREtrcd1("
   , knd0, "; ", npf1, "; ", ires, ")")
 //
 | IREpcon

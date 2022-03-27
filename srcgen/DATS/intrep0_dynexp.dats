@@ -277,7 +277,7 @@ end // end of [auxdapp]
 (* ****** ****** *)
 
 fun
-aux_tuple
+aux_trcd1
 ( d3p0
 : d3pat): irpat =
 let
@@ -286,7 +286,7 @@ val
 loc0 = d3p0.loc()
 //
 val-
-D3Ptuple
+D3Ptrcd1
 ( knd0
 , npf1
 , d3ps) = d3p0.node()
@@ -325,8 +325,8 @@ end
 } (* where *) // end-of-val
 //
 in
-irpat_make_node(loc0, IRPtuple(knd0, irps))
-end // end of [aux_tuple]
+irpat_make_node(loc0, IRPtrcd1(knd0, irps))
+end // end of [aux_trcd1]
 
 in(*in-of-local*)
 
@@ -364,7 +364,7 @@ d3p0.node() of
 //
 | D3Pdapp _ => auxdapp(d3p0)
 //
-| D3Ptuple _ => aux_tuple(d3p0)
+| D3Ptrcd1 _ => aux_trcd1(d3p0)
 //
 | D3Panno
   (d3p1, _, _) => irerase_dpat(d3p1)
@@ -619,7 +619,7 @@ d3e0.node() of
     (loc0, IREseqn(ires, ire1))
   end
 //
-| D3Etuple
+| D3Etrcd1
   (knd0, npf1, d3es) =>
   let
     val
@@ -627,7 +627,7 @@ d3e0.node() of
   in
     irexp_make_node
     ( loc0
-    , IREtrcd(knd0, npf1, ires))
+    , IREtrcd1(knd0, npf1, ires))
   end
 //
 | D3Eassgn(d3el, d3er) =>
