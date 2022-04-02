@@ -214,9 +214,9 @@ exception IREXN of irval
 (* ****** ****** *)
 
 absvtype
-intpenv_vtbox = ptr
+intenv_vtbox = ptr
 vtypedef
-intpenv = intpenv_vtbox
+intenv = intenv_vtbox
 
 (* ****** ****** *)
 //
@@ -225,59 +225,59 @@ irenv_make_nil
   ((*void*)): irenv
 //
 fun
-intpenv_make_nil
-  ((*void*)): intpenv
+intenv_make_nil
+  ((*void*)): intenv
 fun
-intpenv_make_fenv
-  (env: irenv): intpenv
+intenv_make_fenv
+  (env: irenv): intenv
 //
 (* ****** ****** *)
 //
 fun
-intpenv_take_fenv
-  (env: !intpenv): irenv
+intenv_take_fenv
+  (env: !intenv): irenv
 //
 (* ****** ****** *)
 //
 fun
-intpenv_bind_fix
-(env: !intpenv, irv: irval): void
+intenv_bind_fix
+(env: !intenv, irv: irval): void
 fun
-intpenv_bind_fixs
-(env: !intpenv, irv: irval): void
+intenv_bind_fixs
+(env: !intenv, irv: irval): void
 //
 (* ****** ****** *)
 //
 fun
-intpenv_pop0_let1(!intpenv): void
+intenv_pop0_let1(!intenv): void
 fun
-intpenv_push_let1(!intpenv): void
+intenv_push_let1(!intenv): void
 //
 (* ****** ****** *)
 //
 fun
-intpenv_pop0_try1(!intpenv): void
+intenv_pop0_try1(!intenv): void
 fun
-intpenv_push_try1(!intpenv): void
+intenv_push_try1(!intenv): void
 //
 (* ****** ****** *)
 //
 fun
-intpenv_free_nil(env: intpenv): void
+intenv_free_nil(env: intenv): void
 fun
-intpenv_free_fenv(env: intpenv): void
+intenv_free_fenv(env: intenv): void
 //
 (* ****** ****** *)
 
 fun
 xinterp_search_d2cst
 ( env:
-! intpenv
+! intenv
 , d2c: d2cst): Option_vt(irval)
 fun
 xinterp_search_d2var
 ( env:
-! intpenv
+! intenv
 , d2v: d2var): Option_vt(irval)
 
 (* ****** ****** *)
@@ -285,13 +285,13 @@ xinterp_search_d2var
 fun
 xinterp_insert_d2cst
 ( env:
-! intpenv
+! intenv
 , d2c: d2cst, irv: irval): void
 //
 fun
 xinterp_insert_d2var
 ( env:
-! intpenv
+! intenv
 , d2v: d2var, irv: irval): void
 //
 (* ****** ****** *)
@@ -299,24 +299,24 @@ xinterp_insert_d2var
 fun
 xinterp_irdcl
 ( env:
-! intpenv, irc: irdcl): void
+! intenv, irc: irdcl): void
 fun
 xinterp_irdclist
 ( env:
-! intpenv, ircs: irdclist): void
+! intenv, ircs: irdclist): void
 //
 fun
 xinterp_irexp
 ( env:
-! intpenv, ire: irexp): irval
+! intenv, ire: irexp): irval
 fun
 xinterp_irexplst
 ( env:
-! intpenv, ires: irexplst): irvalist
+! intenv, ires: irexplst): irvalist
 fun
 xinterp_irexpopt
 ( env:
-! intpenv, opt0: irexpopt): irvalopt
+! intenv, opt0: irexpopt): irvalopt
 //
 (* ****** ****** *)
 //
@@ -342,12 +342,12 @@ xinterp_irpatlst_ck0
 fun
 xinterp_irpat_ck1
 ( env:
-! intpenv
+! intenv
 , irp0: irpat, irv0: irval): void
 fun
 xinterp_irpatlst_ck1
 ( env:
-! intpenv
+! intenv
 , irps: irpatlst, irvs: irvalist): void
 //
 (* ****** ****** *)
@@ -355,28 +355,28 @@ xinterp_irpatlst_ck1
 fun
 xinterp_irgpat_ck2
 ( env:
-! intpenv
+! intenv
 , irgp: irgpat, irv0: irval): bool
 //
 fun
 xinterp_irgua_ck2
-(env: !intpenv, irg0: irgua): bool
+(env: !intenv, irg0: irgua): bool
 fun
 xinterp_irgualst_ck2
-(env: !intpenv, irgs: irgualst): bool
+(env: !intenv, irgs: irgualst): bool
 //
 (* ****** ****** *)
 //
 fun
 xinterp_irclau
 ( env:
-! intpenv
+! intenv
 , irv0: irval
 , ircl: irclau): Option_vt(irval)
 fun
 xinterp_irclaulst
 ( env:
-! intpenv
+! intenv
 , irv0: irval
 , ircls: irclaulst): Option_vt(irval)
 //
@@ -385,38 +385,38 @@ xinterp_irclaulst
 fun
 xinterp_irvaldecl
 ( env
-: !intpenv, irvd: irvaldecl): void
+: !intenv, irvd: irvaldecl): void
 fun
 xinterp_irvaldeclist
 ( env
-: !intpenv, irvds: irvaldeclist): void
+: !intenv, irvds: irvaldeclist): void
 
 (* ****** ****** *)
 
 fun
 xinterp_irvardecl
 ( env
-: !intpenv, irvd: irvardecl): void
+: !intenv, irvd: irvardecl): void
 fun
 xinterp_irvardeclist
 ( env
-: !intpenv, irvds: irvardeclist): void
+: !intenv, irvds: irvardeclist): void
 
 (* ****** ****** *)
 fun
 xinterp_irfundecl
 ( env:
-! intpenv, irfd: irfundecl): void
+! intenv, irfd: irfundecl): void
 fun
 xinterp_irfundeclist
 ( env:
-! intpenv, irfds: irfundeclist): void
+! intenv, irfds: irfundeclist): void
 (* ****** ****** *)
 //
 fun
 xinterp_irimpdecl3
 ( env:
-! intpenv, irdcl: irdcl(*impdecl3*)): void
+! intenv, irdcl: irdcl(*impdecl3*)): void
 //
 (* ****** ****** *)
 //

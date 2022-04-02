@@ -170,12 +170,12 @@ xinterp_initize()
 //
 val
 env0 =
-intpenv_make_nil()
+intenv_make_nil()
 //
 val () =
 xinterp_irdclist(env0, dcls)
 //
-val () = intpenv_free_nil(env0)
+val () = intenv_free_nil(env0)
 //
 in
   // nothing
@@ -186,7 +186,7 @@ end // end of [xinterp_program]
 extern
 fun
 xinterp_irexp_fun
-(env: !intpenv, ire: irexp): irval
+(env: !intenv, ire: irexp): irval
 //
 implement
 xinterp_irexp_fun
@@ -200,7 +200,7 @@ irv0 where
 {
 val
 env0 =
-$UN.castvwtp0{intpenv}(env0)
+$UN.castvwtp0{intenv}(env0)
 val
 irv0 = xinterp_irexp(env0, ire0)
 prval
@@ -210,8 +210,8 @@ with exn =>
 let
 val
 env0 =
-$UN.castvwtp0{intpenv}(env0)
-val () = intpenv_free_fenv(env0) in $raise(exn)
+$UN.castvwtp0{intenv}(env0)
+val () = intenv_free_fenv(env0) in $raise(exn)
 end
 end // end of [xinterp_irexp_fun]
 //
@@ -220,7 +220,7 @@ end // end of [xinterp_irexp_fun]
 extern
 fun
 xinterp_irexp_try0
-(env: !intpenv, ire: irexp): irval
+(env: !intenv, ire: irexp): irval
 //
 implement
 xinterp_irexp_try0
@@ -234,7 +234,7 @@ irv0 where
 {
 val
 env0 =
-$UN.castvwtp0{intpenv}(env0)
+$UN.castvwtp0{intenv}(env0)
 val
 irv0 = xinterp_irexp(env0, ire0)
 prval
@@ -244,8 +244,8 @@ with exn =>
 let
 val
 env0 =
-$UN.castvwtp1{intpenv}(env0)
-val () = intpenv_pop0_try1(env0)
+$UN.castvwtp1{intenv}(env0)
+val () = intenv_pop0_try1(env0)
 prval
 ((*void*)) = $UN.cast2void(env0) in $raise(exn)
 end
@@ -387,7 +387,7 @@ val-IREtop(tok) = ire0.node()
 fun
 auxvar
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -411,7 +411,7 @@ end // end of [auxvar]
 fun
 auxcon1
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 IRVfun
@@ -427,7 +427,7 @@ val-IREcon1(d2c0) = ire0.node()
 fun
 auxfcon
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 IRVfun
@@ -443,7 +443,7 @@ val-IREfcon(d2c0) = ire0.node()
 fun
 auxfcst
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -488,7 +488,7 @@ end // end of [auxfcst]
 fun
 auxtcon
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 IRVfun
@@ -504,7 +504,7 @@ val-IREtcon(d2c0, _, _) = ire0.node()
 fun
 auxtimp
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -524,44 +524,6 @@ println!("auxtimp: ire0 = ", ire0)
 val () =
 println!("auxtimp: ire1 = ", ire1)
 *)
-//
-fun
-auxirfd0
-( fenv
-: irenv
-, irfd0
-: irfundecl): irval =
-let
-//
-val-
-IRFUNDECL
-  (rcd) = irfd0
-//
-val nam = rcd.nam
-//
-val-
-Some(iras) = rcd.a3g
-val-
-Some(body) = rcd.def
-//
-in
-//
-case+ iras of
-|
-list_nil _ =>
-(
-case-
-body.node() of
-|
-IRElam
-(knd, iras, body) =>
-IRVfix1(fenv, nam, iras, body)
-)
-|
-list_cons _ =>
-IRVfix1(fenv, nam, iras, body)
-//
-end // end of [auxirfd0]
 //
 fun
 auxfixs
@@ -666,6 +628,44 @@ end
 end (* end of [list_cons] *) ) (*auxfixs*)
 //
 fun
+auxirfd0
+( fenv
+: irenv
+, irfd0
+: irfundecl): irval =
+let
+//
+val-
+IRFUNDECL
+  (rcd) = irfd0
+//
+val nam = rcd.nam
+//
+val-
+Some(iras) = rcd.a3g
+val-
+Some(body) = rcd.def
+//
+in
+//
+case+ iras of
+|
+list_nil _ =>
+(
+case-
+body.node() of
+|
+IRElam
+(knd, iras, body) =>
+IRVfix1(fenv, nam, iras, body)
+)
+|
+list_cons _ =>
+IRVfix1(fenv, nam, iras, body)
+//
+end // end of [auxirfd0]
+//
+fun
 auxirfds
 ( fenv
 : irenv
@@ -739,7 +739,7 @@ let
 //
 val
 fenv =
-intpenv_take_fenv(env0)
+intenv_take_fenv(env0)
 //
 val-
 list_cons(irfd0, xs) = irfds
@@ -775,7 +775,7 @@ list_cons _ =>
 let
 val
 fenv =
-intpenv_take_fenv(env0)
+intenv_take_fenv(env0)
 in
   IRVlam1(fenv, iras, body)
 end
@@ -789,7 +789,7 @@ end // end of [auxtimp]
 fun
 auxdapp
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -807,7 +807,7 @@ val
 irvs =
 auxdarg(env0, npf1, ires)
 //
-// (*
+(*
 //
 val loc0 = ire0.loc()
 //
@@ -823,7 +823,8 @@ println!
 val () =
 println!
 ("auxdapp: irvs = ", irvs)
-// *)
+//
+*)
 //
 in
 //
@@ -843,7 +844,7 @@ end // end of [auxdapp]
 and
 auxdfun
 ( env0
-: !intpenv
+: !intenv
 , irf0
 : irexp): irval = 
 (
@@ -853,7 +854,7 @@ auxdfun
 and
 auxdarg
 ( env0
-: !intpenv
+: !intenv
 , npf1: int
 , ires
 : irexplst): irvalist = 
@@ -912,7 +913,7 @@ in(* in-of-local*)
 fun
 auxpcon
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -940,7 +941,7 @@ end // end of [auxpcon]
 fun
 auxpbox
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -965,7 +966,7 @@ end // end of [auxpbox]
 fun
 auxproj
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -999,7 +1000,7 @@ end // end of [auxproj]
 fun
 auxplft
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1023,7 +1024,7 @@ end // end of [auxplft]
 fun
 auxpptr
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1051,7 +1052,7 @@ end // end of [local]
 fun
 aux_let
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1062,7 +1063,7 @@ IRElet
 , ire1) = ire0.node()
 //
 val () =
-intpenv_push_let1(env0)
+intenv_push_let1(env0)
 //
 val () =
 xinterp_irdclist(env0, ircs)
@@ -1073,13 +1074,13 @@ irv0 = xinterp_irexp(env0, ire1)
 in
 let
 val () =
-intpenv_pop0_let1(env0) in irv0 end
+intenv_pop0_let1(env0) in irv0 end
 end // end of [aux_let]
 
 fun
 aux_where
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1090,7 +1091,7 @@ IREwhere
 , ircs) = ire0.node()
 //
 val () =
-intpenv_push_let1(env0)
+intenv_push_let1(env0)
 //
 val () =
 xinterp_irdclist(env0, ircs)
@@ -1101,7 +1102,7 @@ irv0 = xinterp_irexp(env0, ire1)
 in
 let
 val () =
-intpenv_pop0_let1(env0) in irv0 end
+intenv_pop0_let1(env0) in irv0 end
 end // end of [aux_where]
 
 (* ****** ****** *)
@@ -1109,7 +1110,7 @@ end // end of [aux_where]
 fun
 aux_seqn
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1124,7 +1125,7 @@ let
 fun
 auxlst
 ( env0
-: !intpenv
+: !intenv
 , ires
 : irexplst): void =
 (
@@ -1166,7 +1167,7 @@ end // end of [aux_seqn]
 fun
 aux_trcd1
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1180,7 +1181,7 @@ IREtrcd1
 fun
 auxlst
 ( env0
-: !intpenv
+: !intenv
 , npf1: int
 , ires
 : irexplst
@@ -1326,7 +1327,7 @@ in(*in-of-local*)
 fun
 aux_assgn
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1563,7 +1564,7 @@ end // end of [local]
 fun
 aux_ift1
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1611,7 +1612,7 @@ end // end of [aux_ift1]
 fun
 aux_case
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 (
@@ -1660,7 +1661,7 @@ xinterp_irclaulst(env0, irv1, ircls)
 fun
 aux_lam
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1675,14 +1676,14 @@ in
 ) where
 {
   val
-  fenv = intpenv_take_fenv(env0)
+  fenv = intenv_take_fenv(env0)
 }
 end // end of [aux_lam]
 
 fun
 aux_fix
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1699,7 +1700,7 @@ IRVfix1
 ) where
 {
   val
-  fenv = intpenv_take_fenv(env0)
+  fenv = intenv_take_fenv(env0)
 }
 end // end of [aux_fix]
 
@@ -1708,7 +1709,7 @@ end // end of [aux_fix]
 fun
 aux_try0
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -1719,7 +1720,7 @@ IREtry0
 , ircls) = ire0.node()
 //
 val () =
-intpenv_push_try1(env0)
+intenv_push_try1(env0)
 //
 val env0 =
 $UN.castvwtp1{ptr}(env0)
@@ -1730,11 +1731,11 @@ try
 let
 val
 env0 =
-$UN.castvwtp0{intpenv}(env0)
+$UN.castvwtp0{intenv}(env0)
 val
 irv1 =
 xinterp_irexp_try0(env0, ire1)
-val () = intpenv_pop0_try1(env0)
+val () = intenv_pop0_try1(env0)
 //
 prval
 ((*void*)) = $UN.cast2void(env0)
@@ -1746,7 +1747,7 @@ with
 let
 val
 env0 =
-$UN.castvwtp0{intpenv}(env0)
+$UN.castvwtp0{intenv}(env0)
 val
 opt2 =
 xinterp_irclaulst(env0, irx1, ircls)
@@ -1767,7 +1768,7 @@ end (* end of [aux_try0] *)
 fun
 aux_addr
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 let
 //
@@ -1822,7 +1823,7 @@ end // end of [aux_addr]
 fun
 aux_eval
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 let
 //
@@ -1947,14 +1948,14 @@ IRLAZval(irv2) => irv2
 IRLAZexp(fenv, ire2) =>
 let
   val env0 =
-  intpenv_make_fenv(fenv)
+  intenv_make_fenv(fenv)
   val
   irv2 =
   xinterp_irexp_fun(env0, ire2)
 in
   r0[] := IRLAZval(irv2);
   let
-  val () = intpenv_free_fenv(env0) in irv2
+  val () = intenv_free_fenv(env0) in irv2
   end
 end // IRLFTexp(fenv, ire2)
 ) (* end of [aux_eval_lazy] *)
@@ -1966,12 +1967,12 @@ aux_eval_llazy
 , ires: irexplst): irval =
 let
   val env0 =
-  intpenv_make_fenv(fenv)
+  intenv_make_fenv(fenv)
   val
   irv1 = xinterp_irexp_fun(env0, ire1)
 in
   let
-  val () = intpenv_free_fenv(env0) in irv1
+  val () = intenv_free_fenv(env0) in irv1
   end
 end
 
@@ -1979,7 +1980,7 @@ end
 fun
 aux_fold
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 ( IRVnil() ) where
 {
@@ -1990,7 +1991,7 @@ IREfold(ire1) = ire0.node()
 fun
 aux_free
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 ( IRVnil() ) where
 {
@@ -2003,7 +2004,7 @@ IREfree(knd0, ire1) = ire0.node()
 fun
 aux_raise
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 let
 //
@@ -2024,7 +2025,7 @@ end
 fun
 aux_lazy
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 let
 //
@@ -2032,7 +2033,7 @@ val-
 IRElazy(ire1) = ire0.node()
 //
 val
-fenv = intpenv_take_fenv(env0)
+fenv = intenv_take_fenv(env0)
 //
 in
 IRVlazy(ref(IRLAZexp(fenv, ire1)))
@@ -2041,7 +2042,7 @@ end
 fun
 aux_llazy
 ( env0
-: !intpenv
+: !intenv
 , ire0: irexp): irval =
 let
 //
@@ -2055,7 +2056,7 @@ in
   IRVllazy(fenv, ire1, opt2)
 ) where
 {
-  val fenv = intpenv_take_fenv(env0)
+  val fenv = intenv_take_fenv(env0)
 }
 end
 //
@@ -2092,7 +2093,7 @@ in(*in-of-local*)
 fun
 aux_flat
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -2106,7 +2107,7 @@ end
 and
 aux_flat_main
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -2193,7 +2194,7 @@ end // end of [local]
 fun
 aux_talf
 ( env0
-: !intpenv
+: !intenv
 , ire0
 : irexp): irval =
 let
@@ -2422,7 +2423,7 @@ IRVlam1
 ( fenv
 , iras, body) = irf0
 val env0 =
-intpenv_make_fenv(fenv)
+intenv_make_fenv(fenv)
 in
 let
 //
@@ -2455,13 +2456,13 @@ list_cons _ =>
   IRVlam1(fenv, iras, body)
 ) where
 {
-  val fenv = intpenv_take_fenv(env0)
+  val fenv = intenv_take_fenv(env0)
 }
 ) : irval // end of [val]
 //
 in
   let
-  val () = intpenv_free_fenv(env0) in irv0
+  val () = intenv_free_fenv(env0) in irv0
   end
 end // end of [let]
 //
@@ -2479,9 +2480,9 @@ IRVfix1
 , d2v0
 , iras, body) = irf0
 val env0 =
-intpenv_make_fenv(fenv)
+intenv_make_fenv(fenv)
 val ((*void*)) =
-intpenv_bind_fix(env0, irf0)
+intenv_bind_fix(env0, irf0)
 in
 let
   val-
@@ -2508,12 +2509,12 @@ let
     IRVlam1(fenv, iras, body)
     ) where
     {
-      val fenv = intpenv_take_fenv(env0)
+      val fenv = intenv_take_fenv(env0)
     }
   ) : irval // end of [val]
 in
   let
-  val () = intpenv_free_fenv(env0) in irv0
+  val () = intenv_free_fenv(env0) in irv0
   end
 end // end of [let]
 //
@@ -2533,9 +2534,9 @@ IRVfixs
 , body, irdfs) = irf0
 //
 val env0 =
-intpenv_make_fenv(fenv)
+intenv_make_fenv(fenv)
 val ((*void*)) =
-intpenv_bind_fixs(env0, irf0)
+intenv_bind_fixs(env0, irf0)
 //
 in
 let
@@ -2563,12 +2564,12 @@ let
     IRVlam1(fenv, iras, body)
     ) where
     {
-      val fenv = intpenv_take_fenv(env0)
+      val fenv = intenv_take_fenv(env0)
     }
   ) : irval // end of [val]
 in
   let
-  val () = intpenv_free_fenv(env0) in irv0
+  val () = intenv_free_fenv(env0) in irv0
   end
 end // end of [let]
 //
@@ -2585,7 +2586,7 @@ local
 fun
 aux_include
 ( env0:
-! intpenv
+! intenv
 , irdcl: irdcl): void =
 let
 //
@@ -2609,7 +2610,7 @@ end // end of [aux_include]
 fun
 aux_valdecl
 ( env0:
-! intpenv
+! intenv
 , irdcl: irdcl): void =
 let
 val-
@@ -2626,7 +2627,7 @@ end // end of [aux_valdecl]
 fun
 aux_vardecl
 ( env0:
-! intpenv
+! intenv
 , irdcl: irdcl): void =
 let
 val-
@@ -2643,7 +2644,7 @@ end // end of [aux_vardecl]
 fun
 aux_fundecl
 ( env0:
-! intpenv
+! intenv
 , irdcl: irdcl): void =
 let
 val-
@@ -2928,7 +2929,7 @@ in the following patterns,
 fun
 irpat_irlvize0
 ( env0
-: !intpenv
+: !intenv
 , irp1: irpat
 , irv0: irval): void =
 (
@@ -2945,7 +2946,7 @@ _ (*non-IRPcapp*) => ((*void*))
 fun
 auxirp1
 ( env0
-: !intpenv
+: !intenv
 , i0: int
 , irp1: irpat): void =
 (
@@ -2975,7 +2976,7 @@ end
 and
 auxirps
 ( env0
-: !intpenv
+: !intenv
 , i0: int
 , irps: irpatlst): void =
 (
@@ -2998,7 +2999,7 @@ case+ irps of
 fun
 irpat_irlvize1_con
 ( env0
-: !intpenv
+: !intenv
 , irp1: irpat
 , irv0: irval): void =
 (
@@ -3015,7 +3016,7 @@ _ (*non-IRPcapp*) => ((*void*))
 fun
 auxirp1
 ( env0
-: !intpenv
+: !intenv
 , i0: int
 , irp1: irpat): void =
 (
@@ -3059,7 +3060,7 @@ end
 and
 auxirps
 ( env0
-: !intpenv
+: !intenv
 , i0: int
 , irps: irpatlst): void =
 (
@@ -3081,7 +3082,7 @@ case+ irps of
 fun
 irpat_irlvize1_trcd1
 ( env0
-: !intpenv
+: !intenv
 , irp1: irpat
 , irv0: irval): void =
 (
@@ -3098,7 +3099,7 @@ _ (*non-IRPcapp*) => ((*void*))
 fun
 auxirp1
 ( env0
-: !intpenv
+: !intenv
 , i0: int
 , irp1: irpat): void =
 (
@@ -3142,7 +3143,7 @@ end
 and
 auxirps
 ( env0
-: !intpenv
+: !intenv
 , i0: int
 , irps: irpatlst): void =
 (
@@ -3421,7 +3422,7 @@ ircl.node() of
 IRCLAUpat(irgp) =>
 let
 val () =
-intpenv_push_let1(env0)
+intenv_push_let1(env0)
 val test =
 xinterp_irgpat_ck2(env0, irgp, irv0)
 val opt0 =
@@ -3433,14 +3434,14 @@ val opt0 =
 ) : Option_vt(irval)
 in
 let
-val () = intpenv_pop0_let1(env0) in opt0
+val () = intenv_pop0_let1(env0) in opt0
 end
 end
 |
 IRCLAUexp(irgp, ire1) =>
 let
 val () =
-intpenv_push_let1(env0)
+intenv_push_let1(env0)
 val test =
 xinterp_irgpat_ck2(env0, irgp, irv0)
 val opt0 =
@@ -3462,7 +3463,7 @@ else
 ) : Option_vt(irval)
 in
   let
-  val () = intpenv_pop0_let1(env0) in opt0
+  val () = intenv_pop0_let1(env0) in opt0
   end
 end // end of [IRCLAUexp]
 //
@@ -3627,7 +3628,7 @@ IRElam
 (knd, iras, body) =>
 let
 val fenv =
-intpenv_take_fenv(env0)
+intenv_take_fenv(env0)
 in
 IRVfix1(fenv, nam, iras, body)
 end // end of [IRElam]
@@ -3640,7 +3641,7 @@ let
 //
 val
 fenv =
-intpenv_take_env(env0)
+intenv_take_env(env0)
 //
 val
 irdf =
@@ -3665,7 +3666,7 @@ end
 list_cons _ =>
 let
 val fenv =
-intpenv_take_fenv(env0)
+intenv_take_fenv(env0)
 val irv0 =
 IRVfix1(fenv, nam, iras, body)
 in
@@ -3787,7 +3788,7 @@ end (* end of [list_cons] *) ) (*auxfixs*)
 fun
 auxirfds
 ( env0
-: !intpenv
+: !intenv
 , fenv
 : irenv
 , irdfs
@@ -3897,7 +3898,7 @@ case+ xs of
   let
 //
   val fenv =
-  intpenv_take_fenv(env0)
+  intenv_take_fenv(env0)
 //
   val irdfs = auxfixs(irfds)
 //
@@ -3937,7 +3938,7 @@ list_nil() =>
 let
 //
 val fenv =
-intpenv_take_fenv(env0)
+intenv_take_fenv(env0)
 val d2c0 =
 (
 case+ id2c of

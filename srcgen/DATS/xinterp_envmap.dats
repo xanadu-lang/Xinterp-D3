@@ -134,28 +134,28 @@ irenv_tbox =
 List0(@(d2key, irval))
 //
 datavtype
-intpenv =
+intenv =
 |
-INTPENV of
-(int(*level*), intplst)
+INTENV of
+(int(*level*), intpstk)
 //
 and
-intplst =
-| intplst_nil of ()
-| intplst_fun of ()
+intpstk =
+| intpstk_nil of ()
+| intpstk_fun of ()
 //
-| intplst_let1 of intplst
-| intplst_try1 of intplst
+| intpstk_let1 of intpstk
+| intpstk_try1 of intpstk
 (*
-| intplst_loc1 of intplst
-| intplst_loc2 of intplst
+| intpstk_loc1 of intpstk
+| intpstk_loc2 of intpstk
 *)
 //
-| intplst_cons of
-  (d2key, irval, intplst)
+| intpstk_cons of
+  (d2key, irval, intpstk)
 //
 absimpl
-intpenv_vtbox = intpenv
+intenv_vtbox = intenv
 //
 in(*in-of-local*)
 
@@ -165,25 +165,25 @@ implement
 irenv_make_nil
 ((*void*)) = list_nil()
 implement
-intpenv_make_nil
+intenv_make_nil
 ((*void*)) =
-INTPENV(0, intplst_nil())
+INTENV(0, intpstk_nil())
 
 (* ****** ****** *)
 
 fun
-intplst_make_fenv
-(kxs: irenv): intplst =
+intpstk_make_fenv
+(kxs: irenv): intpstk =
 (
 auxlst
-(kxs, intplst_fun())
+(kxs, intpstk_fun())
 ) where
 {
 //
 fun
 auxlst
 ( kxs: irenv
-, env: intplst): intplst =
+, env: intpstk): intpstk =
 (
 case+ kxs of
 | list_nil() => env
@@ -193,15 +193,15 @@ case+ kxs of
   ) where
   {
   val env =
-  intplst_cons(kx0.0, kx0.1, env)
+  intpstk_cons(kx0.0, kx0.1, env)
   }
 ) (* end of [auxlst] *)
 //
-} (* end of [intplst_make_fenv] *)
+} (* end of [intpstk_make_fenv] *)
 
 fun
-intplst_take_fenv
-(env: !intplst): irenv =
+intpstk_take_fenv
+(env: !intpstk): irenv =
 (
 list_vt2t
 (
@@ -214,58 +214,58 @@ res =
 List0_vt(@(d2key, irval))
 fun
 auxenv
-(env: !intplst, res: res): res =
+(env: !intpstk, res: res): res =
 (
 case+ env of
 //
-| intplst_nil() => res
-| intplst_fun() => res
+| intpstk_nil() => res
+| intpstk_fun() => res
 //
-| intplst_let1
+| intpstk_let1
     (env) => auxenv(env, res)
-| intplst_try1
+| intpstk_try1
     (env) => auxenv(env, res)
 //
 (*
-| intplst_loc1
+| intpstk_loc1
     (env) => auxenv(env, res)
-| intplst_loc2
+| intpstk_loc2
     (env) => auxenv(env, res)
 *)
 //
-| intplst_cons(k0, x0, env) =>
+| intpstk_cons(k0, x0, env) =>
   (
     auxenv
     (env, list_vt_cons((k0, x0), res))
   )
 )
-} (* end of [intplst_take_fenv] *)
+} (* end of [intpstk_take_fenv] *)
 
 (* ****** ****** *)
 
 implement
-intpenv_make_fenv
+intenv_make_fenv
   (kxs) =
-INTPENV
+INTENV
 (
 1(*level*)
 ,
-intplst_make_fenv(kxs)
+intpstk_make_fenv(kxs)
 )
 //
 implement
-intpenv_take_fenv(env) =
+intenv_take_fenv(env) =
 (
-  intplst_take_fenv(xs)
+  intpstk_take_fenv(xs)
 ) where
 {
-  val+INTPENV(l0, xs) = env
+  val+INTENV(l0, xs) = env
 }
 //
 (* ****** ****** *)
 
 implement
-intpenv_bind_fix
+intenv_bind_fix
   (env0, irv0) =
 let
 val-
@@ -278,18 +278,20 @@ in
 ) where
 {
 val+
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 val () =
 (
 xs :=
-intplst_cons
+intpstk_cons
 (D2Kvar(d2v0), irv0, xs)
 )
 } (* end of [where] *)
-end // end of [intpenv_bind_fix]
+end // end of [intenv_bind_fix]
+
+(* ****** ****** *)
 
 implement
-intpenv_bind_fixs
+intenv_bind_fixs
   (env0, irv0) =
 (
 auxirdfs(env0, irdfs)
@@ -305,7 +307,7 @@ IRVfixs
 fun
 auxirdfs
 ( env0
-: !intpenv
+: !intenv
 , ires
 : irexplst): void =
 (
@@ -320,11 +322,11 @@ case+ ires of
   ) where
   {
   val+
-  @INTPENV(l0, xs) = env0
+  @INTENV(l0, xs) = env0
   val () =
   (
     xs :=
-    intplst_cons
+    intpstk_cons
     (D2Kvar(d2v1), irv1, xs)
   )
   } where
@@ -339,12 +341,12 @@ case+ ires of
   }
 ) (* end of [auxirdfs] *)
 //
-} (* end of [intpenv_bind_fixs] *)
+} (* end of [intenv_bind_fixs] *)
 
 (* ****** ****** *)
 
 implement
-intpenv_pop0_let1
+intenv_pop0_let1
   (env0) =
 (
   fold@(env0)
@@ -354,37 +356,37 @@ intpenv_pop0_let1
 fun
 auxlst
 ( xs
-: intplst): intplst =
+: intpstk): intpstk =
 (
 case- xs of
-| ~intplst_let1
+| ~intpstk_let1
    (xs) => xs
-| ~intplst_cons
+| ~intpstk_cons
    (_, _, xs) => auxlst(xs)
 )
 //
 val-
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 val () = (xs := auxlst(xs))
-} // end of [intpenv_push_let1] *)
+} // end of [intenv_push_let1] *)
 
 implement
-intpenv_push_let1
+intenv_push_let1
   (env0) =
 (
   fold@(env0)
 ) where
 {
 val-
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 val () =
-(xs := intplst_let1(xs))
-} // end of [intpenv_push_let1] *)
+(xs := intpstk_let1(xs))
+} // end of [intenv_push_let1] *)
 
 (* ****** ****** *)
 
 implement
-intpenv_pop0_try1
+intenv_pop0_try1
   (env0) =
 (
   fold@(env0)
@@ -394,71 +396,71 @@ intpenv_pop0_try1
 fun
 auxlst
 ( xs
-: intplst): intplst =
+: intpstk): intpstk =
 (
 case- xs of
-| ~intplst_try1
+| ~intpstk_try1
    (xs) => xs
-| ~intplst_let1
+| ~intpstk_let1
    (xs) => auxlst(xs)
-| ~intplst_cons
+| ~intpstk_cons
    (_, _, xs) => auxlst(xs)
 )
 //
 val-
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 val () = (xs := auxlst(xs))
-} // end of [intpenv_push_try1] *)
+} // end of [intenv_push_try1] *)
 
 implement
-intpenv_push_try1
+intenv_push_try1
   (env0) =
 (
   fold@(env0)
 ) where
 {
 val-
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 val () =
-(xs := intplst_try1(xs))
-} // end of [intpenv_push_try1] *)
+(xs := intpstk_try1(xs))
+} // end of [intenv_push_try1] *)
 
 (* ****** ****** *)
 
 implement
-intpenv_free_nil
+intenv_free_nil
   (env0) =
 {
-val-~intplst_nil() = xs
+val-~intpstk_nil() = xs
 } where
 {
-val+~INTPENV(l0, xs) = env0
-} (* intpenv_free_nil *)
+val+~INTENV(l0, xs) = env0
+} (* intenv_free_nil *)
 
 (* ****** ****** *)
 //
 implement
-intpenv_free_fenv
+intenv_free_fenv
   (env) =
 ( auxlst(xs) ) where
 {
 //
 fun
 auxlst
-(xs: intplst): void =
+(xs: intpstk): void =
 (
 case- xs of
 |
-~intplst_fun() => ()
+~intpstk_fun() => ()
 |
-~intplst_let1(xs) => auxlst(xs)
+~intpstk_let1(xs) => auxlst(xs)
 |
-~intplst_cons(_, _, xs) => auxlst(xs)
+~intpstk_cons(_, _, xs) => auxlst(xs)
 )
 //
-val+~INTPENV(l0, xs) = env
+val+~INTENV(l0, xs) = env
 //
-} (* end of [intpenv_free_fenv] *)
+} (* end of [intenv_free_fenv] *)
 //
 (* ****** ****** *)
 
@@ -470,26 +472,26 @@ xinterp_search_d2cst
 //
 vtypedef
 res = Option_vt(irval)
-val+INTPENV(l0, xs) = env0
+val+INTENV(l0, xs) = env0
 //
 fun
 auxlst
-(xs: !intplst): res =
+(xs: !intpstk): res =
 (
 case+ xs of
-| intplst_nil() =>
+| intpstk_nil() =>
   the_d2cstdef_search(d2c0)
-| intplst_fun() =>
+| intpstk_fun() =>
   the_d2cstdef_search(d2c0)
 //
-| intplst_let1(xs) => auxlst(xs)
-| intplst_try1(xs) => auxlst(xs)
+| intpstk_let1(xs) => auxlst(xs)
+| intpstk_try1(xs) => auxlst(xs)
 //
 (*
-| intplst_loc1(xs) => auxlst(xs)
-| intplst_loc2(xs) => auxlst(xs)
+| intpstk_loc1(xs) => auxlst(xs)
+| intpstk_loc2(xs) => auxlst(xs)
 *)
-| intplst_cons
+| intpstk_cons
   (d2k1, irv1, xs) =>
   (
   case+ d2k1 of
@@ -514,26 +516,26 @@ xinterp_search_d2var
 //
 vtypedef
 res = Option_vt(irval)
-val+INTPENV(l0, xs) = env0
+val+INTENV(l0, xs) = env0
 //
 fun
 auxlst
-(xs: !intplst): res =
+(xs: !intpstk): res =
 (
 case+ xs of
-| intplst_nil() =>
+| intpstk_nil() =>
   the_d2vardef_search(d2v0)
-| intplst_fun() =>
+| intpstk_fun() =>
   the_d2vardef_search(d2v0)
 //
-| intplst_let1(xs) => auxlst(xs)
-| intplst_try1(xs) => auxlst(xs)
+| intpstk_let1(xs) => auxlst(xs)
+| intpstk_try1(xs) => auxlst(xs)
 //
 (*
-| intplst_loc1(xs) => auxlst(xs)
-| intplst_loc2(xs) => auxlst(xs)
+| intpstk_loc1(xs) => auxlst(xs)
+| intpstk_loc2(xs) => auxlst(xs)
 *)
-| intplst_cons
+| intpstk_cons
   (d2k1, irv1, xs) =>
   (
   case+ d2k1 of
@@ -555,19 +557,19 @@ xinterp_insert_d2cst
 let
 //
 val+
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 //
 in
 //
 case xs of
 |
-intplst_nil() =>
+intpstk_nil() =>
 (
 fold@(env0);
 the_d2cstdef_insert(d2c0, irv0)
 )
 |
-_(*non-intplst_nil*) =>
+_(*non-intpstk_nil*) =>
 (
 fold@(env0)
 ) where
@@ -575,9 +577,9 @@ fold@(env0)
 val () =
 (
 xs :=
-intplst_cons(D2Kcst(d2c0), irv0, xs)
+intpstk_cons(D2Kcst(d2c0), irv0, xs)
 )
-} (* non-intplst_nil *)
+} (* non-intpstk_nil *)
 //
 end // end of [xinterp_insert_d2cst]
 
@@ -589,19 +591,19 @@ xinterp_insert_d2var
 let
 //
 val+
-@INTPENV(l0, xs) = env0
+@INTENV(l0, xs) = env0
 //
 in
 //
 case xs of
 |
-intplst_nil() =>
+intpstk_nil() =>
 (
 fold@(env0);
 the_d2vardef_insert(d2v0, irv0)
 )
 |
-_(*non-intplst_nil*) =>
+_(*non-intpstk_nil*) =>
 (
 fold@(env0)
 ) where
@@ -609,9 +611,9 @@ fold@(env0)
 val () =
 (
 xs :=
-intplst_cons(D2Kvar(d2v0), irv0, xs)
+intpstk_cons(D2Kvar(d2v0), irv0, xs)
 )
-} (* non-intplst_nil *)
+} (* non-intpstk_nil *)
 //
 end // end of [xinterp_insert_d2var]
 
@@ -1474,6 +1476,8 @@ end // end of [local]
 
 local
 
+(* ****** ****** *)
+
 fun
 firfun0
 (
@@ -1527,6 +1531,8 @@ val-list_cons(v2, vs) = vs
 val-list_cons(v3, vs) = vs in f3(v1, v2, v3)
 end
 
+(* ****** ****** *)
+
 fun
 d2cst
 (nam: string): d2cst =
@@ -1560,7 +1566,9 @@ case- d2i of
 end // end of [let]
 ) (* end of [d2cst] *)
 
-in(*in-of-local*)
+(* ****** ****** *)
+
+in(* in-of-local *)
 
 (* ****** ****** *)
 
