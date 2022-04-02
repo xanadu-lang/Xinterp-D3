@@ -236,11 +236,11 @@ case+ x0 of
 //
 extern
 fun
-xatsopt_usage
+xinterp_usage
 ( out: FILEref
 , arg0: commarg): void
 implement
-xatsopt_usage
+xinterp_usage
   (out, arg0) = let
 //
 val+COMMARG(_, cmdname) = arg0
@@ -263,16 +263,6 @@ fprintln! (out, "  --static <filenames> (for compiling static filenames)");
 //
 fprintln! (out, "  -d <filenames> (for compiling dynamic filenames)");
 fprintln! (out, "  --dynamic <filenames> (for compiling dynamic filenames)");
-//
-fprintln! (out, "  -o <filename> (output into filename)");
-fprintln! (out, "  --output <filename> (output into filename)");
-fprintln! (out, "  --output-w <filename> (output-write into filename)");
-fprintln! (out, "  --output-a <filename> (output-append into filename)");
-//
-(*
-fprintln! (out, "  -cc (for compiling into C)");
-fprintln! (out, "  --compile (for compiling into C)");
-*)
 //
 (*
 fprintln! (out, "  -tc (for typechecking only)");
@@ -601,10 +591,10 @@ end // end of [auxmain]
 //
 extern
 fun
-xatsopt_commarg_warning
+xinterp_commarg_warning
   (out: FILEref, arg: string): void
 implement
-xatsopt_commarg_warning
+xinterp_commarg_warning
   (out, arg) = () where
 {
 //
@@ -616,7 +606,7 @@ fprintln!
 , ": unrecognized command-line argument [", arg, "] is skipped."
 ) (* end of [val] *)
 //
-} (* end of [xatsopt_commarg_warning] *)
+} (* end of [xinterp_commarg_warning] *)
 //
 (* ****** ****** *)
 
@@ -958,21 +948,22 @@ case+ key of
 //
 | "-h" =>
   (
-    xatsopt_usage
-      (stdout_ref, st0.arg0)
-    // xatsopt_usage
+    xinterp_usage
+    ( stdout_ref, st0.arg0 )
+    // xinterp_usage
   )
 | "-v" =>
   (
     xatsopt_version(stdout_ref)
   )
 //
-| _ (*rest*) =>
-  ( //
-    // HX: unrecognized key
-    //
-    xatsopt_commarg_warning(stderr_ref, key)
-  ) (* end of [rest] *)
+|
+_ (*rest*) =>
+( //
+  // HX: unrecognized key
+  //
+  xinterp_commarg_warning(stderr_ref, key)
+) (* end of [rest] *)
 //
 ) : void // end of [val]
 //
@@ -1085,9 +1076,9 @@ case+ key of
 //
 | "--help" =>
   (
-    xatsopt_usage
+    xinterp_usage
       (stdout_ref, st0.arg0)
-    // xatsopt_usage
+    // xinterp_usage
   )
 | "--version" =>
   (
@@ -1098,7 +1089,7 @@ case+ key of
   ( //
     // HX: unrecognized key
     //
-    xatsopt_commarg_warning(stderr_ref, key)
+    xinterp_commarg_warning(stderr_ref, key)
   ) (* end of [rest-of-key2] *)
 //
 ) : void // end of [val]
@@ -1194,7 +1185,7 @@ COMMARG(_, key) =>
   val () =
   st0.wtk0 := WTKnone()
   val () =
-  xatsopt_commarg_warning(stderr_ref, key)
+  xinterp_commarg_warning(stderr_ref, key)
 } (* end of [COMMARG] *)
 //
 end // end of [process_cmdline2]
@@ -1251,7 +1242,7 @@ in
 //
 if (st0.nxerror > 0) then $ERR.abort()
 //
-end // end of [xatsopt_main0]
+end // end of [xinterp_main0]
 
 end // end of [local]
 
