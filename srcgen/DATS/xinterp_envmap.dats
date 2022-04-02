@@ -431,6 +431,7 @@ implement
 intenv_free_nil
   (env0) =
 {
+val-0(*top*) = l0
 val-~intpstk_nil() = xs
 } where
 {
@@ -441,8 +442,13 @@ val+~INTENV(l0, xs) = env0
 //
 implement
 intenv_free_fenv
-  (env) =
-( auxlst(xs) ) where
+  (env0) =
+(
+  auxlst(xs)
+) where
+{
+  val-1(*fun*) = l0
+} where
 {
 //
 fun
@@ -458,7 +464,7 @@ case- xs of
 ~intpstk_cons(_, _, xs) => auxlst(xs)
 )
 //
-val+~INTENV(l0, xs) = env
+val+~INTENV(l0, xs) = env0
 //
 } (* end of [intenv_free_fenv] *)
 //
