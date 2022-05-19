@@ -2747,12 +2747,12 @@ xinterp_d2con_ck0
 , d2c2
 : d2con ) : bool =
 let
-val tag1 = d2c1.tag((*void*))
+val tag1 = d2c1.ctag((*void*))
 in
 if
 (tag1 < 0)
 then (d2c1 = d2c2)
-else (tag1 = d2c2.tag((*void*)))
+else (tag1 = d2c2.ctag((*void*)))
 // end of [if]
 end // end of [xinterp_d2con_ck0]
 
