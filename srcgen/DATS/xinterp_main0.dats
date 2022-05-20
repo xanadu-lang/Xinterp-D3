@@ -58,8 +58,34 @@ UN="prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxinterp.hats"
+#staload $XATSOPT(*open-it*)
 //
+(* ****** ****** *)
+//
+typedef
+fpath_t = $FP0.filpath
+//
+macdef
+dirbase =
+$FP0.filpath_dirbase
+macdef
+fpath_make = $FP0.filpath_make
+//
+(* ****** ****** *)
+macdef
+the_sortenv_println =
+$TR12.the_sortenv_println
+macdef
+the_sexpenv_println =
+$TR12.the_sexpenv_println
+macdef
+the_dexpenv_println =
+$TR12.the_dexpenv_println
+(* ****** ****** *)
+macdef
+parse_from_filpath_toplevel =
+$PAR.parse_from_filpath_toplevel
 (* ****** ****** *)
 //
 #staload
@@ -761,7 +787,8 @@ val () =
 tread3x_package(p3kg)
 *)
 //
-val+D3TRANSD(rcd) = p3kg
+val+
+$D3E.D3TRANSD(rcd) = p3kg
 //
 in
   case+

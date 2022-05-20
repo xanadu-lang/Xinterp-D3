@@ -44,10 +44,8 @@
 UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
-
 #include
-"./../HATS/libxatsopt.hats"
-
+"./../HATS/libxinterp.hats"
 (* ****** ****** *)
 //
 overload

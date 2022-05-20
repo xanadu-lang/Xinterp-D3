@@ -41,8 +41,25 @@ UN = "prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxinterp.hats"
 //
+(* ****** ****** *)
+#staload $S2T; #staload $S2E
+#staload $D2E; #staload $D3E
+(* ****** ****** *)
+typedef filpath = $FP0.filpath
+(* ****** ****** *)
+#symload
+fprint with $LAB.fprint_label
+#symload
+fprint with $LEX.fprint_token
+#symload
+fprint with $LOC.fprint_location
+(* ****** ****** *)
+#symload
+fprint with $S1E.fprint_g1exp
+#symload
+fprint with $D0E.fprint_decmodopt
 (* ****** ****** *)
 //
 #staload "./../SATS/intrep0.sats"

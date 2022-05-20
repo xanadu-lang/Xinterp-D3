@@ -34,7 +34,9 @@
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxinterp.hats"
+//
+typedef loc_t = $LOC.location
 //
 (* ****** ****** *)
 

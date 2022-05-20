@@ -41,12 +41,31 @@ UN = "prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxinterp.hats"
 //
 (* ****** ****** *)
 //
-#staload $S2T; #staload $S2E
+macdef
+token2sbtf=$TR01.token2sbtf
+//
+macdef
+token2dint=$TR01.token2dint
+macdef
+token2dbtf=$TR01.token2dbtf
+macdef
+token2dchr=$TR01.token2dchr
+macdef
+token2dflt=$TR01.token2dflt
+macdef
+token2dstr=$TR01.token2dstr
+//
+(* ****** ****** *)
+#staload $LEX (* open-pkg *)
+(* ****** ****** *)
+#staload $S2E; #staload $S2T
+(* ****** ****** *)
 #staload $D2E; #staload $D3E
+(* ****** ****** *)
 //
 #staload "./../SATS/intrep0.sats"
 //

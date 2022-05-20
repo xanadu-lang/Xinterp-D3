@@ -48,8 +48,33 @@ UN =
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxinterp.hats"
 //
+(* ****** ****** *)
+#symload
+print
+with $LOC.print_location
+(* ****** ****** *)
+//
+macdef
+token2dint=$TR01.token2dint
+macdef
+token2dbtf=$TR01.token2dbtf
+macdef
+token2dchr=$TR01.token2dchr
+macdef
+token2dflt=$TR01.token2dflt
+macdef
+token2dstr=$TR01.token2dstr
+//
+(* ****** ****** *)
+overload
+= with $D2E.eq_d2con_d2con
+overload
+= with $D2E.eq_d2cst_d2cst
+(* ****** ****** *)
+#symload
+.ctag with $D2E.d2con_get_ctag
 (* ****** ****** *)
 //
 overload
@@ -61,9 +86,6 @@ print with $D2E.print_d2var
 //
 overload
 print with $D2E.print_impld2cst
-//
-overload = with $D2E.eq_d2con_d2con
-overload = with $D2E.eq_d2cst_d2cst
 //
 (* ****** ****** *)
 //
@@ -2959,10 +2981,10 @@ xinterp_insert_d2var
   (env0, d2v1, irv1)
 ) where
 {
-  val lab2 =
-  label_make_int(i0)
-  val irv1 =
-  IRVlft(IRLFTpcon(irv0, lab2))
+val lab2 =
+$LAB.label_make_int(i0)
+val irv1 =
+IRVlft(IRLFTpcon(irv0, lab2))
 }
 |
 _(*non-IRPvar*) =>
@@ -3034,10 +3056,10 @@ xinterp_insert_d2var
   (env0, d2v1, irv1)
 ) where
 {
-  val lab2 =
-  label_make_int(i0)
-  val irv1 =
-  IRVlft(IRLFTpcon(irv0, lab2))
+val lab2 =
+$LAB.label_make_int(i0)
+val irv1 =
+IRVlft(IRLFTpcon(irv0, lab2))
 }
 |
 _(*non-IRPvar*) =>
@@ -3118,7 +3140,7 @@ xinterp_insert_d2var
 ) where
 {
 val lab2 =
-label_make_int(i0)
+$LAB.label_make_int(i0)
 val irv1 =
 IRVlft(IRLFTpbox(irv0, lab2, i0))
 }
