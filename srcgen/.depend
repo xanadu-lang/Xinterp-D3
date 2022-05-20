@@ -1,10 +1,10 @@
 BUILD/intrep0_sats.o : 
 BUILD/xinterp_sats.o : SATS/intrep0.sats
-BUILD/intrep0_dats.o : HATS/libxatsopt.hats SATS/intrep0.sats
-BUILD/intrep0_print_dats.o : HATS/libxatsopt.hats SATS/intrep0.sats
-BUILD/intrep0_dynexp_dats.o : HATS/libxatsopt.hats SATS/intrep0.sats
-BUILD/xinterp_main0_dats.o : HATS/libxatsopt.hats SATS/intrep0.sats SATS/xinterp.sats DATS/intrep0_print.dats
-BUILD/xinterp_print_dats.o : HATS/libxatsopt.hats SATS/intrep0.sats SATS/xinterp.sats
+BUILD/intrep0_dats.o : HATS/libxinterp.hats SATS/intrep0.sats
+BUILD/intrep0_print_dats.o : HATS/libxinterp.hats SATS/intrep0.sats
+BUILD/intrep0_dynexp_dats.o : HATS/libxinterp.hats SATS/intrep0.sats
+BUILD/xinterp_main0_dats.o : HATS/libxinterp.hats SATS/intrep0.sats SATS/xinterp.sats DATS/intrep0_print.dats
+BUILD/xinterp_print_dats.o : HATS/libxinterp.hats SATS/intrep0.sats SATS/xinterp.sats
 BUILD/xinterp_envmap_dats.o : SATS/intrep0.sats SATS/xinterp.sats
-BUILD/xinterp_dynexp_dats.o : HATS/libxatsopt.hats SATS/intrep0.sats SATS/xinterp.sats
+BUILD/xinterp_dynexp_dats.o : HATS/libxinterp.hats SATS/intrep0.sats SATS/xinterp.sats
 BUILD/xinterp_dats.o : HATS/libxinterp.hats SATS/xinterp.sats
