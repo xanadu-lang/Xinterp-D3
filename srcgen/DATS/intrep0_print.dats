@@ -602,13 +602,13 @@ case+ x0.node() of
   , "IRCfundclst("
   , knd, "; ", mopt, "; ", tqas, "; ", irds, ")")
 //
-| IRCimpdecl3
+| IRCimplmnt3
   ( knd, mopt
   , sqas, tqas, id2c
   , ti3a, ti2s, iras, body) =>
   fprint!
   ( out
-  , "IRCimpdecl3("
+  , "IRCimplmnt3("
   , knd, "; ", mopt, "; "
   , sqas, "; ", tqas, "; ", id2c, "; "
   , ti3a, "; ", ti2s, "; ", iras, "; ", body, ")")

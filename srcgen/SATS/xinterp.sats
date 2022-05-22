@@ -414,9 +414,9 @@ xinterp_irfundeclist
 (* ****** ****** *)
 //
 fun
-xinterp_irimpdecl3
+xinterp_irimplmnt3
 ( env:
-! intenv, irdcl: irdcl(*impdecl3*)): void
+! intenv, irdcl: irdcl(*implmnt3*)): void
 //
 (* ****** ****** *)
 //

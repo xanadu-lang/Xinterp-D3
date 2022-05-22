@@ -1107,7 +1107,7 @@ d3cl.node() of
     , IRCfundclst(tok, mopt, tqas, irds))
   end
 //
-| D3Cimpldcl3
+| D3Cimplmnt3
   ( tok
   , stmp, mopt
   , sqas, tqas
@@ -1121,7 +1121,7 @@ d3cl.node() of
   in
     irdcl_make_node
     ( loc0
-    , IRCimpdecl3
+    , IRCimplmnt3
       ( tok, mopt, sqas, tqas
       , id2c, ti3a, ti2s, iras, body))
   end

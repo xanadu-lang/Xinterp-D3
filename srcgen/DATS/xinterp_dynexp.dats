@@ -781,7 +781,7 @@ case- xs of
 //
 end
 |
-IRCimpdecl3
+IRCimplmnt3
 ( knd0, mopt
 , sqas, tqas, id2c
 , ti3a, ti2s, iras, body
@@ -802,7 +802,7 @@ in
   IRVlam1(fenv, iras, body)
 end
 //
-) (* IRCimpdecl3 *)
+) (* IRCimplmnt3 *)
 //
 end // end of [auxtimp]
 
@@ -2732,8 +2732,8 @@ IRCinclude _ =>
 | IRCfundclst _ =>
   aux_fundclst(env0, x0)
 //
-| IRCimpdecl3 _ =>
-  xinterp_irimpdecl3(env0, x0)
+| IRCimplmnt3 _ =>
+  xinterp_irimplmnt3(env0, x0)
 //
 | _(* rest-of-irdcl *) => ()
 //
@@ -3935,12 +3935,12 @@ end // end of [local]
 (* ****** ****** *)
 
 implement
-xinterp_irimpdecl3
+xinterp_irimplmnt3
   (env0, irdcl) =
 let
 //
 val-
-IRCimpdecl3
+IRCimplmnt3
 ( knd, mopt
 , sqas, tqas
 , id2c, ti3a
@@ -3949,7 +3949,7 @@ IRCimpdecl3
 (*
 val () =
 println!
-("xinterp_irimpdecl3: id2c = ", id2c)
+("xinterp_irimplmnt3: id2c = ", id2c)
 *)
 //
 in
@@ -3989,7 +3989,7 @@ end
 |
 list_cons(_, _) => ((*template*))
 //
-end (* end of [xinterp_irimpdecl3] *)
+end (* end of [xinterp_irimplmnt3] *)
 
 (* ****** ****** *)
 

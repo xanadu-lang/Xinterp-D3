@@ -618,7 +618,7 @@ irdcl_node =
   , $D1E.decmodopt
   , $D2E.tq2arglst, irfundeclist)
 //
-| IRCimpdecl3 of
+| IRCimplmnt3 of
   ( token(*impkind*)
   , $D1E.decmodopt
   , $D2E.sq2arglst
