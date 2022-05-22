@@ -605,15 +605,15 @@ irdcl_node =
 | IRClocal of
   (irdclist, irdclist)
 //
-| IRCvaldecl of
+| IRCvaldclst of
   ( token(*knd*)
   , $D1E.decmodopt, irvaldeclist)
 //
-| IRCvardecl of
+| IRCvardclst of
   ( token(*knd*)
   , $D1E.decmodopt, irvardeclist)
 //
-| IRCfundecl of
+| IRCfundclst of
   ( token(*knd*)
   , $D1E.decmodopt
   , $D2E.tq2arglst, irfundeclist)
@@ -707,29 +707,29 @@ irerase_declist(d3eclist): irdclist
 (* ****** ****** *)
 //
 fun
-irerase_valdecl
-(irvd: $D3E.v3aldecl): irvaldecl
+irerase_dvaldecl
+(irvd0: $D3E.d3valdecl): irvaldecl
 fun
-irerase_valdeclist
-(irvds: $D3E.v3aldeclist): irvaldeclist
+irerase_dvaldeclist
+(irvds: $D3E.d3valdeclist): irvaldeclist
 //
 (* ****** ****** *)
 //
 fun
-irerase_vardecl
-(irvd: $D3E.v3ardecl): irvardecl
+irerase_dvardecl
+(irvd0: $D3E.d3vardecl): irvardecl
 fun
-irerase_vardeclist
-(irvds: $D3E.v3ardeclist): irvardeclist
+irerase_dvardeclist
+(irvds: $D3E.d3vardeclist): irvardeclist
 //
 (* ****** ****** *)
 //
 fun
-irerase_fundecl
-(irfd: $D3E.f3undecl): irfundecl
+irerase_dfundecl
+(irfd0: $D3E.d3fundecl): irfundecl
 fun
-irerase_fundeclist
-(irfds: $D3E.f3undeclist): irfundeclist
+irerase_dfundeclist
+(irfds: $D3E.d3fundeclist): irfundeclist
 //
 (* ****** ****** *)
 

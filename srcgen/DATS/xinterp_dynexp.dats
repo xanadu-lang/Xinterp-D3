@@ -754,7 +754,7 @@ in
 case-
 ircl.node() of
 |
-IRCfundecl
+IRCfundclst
 ( knd0, mopt
 , tqas, irfds) =>
 let
@@ -2630,47 +2630,47 @@ end // end of [aux_include]
 (* ****** ****** *)
 
 fun
-aux_valdecl
+aux_valdclst
 ( env0:
 ! intenv
 , irdcl: irdcl): void =
 let
 val-
-IRCvaldecl
+IRCvaldclst
 ( knd
 , mopt
 , irvds) = irdcl.node()
 in
   xinterp_irvaldeclist(env0, irvds)
-end // end of [aux_valdecl]
+end // end of [aux_valdclst]
 
 (* ****** ****** *)
 
 fun
-aux_vardecl
+aux_vardclst
 ( env0:
 ! intenv
 , irdcl: irdcl): void =
 let
 val-
-IRCvardecl
+IRCvardclst
 ( knd
 , mopt
 , irvds) = irdcl.node()
 in
   xinterp_irvardeclist(env0, irvds)
-end // end of [aux_vardecl]
+end // end of [aux_vardclst]
 
 (* ****** ****** *)
 
 fun
-aux_fundecl
+aux_fundclst
 ( env0:
 ! intenv
 , irdcl: irdcl): void =
 let
 val-
-IRCfundecl
+IRCfundclst
 ( knd
 , mopt
 , tqas
@@ -2687,7 +2687,7 @@ then
 else
 xinterp_irfundeclist(env0, irfds)
 //
-end // end of [aux_fundecl]
+end // end of [aux_fundclst]
 
 (* ****** ****** *)
 
@@ -2723,14 +2723,14 @@ IRCinclude _ =>
   xinterp_irdclist(env0, body)
 }
 //
-| IRCvaldecl _ =>
-  aux_valdecl(env0, x0)
+| IRCvaldclst _ =>
+  aux_valdclst(env0, x0)
 //
-| IRCvardecl _ =>
-  aux_vardecl(env0, x0)
+| IRCvardclst _ =>
+  aux_vardclst(env0, x0)
 //
-| IRCfundecl _ =>
-  aux_fundecl(env0, x0)
+| IRCfundclst _ =>
+  aux_fundclst(env0, x0)
 //
 | IRCimpdecl3 _ =>
   xinterp_irimpdecl3(env0, x0)

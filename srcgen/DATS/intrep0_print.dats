@@ -581,25 +581,25 @@ case+ x0.node() of
   , "IRClocal("
   , head, "; ", body, ")")
 //
-| IRCvaldecl
+| IRCvaldclst
   (knd, mopt, irds) =>
   fprint!
   ( out
-  , "IRCvaldecl("
+  , "IRCvaldclst("
   , knd, "; ", mopt, "; ", irds, ")")
 //
-| IRCvardecl
+| IRCvardclst
   (knd, mopt, irds) =>
   fprint!
   ( out
-  , "IRCvardecl("
+  , "IRCvardclst("
   , knd, "; ", mopt, "; ", irds, ")")
 //
-| IRCfundecl
+| IRCfundclst
   (knd, mopt, tqas, irds) =>
   fprint!
   ( out
-  , "IRCfundecl("
+  , "IRCfundclst("
   , knd, "; ", mopt, "; ", tqas, "; ", irds, ")")
 //
 | IRCimpdecl3

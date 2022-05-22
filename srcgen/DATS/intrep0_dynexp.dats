@@ -1076,38 +1076,38 @@ d3cl.node() of
     // irdcl_make_node
   end
 //
-| D3Cvaldecl
+| D3Cvaldclst
   (tok, mopt, v3ds) =>
   let
     val
-    irds = irerase_valdeclist(v3ds)
+    irds = irerase_dvaldeclist(v3ds)
   in
     irdcl_make_node
-    (loc0, IRCvaldecl(tok, mopt, irds))
+    (loc0, IRCvaldclst(tok, mopt, irds))
   end
 //
-| D3Cvardecl
+| D3Cvardclst
   (tok, mopt, v3ds) =>
   let
     val
-    irds = irerase_vardeclist(v3ds)
+    irds = irerase_dvardeclist(v3ds)
   in
     irdcl_make_node
-    (loc0, IRCvardecl(tok, mopt, irds))
+    (loc0, IRCvardclst(tok, mopt, irds))
   end
 //
-| D3Cfundecl
+| D3Cfundclst
   (tok, mopt, tqas, f3ds) =>
   let
     val
-    irds = irerase_fundeclist(f3ds)
+    irds = irerase_dfundeclist(f3ds)
   in
     irdcl_make_node
     ( loc0
-    , IRCfundecl(tok, mopt, tqas, irds))
+    , IRCfundclst(tok, mopt, tqas, irds))
   end
 //
-| D3Cimpdecl3
+| D3Cimpldcl3
   ( tok
   , stmp, mopt
   , sqas, tqas
@@ -1153,11 +1153,11 @@ list_map$fopr<d3ecl><irdcl>(d3c) = irerase_decl(d3c)
 (* ****** ****** *)
 
 implement
-irerase_valdecl
+irerase_dvaldecl
   (v3d0) =
 let
 val+
-V3ALDECL(rcd) = v3d0
+D3VALDECL(rcd) = v3d0
 //
 val loc = rcd.loc
 val pat = rcd.pat
@@ -1168,31 +1168,31 @@ val def = irerase_dexpopt(def)
 //
 in
 IRVALDECL(@{loc=loc,pat=pat,def=def})
-end // end of [irerase_valdecl]
+end // end of [irerase_dvaldecl]
 
 implement
-irerase_valdeclist
+irerase_dvaldeclist
   (v3ds) =
 list_vt2t(irds) where
 {
 val
 irds =
-list_map<v3aldecl><irvaldecl>
+list_map<d3valdecl><irvaldecl>
   (v3ds) where
 {
 implement
-list_map$fopr<v3aldecl><irvaldecl>(v3d) = irerase_valdecl(v3d)
+list_map$fopr<d3valdecl><irvaldecl>(v3d) = irerase_dvaldecl(v3d)
 }
-} (* end of [irerase_valdeclist] *)
+} (* end of [irerase_dvaldeclist] *)
 
 (* ****** ****** *)
 
 implement
-irerase_vardecl
+irerase_dvardecl
   (v3d0) =
 let
 val+
-V3ARDECL(rcd) = v3d0
+D3VARDECL(rcd) = v3d0
 //
 val loc = rcd.loc
 val d2v = rcd.d2v
@@ -1202,31 +1202,31 @@ val ini = irerase_dexpopt(ini)
 //
 in
 IRVARDECL(@{loc=loc,d2v=d2v,ini=ini})
-end // end of [irerase_vardecl]
+end // end of [irerase_dvardecl]
 
 implement
-irerase_vardeclist
+irerase_dvardeclist
   (v3ds) =
 list_vt2t(irds) where
 {
 val
 irds =
-list_map<v3ardecl><irvardecl>
+list_map<d3vardecl><irvardecl>
   (v3ds) where
 {
 implement
-list_map$fopr<v3ardecl><irvardecl>(v3d) = irerase_vardecl(v3d)
+list_map$fopr<d3vardecl><irvardecl>(v3d) = irerase_dvardecl(v3d)
 }
-} (* end of [irerase_vardeclist] *)
+} (* end of [irerase_dvardeclist] *)
 
 (* ****** ****** *)
 
 implement
-irerase_fundecl
+irerase_dfundecl
   (f3d0) =
 let
 val+
-F3UNDECL(rcd) = f3d0
+D3FUNDECL(rcd) = f3d0
 //
 val loc = rcd.loc
 val nam = rcd.nam
@@ -1252,22 +1252,22 @@ IRFUNDECL(
  loc=loc
 ,nam=nam,d2c=d2c,a2g=a2g, a3g=a3g,def=def}
 )(*IRFUNDECL*)
-end // end of [irerase_fundecl]
+end // end of [irerase_dfundecl]
 
 implement
-irerase_fundeclist
+irerase_dfundeclist
   (f3ds) =
 list_vt2t(irds) where
 {
 val
 irds =
-list_map<f3undecl><irfundecl>
+list_map<d3fundecl><irfundecl>
   (f3ds) where
 {
 implement
-list_map$fopr<f3undecl><irfundecl>(v3d) = irerase_fundecl(v3d)
+list_map$fopr<d3fundecl><irfundecl>(v3d) = irerase_dfundecl(v3d)
 }
-} (* end of [irerase_fundeclist] *)
+} (* end of [irerase_dfundeclist] *)
 
 (* ****** ****** *)
 
