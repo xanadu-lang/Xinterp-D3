@@ -563,9 +563,9 @@ IRFUNDECL of @{
 , nam= d2var
 , d2c= d2cst
 //
-, a2g=
+, f2g=
   f2arglst
-, a3g=
+, f3g=
   irarglstopt
 //
 , def= irexpopt

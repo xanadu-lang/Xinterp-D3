@@ -568,12 +568,12 @@ IRFUNDECL
 //
 val nam = rcd.nam
 val d2c = rcd.d2c
-val a3g = rcd.a3g
+val f3g = rcd.f3g
 val def = rcd.def
 //
 in
 //
-case+ a3g of
+case+ f3g of
 |
 None() =>
 auxfixs(irfds)
@@ -664,7 +664,7 @@ IRFUNDECL
 val nam = rcd.nam
 //
 val-
-Some(iras) = rcd.a3g
+Some(iras) = rcd.f3g
 val-
 Some(body) = rcd.def
 //
@@ -720,7 +720,7 @@ then let
 val nam = rcd.nam
 //
 val-
-Some(iras) = rcd.a3g
+Some(iras) = rcd.f3g
 val-
 Some(body) = rcd.def
 //
@@ -3620,12 +3620,12 @@ IRFUNDECL
 //
 val nam = rcd.nam
 val d2c = rcd.d2c
-val a3g = rcd.a3g
+val f3g = rcd.f3g
 val def = rcd.def
 //
 in
 //
-case+ a3g of
+case+ f3g of
 |
 None() => ()
 |
@@ -3726,12 +3726,12 @@ IRFUNDECL
 //
 val nam = rcd.nam
 val d2c = rcd.d2c
-val a3g = rcd.a3g
+val f3g = rcd.f3g
 val def = rcd.def
 //
 in
 //
-case+ a3g of
+case+ f3g of
 |
 None() =>
 auxfixs(irfds)
@@ -3833,12 +3833,12 @@ IRFUNDECL
 //
 val nam = rcd.nam
 val d2c = rcd.d2c
-val a3g = rcd.a3g
+val f3g = rcd.f3g
 val def = rcd.def
 //
 in
 //
-case+ a3g of
+case+ f3g of
 |
 None() => ()
 |

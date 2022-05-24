@@ -1231,13 +1231,13 @@ D3FUNDECL(rcd) = f3d0
 val loc = rcd.loc
 val nam = rcd.nam
 val d2c = rcd.d2c
-val a2g = rcd.a2g
-val a3g = rcd.a3g
+val f2g = rcd.f2g
+val f3g = rcd.f3g
 val def = rcd.def
 //
-val a3g =
+val f3g =
 (
-case+ a3g of
+case+ f3g of
 | None() =>
   None()
 | Some(f3as) =>
@@ -1250,7 +1250,7 @@ in
 IRFUNDECL(
 @{
  loc=loc
-,nam=nam,d2c=d2c,a2g=a2g, a3g=a3g,def=def}
+,nam=nam,d2c=d2c,f2g=f2g, f3g=f3g,def=def}
 )(*IRFUNDECL*)
 end // end of [irerase_dfundecl]
 

@@ -689,9 +689,9 @@ in
   , "IRFUNDECL@{"
   , ", nam=", rcd.nam
   , ", d2c=", rcd.d2c
-  , ", a2g=", rcd.a2g
+  , ", f2g=", rcd.f2g
 (*
-  , ", a3g=", rcd.a3g
+  , ", f3g=", rcd.f3g
 *)
   , ", def=", rcd.def, "}")
 end (*let*) // end of [fprint_irfundecl]
