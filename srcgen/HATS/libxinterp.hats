@@ -1,10 +1,10 @@
 (* ****** ****** *)
-
+//
 #define
 XATSOPT_targetloc
 "./../..\
 /modules/xatsopt/srcgen/xcomp"
-
+//
 (* ****** ****** *)
 #staload STM =
 "{$XATSOPT}/SATS/xstamp0.sats"
