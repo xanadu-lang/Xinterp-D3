@@ -40,7 +40,7 @@
 val () =
 g_x1forint(3) where
 {
-impltmp
+#impltmp
 x1forint$work<3>(i1) = print(i1)
 }
 
@@ -49,7 +49,7 @@ x1forint$work<3>(i1) = print(i1)
 val () =
 g_x2forint(3,3) where
 {
-impltmp
+#impltmp
 x2forint$work
 <3,3>(i1,i2) = (print(i1); print(i2))
 }
@@ -59,7 +59,7 @@ x2forint$work
 val () =
 g_x3forint(3,3,3) where
 {
-impltmp
+#impltmp
 x3forint$work
 <3,3,3>
 (i1,i2,i3) = (print(i1); print(i2); print(i3))
@@ -86,7 +86,7 @@ val n0 =
 a1ref_length(A0)
 val n1 = pred(n0)
 //
-impltmp
+#impltmp
 x1forint$work<n>(i0) =
 let
 val j0 = n1 - i0
@@ -118,7 +118,7 @@ val p0 = $addr(res)
 //
 val n0 = a1ref_length(A0)
 //
-impltmp
+#impltmp
 x1forint$work<n>(i0) =
 $UN.p2tr_set_list_vt_cons
   (p0, A0[i0])
@@ -142,14 +142,14 @@ val () = set_at(A1, 4, 4)
 val xs1 =
 array2list(A1) where
 {
-impltmp a1ref_length<int>(A1) = 5
+#impltmp a1ref_length<int>(A1) = 5
 }
 val xs2 =
 array2rlist(A1) where
 {
-impltmp a1ref_length<int>(A1) = 5
+#impltmp a1ref_length<int>(A1) = 5
 }
 
 (* ****** ****** *)
 
-(* end of [gfors.dats] *)
+(* end of [prelude_gfors.dats] *)

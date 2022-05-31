@@ -64,13 +64,13 @@ val
 fact10 =
 mytest_fun(fact) where
 {
-impltmp g_rand<int>() = 10
+#impltmp g_rand<int>() = 10
 }
 val
 fibo10 =
 mytest_fun(fibo) where
 {
-impltmp g_rand<int>() = 10
+#impltmp g_rand<int>() = 10
 }
 
 (* ****** ****** *)

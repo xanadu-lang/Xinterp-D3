@@ -16,4 +16,4 @@ val () = g_print(b0 * b1)
 
 (* ****** ****** *)
 
-(* end of [bools.dats] *)
+(* end of [prelude_bools.dats] *)

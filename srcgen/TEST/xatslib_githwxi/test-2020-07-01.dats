@@ -68,9 +68,9 @@ stream_vt_map0
 <x0><y0>(the_cstream)
 ) where
 {
-typedef x0 = sint
-typedef y0 = char
-impltmp
+#typedef x0 = sint
+#typedef y0 = char
+#impltmp
 map0$fopr
 <x0><y0>(i0) = char(i0)
 }
@@ -82,7 +82,7 @@ parcmbr_input
 //
 (* ****** ****** *)
 //
-typedef tok = char
+#typedef tok = char
 //
 (* ****** ****** *)
 //
@@ -144,9 +144,9 @@ p_words = fp_repeat0(p_word)
 
 (* ****** ****** *)
 
-typedef
+#typedef
 word = string
-vwtpdef
+#vwtpdef
 words = list_vt(word)
 
 (* ****** ****** *)

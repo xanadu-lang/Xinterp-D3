@@ -56,10 +56,10 @@
 fun
 <n:int>
 power(x: int): int
-impltmp
+#impltmp
 <n:int>
 power{n=0}(x) = 1
-impltmp
+#impltmp
 <n:int>
 power{n>0}.<n>.(x) = x * power(x-1)
 
@@ -73,8 +73,8 @@ if n > 0 then power(x) else power(x)
 
 (* ****** ****** *)
 
-abstype Z
-abstype S(x: t0)
+#abstype Z
+#abstype S(x: t0)
 
 (* ****** ****** *)
 
@@ -83,9 +83,9 @@ fun
 <N:t0>
 power(x: int): int
 
-impltmp
+#impltmp
 power<Z>(x) = 1
-impltmp
+#impltmp
 {N:t0}
 power<S(N)>(x) = x * power<N>(x)
 

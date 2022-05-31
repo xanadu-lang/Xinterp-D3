@@ -33,7 +33,7 @@ max
 //
 (* ****** ****** *)
 
-implmnt
+#implmnt
 {a:type}
 isAVL<a>(xs) =
 try
@@ -83,4 +83,4 @@ val ans3 = isAVL(t3)
 
 (* ****** ****** *)
 
-(* end of [isAVL.dats] *)
+(* end of [prelude_isAVL.dats] *)

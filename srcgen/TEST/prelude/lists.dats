@@ -108,4 +108,4 @@ stream_vt_length(list_vt_permutize<int>(zs4))
 
 (* ****** ****** *)
 
-(* end of [lists.dats] *)
+(* end of [prelude_lists.dats] *)

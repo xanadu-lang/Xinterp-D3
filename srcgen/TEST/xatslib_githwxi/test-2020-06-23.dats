@@ -49,7 +49,7 @@
 (* ****** ****** *)
 
 (*
-impltmp
+#impltmp
 {a:t0}
 g_rand<list(a)>() =
 let
@@ -80,7 +80,7 @@ end
 (* ****** ****** *)
 
 local
-impltmp
+#impltmp
 g_rand<int>() =
 nint_rand_limit<>(2)
 in

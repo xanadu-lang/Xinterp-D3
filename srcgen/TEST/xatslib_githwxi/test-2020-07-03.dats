@@ -56,7 +56,7 @@
 #staload
 "xatslib/libc/DATS/stdio.dats"
 (* ****** ****** *)
-sexpdef
+#sexpdef
 array = a1ref
 (* ****** ****** *)
 #extern
@@ -69,24 +69,24 @@ dotprodn
 (* ****** ****** *)
 
 (*
-impltmp
+#impltmp
 <a><n>
 dotprodn(xs, ys) =
 z2foldl
 (xs, ys, r0) where
 {
 //
-typedef x0 = a
-typedef y0 = a
-typedef r0 = a
+#typedef x0 = a
+#typedef y0 = a
+#typedef r0 = a
 //
 val r0 = g_0<r0>()
-impltmp
+#impltmp
 z2foldl$fopr<x0,y0><r0>(r0, x0, y0) = r0 + x0 * y0
 }
 *)
 
-impltmp
+#impltmp
 <a><n>
 dotprodn(xs, ys) =
 (
@@ -103,7 +103,7 @@ val () =
 (r0 := g_0<a>())
 val p0 = $addr(r0)
 //
-implement
+#impltmp
 x1forint$work<n>(i0) =
 let
 val r0 = $UN.p2tr_get(p0)
@@ -114,8 +114,8 @@ end
 } (* end of [dotprodn] *)
 
 (* ****** ****** *)
-abstype Z
-abstype S(type)
+#abstype Z
+#abstype S(type)
 (* ****** ****** *)
 #extern
 fun
@@ -126,12 +126,12 @@ dotprodN
 ( xs: array(a, n)
 , ys: array(a, n)): a
 (* ****** ****** *)
-impltmp
+#impltmp
 {a:t0}
 dotprodN
 <a><Z><0>(_, _) = g_0<a>()
 (* ****** ****** *)
-impltmp
+#impltmp
 {a:t0}
 {N:t0}
 {n:i0}
@@ -161,21 +161,21 @@ dotprodN2_
 , xs: array(a, n)
 , ys: array(a, n)): a
 (* ****** ****** *)
-impltmp
+#impltmp
 {a:t0}
 {N:t0}
 {n:i0}
 dotprodN2<a><N><n>(xs, ys) =
 dotprodN2_<a><N><n,0>(0, xs, ys)
 (* ****** ****** *)
-impltmp
+#impltmp
 {a:t0}
 {n:i0
 ,i:i0}
 dotprodN2_
 <a><Z><n,i>(_, _, _) = g_0<a>()
 (* ****** ****** *)
-impltmp
+#impltmp
 {a:t0}
 {D:t0}
 {n:i0
@@ -203,7 +203,7 @@ val ans1 =
 dotprodn<int>(B3, B3)
 ) where
 {
-impltmp a1ref_length<_><3>() = 3
+#impltmp a1ref_length<_><3>() = 3
 }
 (* ****** ****** *)
 val ans2 =

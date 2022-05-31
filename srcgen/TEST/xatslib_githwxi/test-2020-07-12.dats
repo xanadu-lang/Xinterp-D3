@@ -71,7 +71,7 @@ list_fold_left
 
 (* ****** ****** *)
 
-implement
+#impltmp
 <a>
 <b>(*tmp*)
 list_fold_left
@@ -146,7 +146,7 @@ list_vt2t(xs), 1, lam(r, x) => (r)*x
 val xs =
 map_list(n)
 where
-  impltmp map$fopr<int><int>(x) = x + 1
+#impltmp map$fopr<int><int>(x) = x + 1
 endwhr
 } (* end-of-val *)
 //

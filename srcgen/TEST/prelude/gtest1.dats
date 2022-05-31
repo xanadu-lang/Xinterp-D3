@@ -27,7 +27,7 @@ UN =
 /DATS/CATS/Xint/basics.dats"
 (* ****** ****** *)
 
-impltmp
+#impltmp
 gseq_forall
 <int><int>
   (xs) = loop(0) where
@@ -42,7 +42,7 @@ if i >= xs then true else
 
 (* ****** ****** *)
 
-impltmp
+#impltmp
 {x0:type}
 gseq_forall
 <list(x0)><x0>
@@ -97,4 +97,4 @@ val rev_xs = gseq_copy_rlist(xs)
 
 (* ****** ****** *)
 
-(* end of [gtest1.dats] *)
+(* end of [prelude_gtest1.dats] *)

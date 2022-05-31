@@ -27,7 +27,7 @@
 //
 (* ****** ****** *)
 
-typedef tvar = string
+#typedef tvar = string
 
 (* ****** ****** *)
 
@@ -49,8 +49,8 @@ term2 =
 | TM2app of (term2, term2)
 where
 {
-  typedef
-  tenv2 = list@(tvar, term2)
+#typedef
+tenv2 = list@(tvar, term2)
 }
 (* ****** ****** *)
 
@@ -58,7 +58,7 @@ where
 fun
 tenv2_find
 (xts: tenv2, x0: tvar): term2
-implement
+#implfun
 tenv2_find
 (xts, x0) =
 (

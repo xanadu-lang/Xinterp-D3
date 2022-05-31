@@ -102,11 +102,11 @@ regexp(int) =
 
 (* ****** ****** *)
 
-sortdef two = {a:nat | a < 2}
+#sortdef two = {a:nat | a < 2}
 
 (* ****** ****** *)
 
-typedef regexp = [i:nat] regexp (i)
+#typedef regexp = [i:nat] regexp (i)
 
 (* ****** ****** *)
 
@@ -205,8 +205,8 @@ fun
 accept
 (cs0: string, p: regexp): bool
 
-implement
-accept (cs0, p) = let
+#implfun
+accept(cs0, p) = let
   val i0 = (string_length(cs0))
 in
   acc (cs0, i0, p, i0, 0, lam (i, _) => i = 0)

@@ -126,10 +126,10 @@ gseq_map_add
 <xs><x0><y0>(xyz) / 3
 ) where
 {
-typedef x0 = char
-typedef y0 = sint
-typedef xs = string
-impltmp map$fopr<x0><y0>(c) = sint(c)
+#typedef x0 = char
+#typedef y0 = sint
+#typedef xs = string
+#impltmp map$fopr<x0><y0>(c) = sint(c)
 }
 //
 val () =
@@ -138,4 +138,4 @@ val () =
 //
 (* ****** ****** *)
 
-(* end of [chars.dats] *)
+(* end of [prelude_chars.dats] *)

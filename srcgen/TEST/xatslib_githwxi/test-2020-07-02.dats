@@ -65,9 +65,9 @@ stream_vt_map0
 <x0><y0>(the_cstream)
 ) where
 {
-typedef x0 = sint
-typedef y0 = char
-impltmp
+#typedef x0 = sint
+#typedef y0 = char
+#impltmp
 map0$fopr
 <x0><y0>(i0) = char(i0)
 }
@@ -79,7 +79,7 @@ parcmbr_input
 //
 (* ****** ****** *)
 //
-typedef tok = char
+#typedef tok = char
 //
 (* ****** ****** *)
 //
@@ -93,11 +93,11 @@ idrst =
 (* ****** ****** *)
 
 val
-p_idfst
+p_idfst =
 fp_sat
 (p_token, fmemq(idfst))
 val
-p_idrst
+p_idrst =
 fp_sat
 (p_token, fmemq(idrst))
 

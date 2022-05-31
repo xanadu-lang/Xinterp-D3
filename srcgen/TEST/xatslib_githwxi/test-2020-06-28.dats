@@ -52,14 +52,14 @@ string_fset_at
 , i0
 : nintlt(n)
 , c0: cgtz): string_vt(n)
-implfun
+#implfun
 string_fset_at
   (cs, i0, c0) =
 (
 string_vt_tabulate(length(cs))
 ) where
 {
-impltmp
+#impltmp
 tabulate$fopr<cgtz>(i1) =
 if
 (i0 = i1)
@@ -85,21 +85,21 @@ alpha =
 
 (* ****** ****** *)
 //
-implfun
+#implfun
 helper1
 {n}(cs) =
 let
-typedef x0 = cgtz
-typedef xs = string
-typedef y0 = cgtz
-typedef ys = string
-impltmp
+#typedef x0 = cgtz
+#typedef xs = string
+#typedef y0 = cgtz
+#typedef ys = string
+#impltmp
 x2imap$fopr
 <x0,y0>
 ( i, c0
 , j, c1 ) =
 string_fset_at(cs, i, c1)
-impltmp
+#impltmp
 x2ifilter$test<x0,y0>
 (_, c0, _, c1) = (c0 != c1)
 in
@@ -110,7 +110,7 @@ end (* end of [helper1] *)
 //
 (*
 local
-impltmp
+#impltmp
 g_free<string_vt>(cs) = () // leak!
 in
 val nword = length(helper1("water"))

@@ -34,15 +34,21 @@
 (* ****** ****** *)
 //
 #include
-"share/atspre_staload.hats"
+"share\
+/atspre_staload.hats"
 #staload
-UN = "prelude/SATS/unsafe.sats"
+UN =
+"prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 //
 #include
 "./../HATS/libxinterp.hats"
 //
+(* ****** ****** *)
+#symload
+print
+with $LOC.print_location
 (* ****** ****** *)
 //
 macdef

@@ -11,7 +11,7 @@ kfact
 ( n: int
 , k: int -<cref> ans): ans
 
-implement
+#impltmp
 <ans>
 kfact =
 fix
@@ -31,4 +31,4 @@ let val ans = fact(10) in ans end
 
 (* ****** ****** *)
 
-(* end of [kfact.dats] *)
+(* end of [prelude_kfact.dats] *)

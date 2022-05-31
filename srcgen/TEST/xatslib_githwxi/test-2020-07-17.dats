@@ -89,7 +89,7 @@ if (x > 0) then (!ff)(x-1) else 1
 )
 (* ****** ****** *)
 
-typedef
+#typedef
 cfun(a:type, b:type) = a -<cfr> b
 
 (* ****** ****** *)

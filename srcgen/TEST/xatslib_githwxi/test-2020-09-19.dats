@@ -24,7 +24,7 @@ fun
 mylist_length
 (xs: mylist(a)): int
 (* ****** ****** *)
-implement
+#impltmp
 <a>
 mylist_length
   (xs) = length(xs) where
@@ -51,7 +51,7 @@ mylist_append
 ( xs: mylist(a)
 , ys: mylist(a)): mylist(a)
 (* ****** ****** *)
-implement
+#impltmp
 <a>
 mylist_append
   (xs, ys) =

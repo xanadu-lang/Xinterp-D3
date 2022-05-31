@@ -28,7 +28,7 @@ fibo{n:nat}
 //
 (* ****** ****** *)
 
-implfun
+#implfun
 fibo{n}(n0) =
 (
 if
@@ -56,4 +56,4 @@ val res = fibo(10)
 
 (* ****** ****** *)
 
-(* end of [test01.dats] *)
+(* end of [prelude_ATSLF_test01.dats] *)

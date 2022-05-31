@@ -15,7 +15,7 @@ test:: ; $(XINTERP)
 #
 test:: bools
 bools: ; \
-$(XINTERP) -d ./prelude/chars.dats
+$(XINTERP) -d ./prelude/bools.dats
 test:: chars
 chars: ; \
 $(XINTERP) -d ./prelude/chars.dats

@@ -40,17 +40,17 @@ p2tr_set_at
 (p0: p2tr(a), i0: nint, x0: a): void
 (* ****** ****** *)
 
-abstype argv_tbox
-typedef argv = argv_tbox
-abstype environ_tbox
-typedef environ = environ_tbox
+#abstype argv_tbox
+#typedef argv = argv_tbox
+#abstype environ_tbox
+#typedef environ = environ_tbox
 
 (* ****** ****** *)
 
 local
 
-typedef xs = argv
-typedef x0 = string
+#typedef xs = argv
+#typedef x0 = string
 
 #extern
 fun<>
@@ -58,7 +58,7 @@ the_argc_get(): nint
 
 in(*in-of-local*)
 
-impltmp
+#impltmp
 gseq_forall<xs><x0>(xs) =
 (
 loop(0(*i0*))
@@ -95,12 +95,12 @@ end // end of [local]
 
 local
 
-typedef x0 = string
-typedef xs = environ
+#typedef x0 = string
+#typedef xs = environ
 
 in(*in-of-local*)
 
-impltmp
+#impltmp
 gseq_forall<xs><x0>(xs) =
 (
 loop

@@ -54,14 +54,14 @@ dvdcnq_solve<i><o>(x0)
 ) where
 {
 //
-typedef i = int
-typedef o = int
+#typedef i = int
+#typedef o = int
 //
-impltmp
+#impltmp
 dvdcnq_divide<i><o>
 (x0) =
 list_vt_sing(x0+11)
-impltmp
+#impltmp
 dvdcnq_solved_cmb<i><o>(rs) =
 (
 f91(r1)
@@ -71,10 +71,10 @@ val- ~
 list_vt_cons(r1, rs) = rs
 }
 //
-impltmp
+#impltmp
 dvdcnq_solve_rec<i><o>(x0) = f91(x0)
 //
-impltmp
+#impltmp
 dvdcnq_solve_try<i><o>(x0) =
 if
 (x0 <= 100)
@@ -96,14 +96,14 @@ dvdcnq_solve<i><o>(n)
 ) where
 {
 //
-typedef i = int
-typedef o = int
+#typedef i = int
+#typedef o = int
 //
-impltmp
+#impltmp
 dvdcnq_divide<i><o>
 (x0) =
 list_vt_pair(x0-1, x0-2)
-impltmp
+#impltmp
 dvdcnq_solved_cmb<i><o>(rs) =
 (
 r1 + r2
@@ -115,10 +115,10 @@ val- ~
 list_vt_cons(r2, rs) = rs
 }
 //
-impltmp
+#impltmp
 dvdcnq_solve_rec<i><o> =
 lam(x0) => fibo(x0)
-impltmp
+#impltmp
 dvdcnq_solve_try<i><o> =
 lam(x0) =>
 if
@@ -142,7 +142,7 @@ mergesort
 : list_vt(a) =
 let
 //
-typedef
+#typedef
 xs = list_vt(a)
 //
 fun
@@ -213,7 +213,7 @@ end // list_vt_cons
 in
 let
 //
-typedef
+#typedef
 out = xs
 datavwtp
 inp = T of (xs, nint)
@@ -226,7 +226,7 @@ dvdcnq_solve<inp><out>(t0)
 ) where
 {
 //
-impltmp
+#impltmp
 dvdcnq_divide<inp><out>
 (t0) =
 let
@@ -242,11 +242,11 @@ in
   list_vt_pair<inp>(t1, t2)
 end
 //
-impltmp
+#impltmp
 dvdcnq_solve_rec<inp><out>
 (t0) = amain(t0)
 //
-impltmp
+#impltmp
 dvdcnq_solve_try<inp><out>
 (t0) =
 let
@@ -265,7 +265,7 @@ else
 )
 end
 //
-impltmp
+#impltmp
 dvdcnq_solved_cmb<inp><out>
 (rs) =
 let

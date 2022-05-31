@@ -33,7 +33,7 @@ fun
 fact(n:int): int =
 let
 //
-typedef
+#typedef
 int2 = @(int, int)
 //
 fun
@@ -62,7 +62,7 @@ fun
 fact(n:int): int =
 let
 //
-vwtpdef
+#vwtpdef
 int2 = $(int, int)
 //
 fun
@@ -87,4 +87,4 @@ val fact10 = fact(10)
 
 (* ****** ****** *)
 
-(* end of [cbref.dats] *)
+(* end of [prelude_cbref.dats] *)

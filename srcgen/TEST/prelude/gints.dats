@@ -45,16 +45,16 @@ val xs2 = rlistize(10)
 val xs3 =
 map_list(10) where
 {
-impltmp
+#impltmp
 map$fopr<nint><nint>(x) = x + 1
 }
 val xs4 =
 map_rlist(10) where
 {
-impltmp
+#impltmp
 map$fopr<nint><nint>(x) = x + 1
 }
 
 (* ****** ****** *)
 
-(* end of [gints.dats] *)
+(* end of [prelude_gints.dats] *)

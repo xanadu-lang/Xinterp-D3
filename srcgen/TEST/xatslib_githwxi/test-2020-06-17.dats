@@ -27,7 +27,7 @@
 //
 (* ****** ****** *)
 
-typedef tvar = string
+#typedef tvar = string
 
 (* ****** ****** *)
 

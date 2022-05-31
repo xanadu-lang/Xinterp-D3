@@ -70,7 +70,7 @@ list_fold_right
 
 (* ****** ****** *)
 
-implement
+#impltmp
 <a,b>(*tmp*)
 list_fold_right
   (xs, fopr, sink) = let

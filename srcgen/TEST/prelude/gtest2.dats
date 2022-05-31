@@ -61,7 +61,7 @@ val xs3 =
 gseq_map_list(xs1)
 ) where
 {
-impltmp
+#impltmp
 map$fopr<int><int>(x0) = x0 * x0
 }
 
@@ -72,7 +72,7 @@ val xs4 =
 gseq_map_rlist(xs1)
 ) where
 {
-impltmp
+#impltmp
 map$fopr<int><int>(x0) = x0 * x0
 }
 
@@ -86,7 +86,7 @@ val xs6 =
 gseq_filter_list(xs5)
 where
 {
-impltmp
+#impltmp
 filter$test<int>(x0) = x0 % 2 = 0 }
 
 (* ****** ****** *)
@@ -95,7 +95,7 @@ val xs7 =
 gseq_filter_rlist(xs5)
 where
 {
-impltmp
+#impltmp
 filter$test<int>(x0) = x0 % 2 = 0 }
 
 (* ****** ****** *)
@@ -107,7 +107,7 @@ val xs8 = gseq_drop(xs1, 1)
 val xs9 =
 gseq_idropif(xs8) where
 {
-impltmp
+#impltmp
 idropif$test<int>(i0, x0) = x0 <= 3 }
 //
 (* ****** ****** *)
@@ -116,7 +116,7 @@ val xs10 =
 gseq_z2map_list(xs1, xs1)
 where
 {
-impltmp
+#impltmp
 z2map$fopr<int,int>(x0, y0) = x0 + y0 }
 
 (* ****** ****** *)
@@ -124,16 +124,16 @@ z2map$fopr<int,int>(x0, y0) = x0 + y0 }
 val xs11 =
 gseq_imap_list("abcde") where
 {
-impltmp
+#impltmp
 imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i,c)
 }
 val xs12 =
 gseq_imap_rlist("abcde") where
 {
-impltmp
+#impltmp
 imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i,c)
 }
 
 (* ****** ****** *)
 
-(* end of [gtest2.dats] *)
+(* end of [prelude_gtest2.dats] *)

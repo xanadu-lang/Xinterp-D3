@@ -40,7 +40,7 @@ qtest
 (
 iforall(xs) where
 {
-impltmp
+#impltmp
 iforall$test<sint>(i0, x1) =
 if
 (x1 != x0)
@@ -87,9 +87,9 @@ qextends
 list_vt_concat
 (
 let
-typedef xs = list(int)
-typedef ys = list_vt(xs)
-impltmp
+#typedef xs = list(int)
+#typedef ys = list_vt(xs)
+#impltmp
 map0$fopr
 <xs><ys>(xs) = qextend(xs)
 in

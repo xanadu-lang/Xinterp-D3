@@ -40,7 +40,7 @@
 #staload
 "xatslib/githwxi/DATS/mygist.dats"
 (* ****** ****** *)
-impltmp
+#impltmp
 g_free<string_vt>(cs) = () // leak!
 (* ****** ****** *)
 
@@ -53,14 +53,14 @@ string_fset_at
 , i0
 : nintlt(n)
 , c0: cgtz): string_vt(n)
-implfun
+#implfun
 string_fset_at
   (cs, i0, c0) =
 (
 string_vt_tabulate(length(cs))
 ) where
 {
-impltmp
+#impltmp
 tabulate$fopr<cgtz>(i1) =
 if
 (i0 = i1)
@@ -89,7 +89,7 @@ helper2
 
 (* ****** ****** *)
 
-implfun
+#implfun
 helper1
 {n}(cs) =
 stream_vt_maplist0
@@ -97,17 +97,17 @@ stream_vt_maplist0
 gint_streamize_nint(length(cs))
 ) where
 {
-typedef
+#typedef
 x0 = nintlt(n)
-vwtpdef
+#vwtpdef
 y0 = string_vt(n)
-impltmp
+#impltmp
 maplist0$fopr<x0><y0>(i0) = helper2(cs, i0)
 }
 
 (* ****** ****** *)
 
-implfun
+#implfun
 helper2
 {n}(cs, i0) =
 let
@@ -125,9 +125,9 @@ list_vt_nil()
 in loop(j0, r0) end where
 {
 //
-typedef
+#typedef
 j0 = nintlte(26)
-vwtpdef
+#vwtpdef
 r0 = list_vt(string_vt(n))
 //
 fun

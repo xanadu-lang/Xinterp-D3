@@ -55,7 +55,7 @@ qtest
 (
 iforall(xs) where
 {
-impltmp
+#impltmp
 iforall$test<sint>(i0, x1) =
 if
 (x1 != x0)
@@ -65,14 +65,14 @@ then abs(x1-x0) != (i0+1) else false
 
 (* ****** ****** *)
 
-abstype
+#abstype
 node_type == list(int)
-typedef node = node_type
+#typedef node = node_type
 
 (* ****** ****** *)
 
 local
-absopen node_type
+#absopen node_type
 in(*in-of-local*)
 
 val
@@ -108,7 +108,7 @@ end // end of [local]
 
 (* ****** ****** *)
 
-impltmp
+#impltmp
 gtree_node_childlst<node> = qextend
 
 (* ****** ****** *)
@@ -119,7 +119,7 @@ stream_vt_filter0
 (gtree_bfs_streamize(the_root))
 where
 {
-impltmp
+#impltmp
 filter0$test<node>(xs) = size(xs) >= N
 }
 
