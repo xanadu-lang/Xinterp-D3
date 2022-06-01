@@ -1,38 +1,7 @@
 (* ****** ****** *)
-#staload _ =
-"prelude\
-/DATS/CATS\
-/Xint/basics.dats"
-(* ****** ****** *)
-#staload
-"prelude/DATS/gbas.dats"
-#staload
-"prelude/DATS/gord.dats"
-(* ****** ****** *)
-#staload
-"prelude/DATS/gseq.dats"
-#staload
-"prelude/DATS/gseq_vt.dats"
-(* ****** ****** *)
-//
-#staload
-"prelude/DATS/gint.dats"
-//
-#staload
-"prelude/DATS/unsafe.dats"
-//
-(* ****** ****** *)
-#staload
-"prelude/DATS/list.dats"
-#staload
-"prelude/DATS/list_vt.dats"
-(* ****** ****** *)
-
-(* ****** ****** *)
-
 #include
-"share/atspre_staload.hats"
-
+"./../../..\
+/share/xinterp_prelude.hats"
 (* ****** ****** *)
 
 fun
