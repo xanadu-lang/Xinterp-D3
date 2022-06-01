@@ -2,29 +2,29 @@
 #staload _ =
 "prelude\
 /DATS/CATS\
-/Xint/basics.dats"
+/Xint/basics0.dats"
 (* ****** ****** *)
 #staload
-"prelude/DATS/gbas.dats"
+"prelude/DATS/gbas000.dats"
 (* ****** ****** *)
 //
 #staload
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 //
 #staload
-"prelude/DATS/unsafe.dats"
+"prelude/DATS/unsafex.dats"
 //
 (* ****** ****** *)
 #staload
-"prelude/DATS/list.dats"
+"prelude/DATS/list000.dats"
 (* ****** ****** *)
 #staload
-"prelude/DATS/stream_vt.dats"
+"prelude/DATS/VT/stream0_vt.dats"
 (* ****** ****** *)
-
+//
 #staload
-"xatslib/githwxi/DATS/mygist.dats"
-
+"xatslib/githwxi/DATS/mygist0.dats"
+//
 (* ****** ****** *)
 
 val xs =

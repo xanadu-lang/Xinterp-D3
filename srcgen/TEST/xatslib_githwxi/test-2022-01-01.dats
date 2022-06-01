@@ -12,18 +12,20 @@ for testing xats2js!
 /share/xinterp_prelude.hats"
 (* ****** ****** *)
 #staload
-"xatslib/libc/DATS/gios.dats"
-(* ****** ****** *)
-#staload
-"xatslib/libc/DATS/stdio.dats"
+"xatslib\
+/libcats/DATS/g00iout.dats"
 (* ****** ****** *)
 #staload
 "xatslib\
-/libc/DATS/CATS/Xint/basics.dats"
+/libcats/DATS/stdiout.dats"
+(* ****** ****** *)
+#staload
+"xatslib\
+/libcats\
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
-val
-line1 = g_inp_line_list<>()
+val line1 = g_inp_line_list<>()
 
 (* ****** ****** *)
 

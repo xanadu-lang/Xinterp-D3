@@ -2,30 +2,34 @@
 #staload _ =
 "prelude\
 /DATS/CATS\
-/Xint/basics.dats"
+/Xint/basics0.dats"
 (* ****** ****** *)
 #staload
-"prelude/DATS/gbas.dats"
+"prelude/DATS/gbas000.dats"
 #staload
-"prelude/DATS/gord.dats"
-(* ****** ****** *)
-#staload
-"prelude/DATS/gseq.dats"
-#staload
-"prelude/DATS/gseq_vt.dats"
+"prelude/DATS/gord000.dats"
 (* ****** ****** *)
 //
 #staload
-"prelude/DATS/gint.dats"
-//
-#staload
-"prelude/DATS/unsafe.dats"
+"prelude/DATS/gint000.dats"
 //
 (* ****** ****** *)
 #staload
-"prelude/DATS/list.dats"
+"prelude/DATS/gseq000.dats"
 #staload
-"prelude/DATS/list_vt.dats"
+"prelude/DATS/list000.dats"
+(* ****** ****** *)
+#staload
+"prelude/DATS/unsafex.dats"
+(* ****** ****** *)
+//
+#staload
+"prelude/DATS/VT/gseq000_vt.dats"
+#staload
+"prelude/DATS/VT/list000_vt.dats"
+#staload
+"prelude/DATS/VT/stream0_vt.dats"
+//
 (* ****** ****** *)
 
 val N = 6
