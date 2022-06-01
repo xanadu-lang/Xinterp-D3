@@ -1,15 +1,11 @@
 (* ****** ****** *)
-#staload
-"prelude\
-/DATS/CATS\
-/Xint/basics.dats"
+#staload _ =
+"prelude/DATS/gbas000.dats"
+#staload _ =
+"prelude/DATS/VT/stream0_vt.dats"
 (* ****** ****** *)
-
-#staload _ =
-"prelude/DATS/gbas.dats"
-#staload _ =
-"prelude/DATS/stream_vt.dats"
-
+#staload
+"prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 fun

@@ -829,7 +829,7 @@ val
 irvs =
 auxdarg(env0, npf1, ires)
 //
-(*
+// (*
 //
 val loc0 = ire0.loc()
 //
@@ -846,7 +846,7 @@ val () =
 println!
 ("auxdapp: irvs = ", irvs)
 //
-*)
+// *)
 //
 in
 //

@@ -6,58 +6,54 @@
 
 #staload
 UN =
-"prelude/SATS/unsafe.sats"
+"prelude/SATS/unsafex.sats"
 #staload
 // UN =
-"prelude/DATS/unsafe.dats"
+"prelude/DATS/unsafex.dats"
 
 (* ****** ****** *)
 
 #staload
-"prelude/DATS/bool.dats"
+"prelude/DATS/bool000.dats"
 #staload
-"prelude/DATS/char.dats"
+"prelude/DATS/char000.dats"
 #staload
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 
 (* ****** ****** *)
 
 #staload
-"prelude/DATS/gbas.dats"
+"prelude/DATS/gbas000.dats"
 #staload
-"prelude/DATS/gnum.dats"
+"prelude/DATS/gnum000.dats"
 #staload
-"prelude/DATS/gord.dats"
+"prelude/DATS/gord000.dats"
 
 (* ****** ****** *)
 
 #staload
-"prelude/DATS/gseq.dats"
+"prelude/DATS/gseq000.dats"
 
 (* ****** ****** *)
 
 #staload
-"prelude/DATS/list_vt.dats"
+"prelude/DATS/VT/list000_vt.dats"
 #staload
-"prelude/DATS/stream_vt.dats"
+"prelude/DATS/VT/stream0_vt.dats"
 
 (* ****** ****** *)
 //
 #staload
-"xatslib/libc/SATS/gios.sats"
+"xatslib/libcats/DATS/g00iout.dats"
 #staload
-"xatslib/libc/DATS/gios.dats"
-#staload
-"xatslib/libc/DATS/stdio.dats"
+"xatslib/libcats/DATS/stdiout.dats"
 //
 (* ****** ****** *)
 #staload _ =
-"prelude\
-/DATS/CATS/Xint/basics.dats"
+"prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 #staload _ =
-"xatslib\
-/libc/DATS/CATS/Xint/basics.dats"
+"xatslib/libcats/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 val cs =

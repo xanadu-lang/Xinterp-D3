@@ -1,22 +1,19 @@
 (* ****** ****** *)
+#staload
+"prelude/DATS/gint000.dats"
+(* ****** ****** *)
+#staload
+"prelude/DATS/VT/list000_vt.dats"
+#staload
+"prelude/DATS/VT/stream0_vt.dats"
+(* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS\
-/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
-#staload
-"prelude/DATS/gint.dats"
-(* ****** ****** *)
-#staload
-"prelude/DATS/list_vt.dats"
-#staload
-"prelude/DATS/stream_vt.dats"
-(* ****** ****** *)
-
 #include
 "xatslib\
 /githwxi/TEST/test-2020-03-21.dats"
-
 (* ****** ****** *)
 
 fun

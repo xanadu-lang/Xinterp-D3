@@ -1,25 +1,23 @@
 (* ****** ****** *)
 #staload
-"prelude/DATS/gseq.dats"
+"prelude/DATS/gseq000.dats"
 (* ****** ****** *)
-
 #staload
-"prelude/DATS/bool.dats"
+"prelude/DATS/bool000.dats"
 #staload
-"prelude/DATS/char.dats"
+"prelude/DATS/char000.dats"
 #staload
-"prelude/DATS/list.dats"
+"prelude/DATS/list000.dats"
 #staload
-"prelude/DATS/string.dats"
-
+"prelude/DATS/strn000.dats"
 (* ****** ****** *)
 #staload
 _(*UN*) =
-"prelude/DATS/unsafe.dats"
+"prelude/DATS/unsafex.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 fun

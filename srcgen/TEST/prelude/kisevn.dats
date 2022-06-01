@@ -1,7 +1,7 @@
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 fun
@@ -25,4 +25,4 @@ val isodd10 = kisodd(10, lam r => r)
 
 (* ****** ****** *)
 
-(* end of [kisevn.dats] *)
+(* end of [prelude_kisevn.dats] *)

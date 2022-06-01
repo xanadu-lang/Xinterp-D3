@@ -1,46 +1,47 @@
 (* ****** ****** *)
 //
 #staload
-"prelude/DATS/gbas.dats"
+"prelude/DATS/gbas000.dats"
 #staload
-"prelude/DATS/gnum.dats"
+"prelude/DATS/gnum000.dats"
 #staload
-"prelude/DATS/gord.dats"
+"prelude/DATS/gord000.dats"
 #staload
-"prelude/DATS/gfor.dats"
+"prelude/DATS/gfor000.dats"
 #staload
-"prelude/DATS/gseq.dats"
-#staload
-"prelude/DATS/gseq_vt.dats"
+"prelude/DATS/gseq000.dats"
 //
 (* ****** ****** *)
 #staload _ =
-"prelude/DATS/unsafe.dats"
+"prelude/DATS/unsafex.dats"
 (* ****** ****** *)
 //
 #staload _ =
-"prelude/DATS/char.dats"
+"prelude/DATS/char000.dats"
 #staload _ =
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 #staload
-"prelude/DATS/array.dats"
+"prelude/DATS/arrn000.dats"
 #staload _ =
-"prelude/DATS/string.dats"
+"prelude/DATS/strn000.dats"
 //
 (* ****** ****** *)
 #staload _ =
-"prelude/DATS/list.dats"
+"prelude/DATS/list000.dats"
+(* ****** ****** *)
+//
 #staload _ =
-"prelude/DATS/list_vt.dats"
+"prelude/DATS/VT/list000_vt.dats"
 #staload _ =
-"prelude/DATS/stream_vt.dats"
+"prelude/DATS/VT/stream0_vt.dats"
+#staload
+"prelude/DATS/VT/gseq000_vt.dats"
+//
 (* ****** ****** *)
 #staload _ =
-"prelude\
-/DATS/CATS/Xint/basics.dats"
+"prelude/DATS/CATS/Xint/basics0.dats"
 #staload _ =
-"prelude\
-/DATS/CATS/Xint/prelude.dats"
+"prelude/DATS/CATS/Xint/prelude.dats"
 //
 (* ****** ****** *)
 //
@@ -128,4 +129,4 @@ val len = length(xss)
 
 (* ****** ****** *)
 
-(* end of [array.dats] *)
+(* end of [prelude_array.dats] *)

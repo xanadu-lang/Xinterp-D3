@@ -2,7 +2,7 @@
 #staload _ =
 "prelude\
 /DATS/CATS\
-/Xint/basics.dats"
+/Xint/basics0.dats"
 (* ****** ****** *)
 dataprop
 FIB(int, int) =

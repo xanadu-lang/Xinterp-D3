@@ -1,14 +1,11 @@
 (* ****** ****** *)
 #staload
 "prelude\
-/DATS/CATS\
-/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
-#symload
-nil with strmcon_nil
-#symload
-cons with strmcon_cons
+#symload nil with strmcon_nil
+#symload cons with strmcon_cons
 
 (* ****** ****** *)
 

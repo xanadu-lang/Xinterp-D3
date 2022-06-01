@@ -1,17 +1,17 @@
 (* ****** ****** *)
 #staload
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 #staload
-"prelude/DATS/char.dats"
+"prelude/DATS/char000.dats"
 #staload
-"prelude/DATS/string.dats"
+"prelude/DATS/strn000.dats"
 (* ****** ****** *)
 #staload
-"prelude/DATS/tuple.dats"
+"prelude/DATS/tuple00.dats"
 (* ****** ****** *)
 #staload
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 #define one 1

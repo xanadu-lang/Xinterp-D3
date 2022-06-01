@@ -5,26 +5,26 @@
 (* ****** ****** *)
 #staload
 UN =
-"prelude/SATS/unsafe.sats"
+"prelude/SATS/unsafex.sats"
 #staload
 UN =
-"prelude/DATS/unsafe.dats"
+"prelude/DATS/unsafex.dats"
 (* ****** ****** *)
 #staload
-"prelude/DATS/gbas.dats"
+"prelude/DATS/gbas000.dats"
 #staload
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 #staload
-"prelude/DATS/gnum.dats"
+"prelude/DATS/gnum000.dats"
 #staload
-"prelude/DATS/gord.dats"
+"prelude/DATS/gord000.dats"
 (* ****** ****** *)
 #staload
-"prelude/DATS/gseq.dats"
+"prelude/DATS/gseq000.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 #impltmp

@@ -1,14 +1,14 @@
 (* ****** ****** *)
 #staload
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 #staload
-"prelude/DATS/gnum.dats"
+"prelude/DATS/gnum000.dats"
 #staload
-"prelude/DATS/gord.dats"
+"prelude/DATS/gord000.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 fun

@@ -1,7 +1,7 @@
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 fun
@@ -27,4 +27,4 @@ let val ans = fibo(10) in ans end
 
 (* ****** ****** *)
 
-(* end of [kfibo.dats] *)
+(* end of [prelude_kfibo.dats] *)

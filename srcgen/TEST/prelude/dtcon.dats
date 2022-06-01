@@ -1,8 +1,7 @@
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS\
-/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 (*
 //
@@ -60,4 +59,4 @@ val ys = ys where { val () = double2(ys) }
 //
 (* ****** ****** *)
 
-(* end of [dtcon.dats] *)
+(* end of [prelude_dtcon.dats] *)

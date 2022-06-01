@@ -1,20 +1,20 @@
 (* ****** ****** *)
 #staload _ =
-"prelude/DATS/gbas.dats"
+"prelude/DATS/gbas000.dats"
 (* ****** ****** *)
 #staload _ =
-"prelude/DATS/gint.dats"
+"prelude/DATS/gint000.dats"
 #staload _ =
-"prelude/DATS/char.dats"
+"prelude/DATS/char000.dats"
 #staload _ =
-"prelude/DATS/string.dats"
+"prelude/DATS/strn000.dats"
 (* ****** ****** *)
 #staload _ =
-"prelude/DATS/tuple.dats"
+"prelude/DATS/tuple00.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude\
-/DATS/CATS/Xint/basics.dats"
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 var x0 = $(0, 1)
@@ -71,4 +71,4 @@ val ((*void*)) = v2 := u1
 //
 (* ****** ****** *)
 
-(* end of [tuple.dats] *)
+(* end of [prelude_tuple.dats] *)

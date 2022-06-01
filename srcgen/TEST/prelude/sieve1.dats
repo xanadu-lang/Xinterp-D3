@@ -1,13 +1,10 @@
 (* ****** ****** *)
 #staload
-"prelude\
-/DATS/CATS\
-/Xint/basics.dats"
+"prelude/DATS/stream0.dats"
 (* ****** ****** *)
-
 #staload
-"prelude/DATS/stream.dats"
-
+"prelude\
+/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 #impltmp
