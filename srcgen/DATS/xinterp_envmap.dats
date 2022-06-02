@@ -88,11 +88,11 @@ overload
 #staload "./../SATS/xinterp.sats"
 //
 (* ****** ****** *)
-
+//
 #staload
 _(*TMP*) =
-"{$XATSOPT}/DATS/dynexp2_print.dats"
-
+"{$XATSOPT}/DATS/dynexp2_print0.dats"
+//
 (* ****** ****** *)
 //
 implement
