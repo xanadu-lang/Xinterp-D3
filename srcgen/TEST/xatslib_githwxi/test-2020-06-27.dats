@@ -255,7 +255,7 @@ end
 //
 } // end of [where] // [amain]
 in
-  amain( T(xs, length(xs)) )
+  amain( T(xs, length1(xs)) )
 end // end of [let]
 end (* end of [mergesort] *)
 

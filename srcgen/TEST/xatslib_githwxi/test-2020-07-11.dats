@@ -145,7 +145,7 @@ fact =
 lam
 {n:nat}(n:int(n)) =>
 list_fold_right<int,int>
-(list_vt2t(listize(n)), lam(x, r) => (x+1)*r, 1)
+(list_vt2t(gseq_listize(n)), lam(x, r) => (x+1)*r, 1)
 //
 (* ****** ****** *)
 

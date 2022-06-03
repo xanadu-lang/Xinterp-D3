@@ -99,7 +99,7 @@ list_vt2t(xs), 1, lam(r, x) => (r)*x
 ) where
 {
 val xs =
-map_list(n)
+gseq_map_list(n)
 where
 #impltmp map$fopr<int><int>(x) = x + 1
 endwhr
