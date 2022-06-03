@@ -26,7 +26,7 @@
 (* ****** ****** *)
 #include
 "./../../..\
-/share/xinterp_prelude.hats"
+/shared0/xinterp_prelude.hats"
 (* ****** ****** *)
 
 datatype

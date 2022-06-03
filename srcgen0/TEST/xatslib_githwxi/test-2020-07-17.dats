@@ -16,16 +16,11 @@ patsopt --constraint-ignore --dynamic $1 | \
 tcc -run -DATS_MEMALLOC_LIBC -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -
 *)
 //
-(* ****** ****** *)
-//
-#include "share/atspre_staload.hats"
-//
-(* ****** ****** *)
 *)
 (* ****** ****** *)
 #include
 "./../../..\
-/share/xinterp_prelude.hats"
+/shared0/xinterp_prelude.hats"
 (* ****** ****** *)
 //
 fun
