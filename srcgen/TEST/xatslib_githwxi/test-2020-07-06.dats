@@ -158,13 +158,13 @@ end // end of [acc]
 #extern
 fun
 accept
-(cs0: string, p: regexp): bool
+(cs0: string, rex: regexp): bool
 
 #implfun
-accept(cs0, p) = let
-  val i0 = (string_length(cs0))
+accept(cs0, rex) = let
+  val i0 = length(cs0)
 in
-  acc (cs0, i0, p, i0, 0, lam (i, _) => i = 0)
+  acc (cs0, i0, rex, i0, 0, lam (i, _) => i = 0)
 end // end of [accept]
 
 (* ****** ****** *)

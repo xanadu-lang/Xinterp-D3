@@ -19,14 +19,13 @@ the prelude library for xinterp
 #staload _ = "prelude/DATS/gint000.dats"
 #staload _ = "prelude/DATS/gflt000.dats"
 (* ****** ****** *)
-#staload _ = "prelude/DATS/strn000.dats"
-#staload _ = "prelude/DATS/tupl000.dats"
-(* ****** ****** *)
 #staload _ = "prelude/DATS/list000.dats"
 #staload _ = "prelude/DATS/optn000.dats"
 #staload _ = "prelude/DATS/strm000.dats"
 (* ****** ****** *)
 #staload _ = "prelude/DATS/arrn000.dats"
+#staload _ = "prelude/DATS/strn000.dats"
+#staload _ = "prelude/DATS/tupl000.dats"
 (* ****** ****** *)
 #staload _ = "prelude/DATS/unsafex.dats"
 (* ****** ****** *)
@@ -37,6 +36,8 @@ the prelude library for xinterp
 #staload _ = "prelude/DATS/VT/list000_vt.dats"
 #staload _ = "prelude/DATS/VT/optn000_vt.dats"
 #staload _ = "prelude/DATS/VT/strm000_vt.dats"
+(* ****** ****** *)
+#staload _ = "prelude/DATS/VT/strn000_vt.dats"
 (* ****** ****** *)
 //
 #staload _ = "prelude/DATS/CATS/Xint/basics0.dats"

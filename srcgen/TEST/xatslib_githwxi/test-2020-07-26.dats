@@ -50,7 +50,7 @@ p2tr_set_at
 local
 
 #typedef xs = argv
-#typedef x0 = string
+#typedef x0 = strn
 
 #extern
 fun<>
@@ -69,7 +69,7 @@ argc =
 the_argc_get<>()
 val
 arg0 = 
-$UN.cast10{p2tr(string)}(xs)
+$UN.cast10{p2tr(strn)}(xs)
 fun
 loop
 ( i0: nint ): bool =
@@ -87,7 +87,7 @@ in
   then loop(succ(i0)) else false
 end // end of [else] // end of [if]
 end
-} (* end of [gseq_forall<argv><string>] *)
+} (* end of [gseq_forall<argv><strn>] *)
 
 end // end of [local]
 

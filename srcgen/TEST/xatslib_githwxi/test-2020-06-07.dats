@@ -17,8 +17,9 @@ y * y > x
 then true
 else
 (
-  if (x % y) = 0
-    then false else isprime2(x, y+1)
+if
+(x % y) = 0
+then false else isprime2(x, y+1)
   // end of [if]
 ) (* isprime2 *)
 

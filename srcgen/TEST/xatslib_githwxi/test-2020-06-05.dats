@@ -8,17 +8,17 @@
 (* ****** ****** *)
 //
 fun
-string_permutize
+strn_permutize
 ( cs
-: string)
-: stream_vt(string) =
-gseq_permutize<string><cgtz>(cs)
+: strn)
+: strm_vt(strn) =
+gseq_permutize<strn><cgtz>(cs)
 //
 (* ****** ****** *)
 
 val cs1 = "12345"
-val css = string_permutize(cs1)
-val css = stream_vt_listize(css)
+val css = strn_permutize(cs1)
+val css = strm_vt_listize(css)
 
 (* ****** ****** *)
 

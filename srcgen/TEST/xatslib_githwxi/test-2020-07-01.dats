@@ -19,17 +19,19 @@
 (* ****** ****** *)
 //
 val
-the_cstream =
-g_inp_cstream<>()
+the_cstrm =
+g_inp_cstrm<>()
 val
-the_cstream =
+the_cstrm =
 (
-stream_vt_map0
-<x0><y0>(the_cstream)
+strm_vt_map0
+<x0><y0>(the_cstrm)
 ) where
 {
+//
 #typedef x0 = sint
 #typedef y0 = char
+//
 #impltmp
 map0$fopr
 <x0><y0>(i0) = char(i0)
@@ -37,8 +39,7 @@ map0$fopr
 //
 val
 the_input =
-parcmbr_input
-(stream_vt2t(the_cstream))
+parcmbr_input(strm_vt2t(the_cstrm))
 //
 (* ****** ****** *)
 //
@@ -97,7 +98,7 @@ fp_ignore(p_nltr)
 fp_repeat1(p_ltr0)
 ,
 lam(cs) =>
-string_make_list_vt(cs)
+strn_make_list_vt(cs)
 )
 val
 p_words = fp_repeat0(p_word)
@@ -105,7 +106,7 @@ p_words = fp_repeat0(p_word)
 (* ****** ****** *)
 
 #typedef
-word = string
+word = strn
 #vwtpdef
 words = list_vt(word)
 

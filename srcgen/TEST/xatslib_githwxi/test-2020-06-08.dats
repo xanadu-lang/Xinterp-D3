@@ -24,7 +24,7 @@ qtest
 : list(int)
 , x0: sint): bool =
 (
-iforall(xs) where
+gseq_iforall(xs) where
 {
 #impltmp
 iforall$test<sint>(i0, x1) =
@@ -86,8 +86,8 @@ gtree_node_childlst<node> = qextend
 
 val
 the_sols =
-stream_vt_filter0
-(gtree_bfs_streamize(the_root))
+strm_vt_filter0
+(gtree_bfs_strmize(the_root))
 where
 {
 #impltmp
@@ -96,7 +96,7 @@ filter0$test<node>(xs) = size(xs) >= N
 
 (* ****** ****** *)
 
-val the_nsol = stream_vt_length(the_sols)
+val the_nsol = strm_vt_length(the_sols)
 
 (* ****** ****** *)
 

@@ -23,8 +23,7 @@
 fun
 pole_make
 {n:nat}
-( name
-: string
+( name: strn
 , ndisk: int(n)): pole(n)
 //
 #extern
@@ -70,7 +69,7 @@ datatype
 pole_(n:int) =
 Pole of
 (
-  string, list(int, n)
+  strn, list(int, n)
 ) (* end of [pole_] *)
 
 #absimpl pole(n:int) = pole_(n)

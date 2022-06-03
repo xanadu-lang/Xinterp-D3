@@ -34,12 +34,13 @@
 #staload
 "prelude/DATS/VT/list000_vt.dats"
 #staload
-"prelude/DATS/VT/stream0_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
 (* ****** ****** *)
-
+#staload
+"prelude/DATS/VT/strn000_vt.dats"
+(* ****** ****** *)
 #staload
 "xatslib/githwxi/DATS/mygist0.dats"
-
 (* ****** ****** *)
 //
 fun
