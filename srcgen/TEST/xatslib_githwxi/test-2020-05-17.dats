@@ -28,7 +28,7 @@
 #staload
 "prelude/DATS/VT/list000_vt.dats"
 #staload
-"prelude/DATS/VT/stream0_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
 //
 (* ****** ****** *)
 
@@ -42,7 +42,7 @@ qtest
 : list(int)
 , x0: sint): bool =
 (
-iforall(xs) where
+gseq_iforall(xs) where
 {
 #impltmp
 iforall$test<sint>(i0, x1) =
@@ -88,7 +88,7 @@ qextends
 : list_vt(list(int))
 )
 : list_vt(list(int)) =
-list_vt_concat
+list_vt_concat0
 (
 let
 #typedef xs = list(int)

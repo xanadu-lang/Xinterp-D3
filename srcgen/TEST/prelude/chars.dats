@@ -18,13 +18,18 @@
 #staload _ =
 "prelude/DATS/gint000.dats"
 #staload _ =
-"prelude/DATS/strn000.dats"
-#staload _ =
 "prelude/DATS/list000.dats"
+#staload _ =
+"prelude/DATS/strn000.dats"
+//
+(* ****** ****** *)
+//
 #staload _ =
 "prelude/DATS/VT/list000_vt.dats"
 #staload _ =
-"prelude/DATS/VT/stream0_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
+#staload _ =
+"prelude/DATS/VT/strn000_vt.dats"
 //
 (* ****** ****** *)
 #staload _ =
@@ -101,7 +106,7 @@ and b = abc[1]
 and c = abc[2]
 //
 val
-abc = string_make_list(abc)
+abc = strn_make_list(abc)
 val a = abc[0]
 and b = abc[1]
 and c = abc[2]
@@ -112,7 +117,7 @@ val xyz =
 let
 val x = sint('x')
 in
-string_tabulate_cfr
+strn_tabulate_cfr
 (3, lam(i) => char(x+i))
 end // end of [val]
 val () =
@@ -129,7 +134,7 @@ gseq_map_add
 {
 #typedef x0 = char
 #typedef y0 = sint
-#typedef xs = string
+#typedef xs = strn
 #impltmp map$fopr<x0><y0>(c) = sint(c)
 }
 //

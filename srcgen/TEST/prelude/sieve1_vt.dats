@@ -2,7 +2,7 @@
 #staload _ =
 "prelude/DATS/gbas000.dats"
 #staload _ =
-"prelude/DATS/VT/stream0_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
 (* ****** ****** *)
 #staload
 "prelude/DATS/CATS/Xint/basics0.dats"
@@ -11,7 +11,7 @@
 fun
 sieve
 ( xs
-: stream_vt(int)) =
+: strm_vt(int)) =
 $llazy
 (
 g_free(xs);
@@ -23,7 +23,7 @@ case- xs of
 ~strmcon_vt_cons(x0, xs) =>
 (
  strmcon_vt_cons
- (x0, sieve(stream_vt_filter0(xs)))
+ (x0, sieve(strm_vt_filter0(xs)))
 ) where
 {
 #impltmp

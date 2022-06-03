@@ -14,9 +14,9 @@ cons_vt with strmcon_vt_cons
 fun
 sieve
 ( xs
-: stream_vt(int)
+: strm_vt(int)
 )
-: stream_vt(int) =
+: strm_vt(int) =
 $llazy
 (
 let

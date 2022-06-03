@@ -39,7 +39,7 @@ UN =
 #staload
 "prelude/DATS/VT/list000_vt.dats"
 #staload
-"prelude/DATS/VT/stream0_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
 
 (* ****** ****** *)
 //
@@ -61,8 +61,8 @@ g_inp_line_list<>()
 
 (* ****** ****** *)
 
-val cs = g_inp_cstream<>()
-val ln = stream_vt_length(cs)
+val cs = g_inp_cstrm<>()
+val ln = strm_vt_length(cs)
 
 (* ****** ****** *)
 

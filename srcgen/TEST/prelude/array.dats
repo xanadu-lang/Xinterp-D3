@@ -30,18 +30,33 @@
 "prelude/DATS/list000.dats"
 (* ****** ****** *)
 //
+#staload
+"prelude/DATS/VT/gseq000_vt.dats"
 #staload _ =
 "prelude/DATS/VT/list000_vt.dats"
 #staload _ =
-"prelude/DATS/VT/stream0_vt.dats"
-#staload
-"prelude/DATS/VT/gseq000_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
 //
 (* ****** ****** *)
 #staload _ =
 "prelude/DATS/CATS/Xint/basics0.dats"
 #staload _ =
 "prelude/DATS/CATS/Xint/prelude.dats"
+//
+(* ****** ****** *)
+//
+#symload
+length with
+gseq_length of 110
+//
+(* ****** ****** *)
+//
+#symload
+foreach with
+gseq_foreach of 110
+#symload
+rforeach with
+gseq_rforeach of 110
 //
 (* ****** ****** *)
 //

@@ -36,7 +36,7 @@ UN =
 #staload
 "prelude/DATS/VT/list000_vt.dats"
 #staload
-"prelude/DATS/VT/stream0_vt.dats"
+"prelude/DATS/VT/strm000_vt.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude/DATS/CATS/Xint/basics0.dats"

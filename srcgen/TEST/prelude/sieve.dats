@@ -12,7 +12,7 @@
 fun
 sieve
 ( xs
-: stream(int)) =
+: strm(int)) =
 $lazy
 (
 let

@@ -88,11 +88,11 @@ overload
 #staload "./../SATS/xinterp.sats"
 //
 (* ****** ****** *)
-//
+
 #staload
 _(*TMP*) =
 "{$XATSOPT}/DATS/dynexp2_print0.dats"
-//
+
 (* ****** ****** *)
 //
 implement
@@ -1034,6 +1034,8 @@ let
 val-IRVflt(x) = x
 val-IRVflt(y) = y in IRVflt(x / y) end
 
+(* ****** ****** *)
+
 (*
 fun
 gflt_mod_dflt_dflt
@@ -1059,8 +1061,7 @@ let
 val-IRVstr(x) = x
 val p = string2ptr(x)
 in
-  IRVchr
-  ($UN.ptr0_get<char>(p))
+  IRVchr($UN.ptr0_get<char>(p))
 end // end of [string_head_opt]
 fun
 string_head_raw
@@ -1069,8 +1070,7 @@ let
 val-IRVstr(x) = x
 val p = string2ptr(x)
 in
-  IRVchr
-  ($UN.ptr0_get<char>(p))
+  IRVchr($UN.ptr0_get<char>(p))
 end // end of [string_head_raw]
 fun
 string_tail_raw
@@ -1079,8 +1079,7 @@ let
 val-IRVstr(x) = x
 val p = string2ptr(x)
 in
-IRVstr
-($UN.cast(ptr0_succ<char>(p)))
+IRVstr($UN.cast(ptr0_succ<char>(p)))
 end // end of [string_tail_raw]
 //
 fun
@@ -2029,21 +2028,21 @@ val () =
 the_d2cstdef_insert
 (
 d2cst
-("XINTERP_string_head_opt"),
+("XINTERP_strn_head_opt"),
 IRVfun
 (firfun1(string_head_opt)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
-("XINTERP_string_head_raw"),
+("XINTERP_strn_head_raw"),
 IRVfun
 (firfun1(string_head_raw)))
 val () =
 the_d2cstdef_insert
 (
 d2cst
-("XINTERP_string_tail_raw"),
+("XINTERP_strn_tail_raw"),
 IRVfun
 (firfun1(string_tail_raw)))
 //
@@ -2052,18 +2051,14 @@ IRVfun
 val () =
 the_d2cstdef_insert
 (
-d2cst
-("XINTERP_string_print"),
-IRVfun
-(firfun1(string_print)))
+d2cst("XINTERP_strn_print"),
+IRVfun(firfun1(string_print)))
 //
 val () =
 the_d2cstdef_insert
 (
-d2cst
-("XINTERP_string_get_at"),
-IRVfun
-(firfun2(string_get_at)))
+d2cst("XINTERP_strn_get_at"),
+IRVfun(firfun2(string_get_at)))
 //
 (* ****** ****** *)
 

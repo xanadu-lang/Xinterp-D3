@@ -10,7 +10,7 @@
 "prelude/DATS/strn000.dats"
 (* ****** ****** *)
 #staload _ =
-"prelude/DATS/tuple00.dats"
+"prelude/DATS/tupl000.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude\
