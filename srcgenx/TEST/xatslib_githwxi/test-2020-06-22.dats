@@ -4,12 +4,19 @@
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
 #staload
-"xatslib/libcats/DATS/rand000.dats"
+"xatslib/githwxi/SATS/githwxi.sats"
 (* ****** ****** *)
+#staload
+"xatslib/githwxi/DATS/myrand0.dats"
 #staload
 "xatslib/githwxi/DATS/mygist0.dats"
 #staload
 "xatslib/githwxi/DATS/mytest0.dats"
+(* ****** ****** *)
+(*
+#staload
+"xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
+*)
 (* ****** ****** *)
 //
 fun

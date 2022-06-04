@@ -44,16 +44,16 @@ UN =
 (* ****** ****** *)
 //
 #staload
-"xatslib/libcats/DATS/g00iout.dats"
+"xatslib/githwxi/DATS/g00iout.dats"
 #staload
-"xatslib/libcats/DATS/stdiout.dats"
+"xatslib/githwxi/DATS/stdiout.dats"
 //
 (* ****** ****** *)
 #staload _ =
 "prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 #staload _ =
-"xatslib/libcats/DATS/CATS/Xint/basics0.dats"
+"xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 val cs =

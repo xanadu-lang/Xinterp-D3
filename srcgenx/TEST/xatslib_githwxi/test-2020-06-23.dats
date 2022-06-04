@@ -3,18 +3,18 @@
 "./../../..\
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
-#staload _ =
-"xatslib\
-/libcats\
-/DATS/CATS/Xint/basics0.dats"
+#staload
+"xatslib/githwxi/SATS/githwxi.sats"
 (* ****** ****** *)
 #staload
-"xatslib/libcats/DATS/rand000.dats"
-(* ****** ****** *)
+"xatslib/githwxi/DATS/myrand0.dats"
 #staload
 "xatslib/githwxi/DATS/mygist0.dats"
 #staload
 "xatslib/githwxi/DATS/mytest0.dats"
+(* ****** ****** *)
+#staload _ =
+"xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 (*

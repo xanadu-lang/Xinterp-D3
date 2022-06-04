@@ -4,11 +4,12 @@
 /HATS/prelude_dats.hats"
 (* ****** ****** *)
 #include
-"prelude\
-/HATS/Xint/prelude_dats.hats"
+"xatslib\
+/githwxi/HATS/githwxi_dats.hats"
 (* ****** ****** *)
-#staload
-"xatslib/githwxi/DATS/mygist0.dats"
+#include
+"prelude\
+/HATS/CATS/Xint/prelude_dats.hats"
 (* ****** ****** *)
 //
 fun

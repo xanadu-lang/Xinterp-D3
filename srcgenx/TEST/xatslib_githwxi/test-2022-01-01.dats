@@ -12,17 +12,11 @@ for testing xats2js!
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
 #staload
-"xatslib\
-/libcats/DATS/g00iout.dats"
+"xatslib/githwxi/DATS/g00iout.dats"
 (* ****** ****** *)
 #staload
 "xatslib\
-/libcats/DATS/stdiout.dats"
-(* ****** ****** *)
-#staload
-"xatslib\
-/libcats\
-/DATS/CATS/Xint/basics0.dats"
+/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 val line1 = g_inp_line_list<>()

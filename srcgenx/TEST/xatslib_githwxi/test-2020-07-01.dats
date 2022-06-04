@@ -3,19 +3,17 @@
 "./../../..\
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
-#staload _ =
-"xatslib\
-/libcats\
-/DATS/CATS/Xint/basics0.dats"
+#staload
+"xatslib/githwxi/DATS/g00iout.dats"
 (* ****** ****** *)
 #staload
-"xatslib/libcats/DATS/g00iout.dats"
-(* ****** ****** *)
-#staload
-"xatslib/libcats/DATS/stdiout.dats"
+"xatslib/githwxi/DATS/stdiout.dats"
 (* ****** ****** *)
 #staload
 "xatslib/githwxi/DATS/parcmb1.dats"
+(* ****** ****** *)
+#staload _ =
+"xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 //
 val
@@ -39,7 +37,7 @@ map0$fopr
 //
 val
 the_input =
-parcmbr_input(strm_vt2t(the_cstrm))
+parcmb1_input(strm_vt2t(the_cstrm))
 //
 (* ****** ****** *)
 //
@@ -60,10 +58,10 @@ gseq_append
 
 val
 p_token =
-parcmbr_token<tok>()
+parcmb1_token<tok>()
 val
 fp_sat =
-parcmbr_sat<tok><tok>
+parcmb1_sat<tok><tok>
 
 (* ****** ****** *)
 //
@@ -79,13 +77,13 @@ fp_sat
 (* ****** ****** *)
 
 #symload
-fp_map with parcmbr_map
+fp_map with parcmb1_map
 #symload
-fp_ignore with parcmbr_ignore
+fp_ignore with parcmb1_ignore
 #symload
-fp_repeat0 with parcmbr_repeat0
+fp_repeat0 with parcmb1_repeat0
 #symload
-fp_repeat1 with parcmbr_repeat1
+fp_repeat1 with parcmb1_repeat1
 
 (* ****** ****** *)
 

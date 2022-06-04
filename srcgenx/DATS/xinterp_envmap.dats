@@ -1647,9 +1647,29 @@ then//then
 //
 (* ****** ****** *)
 //
-// For
-// some functions declared
-// in prelude/SATS/bool.sats
+(*
+For 3 common FILEref-values
+*)
+//
+(* ****** ****** *)
+//
+val () =
+the_d2cstdef_insert
+(d2cst("XINTERP_g_stdin"),IRVfun(firfun0(g_stdin)))
+val () =
+the_d2cstdef_insert
+(d2cst("XINTERP_g_stdout"),IRVfun(firfun0(g_stdout)))
+val () =
+the_d2cstdef_insert
+(d2cst("XINTERP_g_stderr"),IRVfun(firfun0(g_stderr)))
+//
+(* ****** ****** *)
+//
+(*
+For
+some functions declared
+in prelude/SATS/bool000.sats
+*)
 //
 (* ****** ****** *)
 //
@@ -1947,18 +1967,6 @@ the_d2cstdef_insert
 val () =
 the_d2cstdef_insert
 (d2cst("XINTERP_a1ptr_set_at_raw"),IRVfun(firfun3(a1ptr_set_at_raw)))
-//
-(* ****** ****** *)
-//
-val () =
-the_d2cstdef_insert
-(d2cst("XINTERP_g_stdin"),IRVfun(firfun0(g_stdin)))
-val () =
-the_d2cstdef_insert
-(d2cst("XINTERP_g_stdout"),IRVfun(firfun0(g_stdout)))
-val () =
-the_d2cstdef_insert
-(d2cst("XINTERP_g_stderr"),IRVfun(firfun0(g_stderr)))
 //
 (* ****** ****** *)
 //

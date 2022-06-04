@@ -4,7 +4,7 @@
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
 #staload
-"xatslib/libcats/DATS/stdiout.dats"
+"xatslib/githwxi/DATS/g00iout.dats"
 (* ****** ****** *)
 
 #extern

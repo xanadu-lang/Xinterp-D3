@@ -9,7 +9,7 @@ the prelude library for xinterp
 "prelude/HATS/prelude_dats.hats"
 (* ****** ****** *)
 #include
-"prelude/HATS/Xint/prelude_dats.hats"
+"prelude/HATS/CATS/Xint/prelude_dats.hats"
 (* ****** ****** *)
 
 (* end of [XINTERP_xshared_xinterp_prelude.hats] *)

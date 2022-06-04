@@ -374,7 +374,7 @@ val () =
 the_prelude_load
 ( XHOME
 , 1(*dynamic*)
-, "xatslib/libcats/DATS/CATS/Xint/basics0.dats")
+, "xatslib/githwxi/DATS/CATS/Xint/basics0.dats")
 //
 } (* end of [then] *) // end-of-if
 ) (* end of [the_preludes_load_if] *)
