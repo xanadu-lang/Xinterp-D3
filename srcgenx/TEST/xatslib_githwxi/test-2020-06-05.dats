@@ -1,7 +1,11 @@
 (* ****** ****** *)
 #include
-"./../../..\
-/xshared/xinterp_prelude.hats"
+"prelude\
+/HATS/prelude_dats.hats"
+(* ****** ****** *)
+#include
+"prelude\
+/HATS/Xint/prelude_dats.hats"
 (* ****** ****** *)
 #staload
 "xatslib/githwxi/DATS/mygist0.dats"
