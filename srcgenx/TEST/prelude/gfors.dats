@@ -26,6 +26,12 @@
 //
 #staload _ =
 "prelude/DATS/list000.dats"
+//
+(* ****** ****** *)
+#staload _ =
+"prelude/DATS/synoug0.dats"
+(* ****** ****** *)
+//
 #staload _ =
 "prelude/DATS/VT/list000_vt.dats"
 #staload _ =
