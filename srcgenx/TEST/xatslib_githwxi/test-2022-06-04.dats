@@ -35,11 +35,11 @@ datatype abc0 =
 (* ****** ****** *)
 
 #impltmp
-gl_print1<abc0>(x0) =
-  my_print1(x0) where
+g_print<abc0>(x0) =
+  myprint(x0) where
 {
 fun
-my_print1(x0: abc0): void =
+myprint(x0: abc0): void =
 (
 case x0 of
 |
@@ -51,9 +51,9 @@ print("B(", x1, ",", x2, ")")
 ) where
 {
 #impltmp
-gl_print1<abc0>(x0) = my_print1(x0)
+g_print<abc0>(x0) = myprint(x0)
 }
-} (*where*)//end-of(gl_print1<abc0>)
+} (*where*)//end-of(g_print<abc0>)
 
 
 (* ****** ****** *)
