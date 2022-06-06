@@ -95,6 +95,8 @@ case+ x0 of
   fprint!(out, "IRVbtf(", b0, ")")
 | IRVchr(c0) =>
   fprint!(out, "IRVchr(", c0, ")")
+| IRVuii(u0) =>
+  fprint!(out, "IRVuii(", u0, ")")
 //
 | IRVflt(f0) =>
   fprint!(out, "IRVflt(", f0, ")")
@@ -182,4 +184,4 @@ fprint!
 //
 (* ****** ****** *)
 
-(* end of [xint_xinterp_print.dats] *)
+(* end of [xint_xinterp_print0.dats] *)

@@ -112,6 +112,8 @@ irval =
 | IRVbtf of bool
 | IRVchr of char
 //
+| IRVuii of uint
+//
 | IRVflt of double
 | IRVstr of string
 //

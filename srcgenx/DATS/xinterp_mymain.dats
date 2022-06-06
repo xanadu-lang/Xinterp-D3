@@ -104,7 +104,7 @@ the_XATSHOME_get() =
 $GLO.the_XATSHOME_get((*void*))
 (* ****** ****** *)
 #staload
-_(*TMP*) = "./intrep0_print.dats"
+_(*TMP*) = "./intrep0_print0.dats"
 (* ****** ****** *)
 //
 datatype
@@ -1275,4 +1275,4 @@ end // end of [local]
 
 (* ****** ****** *)
 
-(* end of [xint_xinterp_main0.dats] *)
+(* end of [xint_xinterp_mymain.dats] *)
