@@ -834,14 +834,16 @@ gint_lt_sint_sint
 , y: irval): irval =
 let
 val-IRVint(x) = x
-val-IRVint(y) = y in IRVbtf(x < y) end
+val-IRVint(y) = y in IRVbtf(x < y)
+end
 fun
 gint_gt_sint_sint
 ( x: irval
 , y: irval): irval =
 let
 val-IRVint(x) = x
-val-IRVint(y) = y in IRVbtf(x > y) end
+val-IRVint(y) = y in IRVbtf(x > y)
+end
 //
 fun
 gint_eq_sint_sint
@@ -849,7 +851,8 @@ gint_eq_sint_sint
 , y: irval): irval =
 let
 val-IRVint(x) = x
-val-IRVint(y) = y in IRVbtf(x = y) end
+val-IRVint(y) = y in IRVbtf(x = y)
+end
 //
 fun
 gint_lte_sint_sint
@@ -857,14 +860,16 @@ gint_lte_sint_sint
 , y: irval): irval =
 let
 val-IRVint(x) = x
-val-IRVint(y) = y in IRVbtf(x <= y) end
+val-IRVint(y) = y in IRVbtf(x <= y)
+end
 fun
 gint_gte_sint_sint
 ( x: irval
 , y: irval): irval =
 let
 val-IRVint(x) = x
-val-IRVint(y) = y in IRVbtf(x >= y) end
+val-IRVint(y) = y in IRVbtf(x >= y)
+end
 //
 fun
 gint_neq_sint_sint
@@ -872,10 +877,11 @@ gint_neq_sint_sint
 , y: irval): irval =
 let
 val-IRVint(x) = x
-val-IRVint(y) = y in IRVbtf(x != y) end
+val-IRVint(y) = y in IRVbtf(x != y)
+end
 //
 (* ****** ****** *)
-
+//
 fun
 gint_add_sint_sint
 ( x: irval
@@ -883,7 +889,6 @@ gint_add_sint_sint
 let
 val-IRVint(x) = x
 val-IRVint(y) = y in IRVint(x + y) end
-
 fun
 gint_sub_sint_sint
 ( x: irval
@@ -891,9 +896,9 @@ gint_sub_sint_sint
 let
 val-IRVint(x) = x
 val-IRVint(y) = y in IRVint(x - y) end
-
+//
 (* ****** ****** *)
-
+//
 fun
 gint_mul_sint_sint
 ( x: irval
@@ -901,7 +906,6 @@ gint_mul_sint_sint
 let
 val-IRVint(x) = x
 val-IRVint(y) = y in IRVint(x * y) end
-
 fun
 gint_div_sint_sint
 ( x: irval
@@ -909,7 +913,6 @@ gint_div_sint_sint
 let
 val-IRVint(x) = x
 val-IRVint(y) = y in IRVint(x / y) end
-
 fun
 gint_mod_sint_sint
 ( x: irval
@@ -917,17 +920,40 @@ gint_mod_sint_sint
 let
 val-IRVint(x) = x
 val-IRVint(y) = y in IRVint(x % y) end
-
+//
+(* ****** ****** *)
+//
+fun
+gint_sint2uint
+(x: irval): irval =
+let
+val-IRVint(x) = x in IRVuii(g0i2u(x))
+end
+fun
+gint_uint2sint
+(x: irval): irval =
+let
+val-IRVuii(x) = x in IRVint(g0u2i(x))
+end
+//
 (* ****** ****** *)
 //
 fun
 gint_print_sint
 (x: irval): irval =
 let
-val-IRVint(x) = x in
-let
-val () = print(x) in IRVnil() end
+val-IRVint(x) = x
+in
+let val () = print(x) in IRVnil() end
 end // end of [gint_print_sint]
+fun
+gint_print_uint
+(x: irval): irval =
+let
+val-IRVuii(x) = x
+in
+let val () = print(x) in IRVnil() end
+end // end of [gint_print_uint]
 //
 fun
 gint_fprint_sint
@@ -941,6 +967,18 @@ let
 val () =
 fprint($UN.cast(x), y) in IRVnil() end
 end // end of [gint_fprint_sint]
+fun
+gint_fprint_uint
+( x: irval
+, y: irval): irval =
+let
+val-IRVptr(x) = x
+val-IRVuii(y) = y
+in//let
+let
+val () =
+fprint($UN.cast(x), y) in IRVnil() end
+end // end of [gint_fprint_uint]
 //
 (* ****** ****** *)
 //
@@ -1770,21 +1808,26 @@ the_d2cstdef_insert
 //
 val () =
 the_d2cstdef_insert
+(d2cst("XINTERP_gint_sint2uint"),IRVfun(firfun1(gint_sint2uint)))
+val () =
+the_d2cstdef_insert
+(d2cst("XINTERP_gint_uint2sint"),IRVfun(firfun1(gint_uint2sint)))
+//
+(* ****** ****** *)
+//
+val () =
+the_d2cstdef_insert
 (d2cst("XINTERP_gint_print_sint"),IRVfun(firfun1(gint_print_sint)))
-(*
 val () =
 the_d2cstdef_insert
 (d2cst("XINTERP_gint_print_uint"),IRVfun(firfun1(gint_print_uint)))
-*)
 //
 val () =
 the_d2cstdef_insert
 (d2cst("XINTERP_gint_fprint_sint"),IRVfun(firfun2(gint_fprint_sint)))
-(*
 val () =
 the_d2cstdef_insert
 (d2cst("XINTERP_gint_fprint_uint"),IRVfun(firfun2(gint_fprint_uint)))
-*)
 //
 (* ****** ****** *)
 //

@@ -346,6 +346,11 @@ test-2022-06-04
 test-2022-06-04: ; \
 $(XINTERP) -d ./xatslib_githwxi/test-2022-06-04.dats
 
+test:: \
+test-2022-06-06
+test-2022-06-06: ; \
+$(XINTERP) -d ./xatslib_githwxi/test-2022-06-06.dats
+
 ######
 #
 # HX: for cleaning up
