@@ -65,7 +65,7 @@ kxor
 ( k0
 : bool -<cref> ans): ans =
 kflip
-(lam(p) => kflip(lam(q) => k0(p xor q)))
+(lam(p) => kflip(lam(q) => k0(p \xor q)))
 
 fun
 kxor0

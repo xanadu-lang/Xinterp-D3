@@ -17,15 +17,15 @@
 "prelude/DATS/char000.dats"
 #staload _ =
 "prelude/DATS/gint000.dats"
-#staload _ =
-"prelude/DATS/arrn000.dats"
-#staload _ =
-"prelude/DATS/strn000.dats"
 //
 (* ****** ****** *)
 //
 #staload _ =
 "prelude/DATS/list000.dats"
+#staload _ =
+"prelude/DATS/arrn000.dats"
+#staload _ =
+"prelude/DATS/strn000.dats"
 //
 (* ****** ****** *)
 #staload _ =
@@ -34,6 +34,8 @@
 //
 #staload _ =
 "prelude/DATS/VT/list000_vt.dats"
+#staload _ =
+"prelude/DATS/VT/arrn000_vt.dats"
 #staload _ =
 "prelude/DATS/VT/strm000_vt.dats"
 //
