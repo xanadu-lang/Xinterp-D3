@@ -112,7 +112,7 @@ mergesort
 : list_vt(a) =
 let
 //
-#typedef
+#vwtpdef
 xs = list_vt(a)
 //
 fun
@@ -183,7 +183,7 @@ end // list_vt_cons
 in
 let
 //
-#typedef
+#vwtpdef
 out = xs
 datavwtp
 inp = T of (xs, nint)

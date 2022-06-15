@@ -695,6 +695,23 @@ end // end of [bool_fprint]
 (* ****** ****** *)
 //
 fun
+char_code
+(x: irval): irval =
+let
+val-IRVchr(c) = x
+in
+  IRVint(char2u2int0(c))
+end // end of [char_code]
+//
+fun
+char_make_code
+(x: irval): irval =
+let
+val-IRVint(c) = x
+in
+  IRVchr(int2char0(c))
+end // end of [char_make_code]
+fun
 char_make_sint
 (x: irval): irval =
 let
@@ -702,34 +719,37 @@ val-IRVint(c) = x
 in
   IRVchr(int2char0(c))
 end // end of [char_make_sint]
-//
 fun
-sint_make_char
+char_make_uint
 (x: irval): irval =
 let
-val-IRVchr(c) = x
+val-IRVuii(u) = x
 in
-  IRVint(char2int0(c))
-end // end of [sint_make_char]
+let
+  val i = g0u2i(u)
+in
+  IRVchr(int2char0(i))
+end // end of [let]
+end // end of [char_make_uint]
 //
 (* ****** ****** *)
 
 fun
-char_eqzq
+char_eqz
 (x: irval): irval =
 let
 val-IRVchr(c) = x
 in
   IRVbtf(char0_iseqz(c))
-end // end of [char_eqzq]
+end // end of [char_eqz]
 fun
-char_neqzq
+char_neqz
 (x: irval): irval =
 let
 val-IRVchr(c) = x
 in
   IRVbtf(char0_isneqz(c))
-end // end of [char_neqzq]
+end // end of [char_neqz]
 
 (* ****** ****** *)
 
@@ -1752,14 +1772,15 @@ the_d2cstdef_insert
 //
 val () =
 the_d2cstdef_insert
-(d2cst("XINTERP_char_eqzq"),IRVfun(firfun1(char_eqzq)))
-val () =
-the_d2cstdef_insert
-(d2cst("XINTERP_char_neqzq"),IRVfun(firfun1(char_neqzq)))
+(d2cst("XINTERP_char_cmp"),IRVfun(firfun2(char_cmp)))
 //
 val () =
 the_d2cstdef_insert
-(d2cst("XINTERP_char_cmp"),IRVfun(firfun2(char_cmp)))
+(d2cst("XINTERP_char_eqz"),IRVfun(firfun1(char_eqz)))
+val () =
+the_d2cstdef_insert
+(d2cst("XINTERP_char_neqz"),IRVfun(firfun1(char_neqz)))
+//
 val () =
 the_d2cstdef_insert
 (d2cst("XINTERP_char_equal"),IRVfun(firfun2(char_equal)))
@@ -1776,10 +1797,17 @@ the_d2cstdef_insert
 //
 val () =
 the_d2cstdef_insert
+(d2cst("XINTERP_char_code"),IRVfun(firfun1(char_code)))
+//
+val () =
+the_d2cstdef_insert
+(d2cst("XINTERP_char_make_code"),IRVfun(firfun1(char_make_code)))
+val () =
+the_d2cstdef_insert
 (d2cst("XINTERP_char_make_sint"),IRVfun(firfun1(char_make_sint)))
 val () =
 the_d2cstdef_insert
-(d2cst("XINTERP_sint_make_char"),IRVfun(firfun1(sint_make_char)))
+(d2cst("XINTERP_char_make_uint"),IRVfun(firfun1(char_make_uint)))
 //
 (* ****** ****** *)
 //

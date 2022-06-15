@@ -92,7 +92,7 @@ list_vt_concat0
 (
 let
 #typedef xs = list(int)
-#typedef ys = list_vt(xs)
+#vwtpdef ys = list_vt(xs)
 #impltmp
 map0$fopr
 <xs><ys>(xs) = qextend(xs)

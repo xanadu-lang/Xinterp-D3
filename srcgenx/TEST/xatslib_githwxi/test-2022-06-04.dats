@@ -12,6 +12,9 @@ for testing xats2js!
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
 #staload
+"xatslib/libcats/SATS/synoug0.sats"
+(* ****** ****** *)
+#staload
 "xatslib/libcats/DATS/synoug0.dats"
 (* ****** ****** *)
 #staload
