@@ -32,12 +32,15 @@
 "prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
-val n0 = gseq_length(10)
+val n0 =
+gseq_length(10)
 
 (* ****** ****** *)
 
-val mx = gseq_max2(10, 0)
-val mn = gseq_min2(10, 10)
+val mx =
+gseq_max_ini(10, 0)
+val mn =
+gseq_min_ini(10, 10)
 
 (* ****** ****** *)
 
