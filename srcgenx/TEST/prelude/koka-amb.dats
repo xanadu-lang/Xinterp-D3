@@ -12,6 +12,9 @@
 "prelude/DATS/strn000.dats"
 (* ****** ****** *)
 #staload
+"prelude/DATS/synoug0.dats"
+(* ****** ****** *)
+#staload
 _(*UN*) =
 "prelude/DATS/unsafex.dats"
 (* ****** ****** *)
