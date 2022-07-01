@@ -43,9 +43,9 @@
 "prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
-val ans0 = fmemq(5)(3)
-val ans1 = fmemq("abcde")('a')
-val ans2 = fnot(fmemq("abcde"))('z')
+val ans0 = fmemberq(5)(3)
+val ans1 = fmemberq("abcde")('a')
+val ans2 = fnot(fmemberq("abcde"))('z')
 
 (* ****** ****** *)
 

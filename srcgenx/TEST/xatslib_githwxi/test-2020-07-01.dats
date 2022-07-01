@@ -68,11 +68,11 @@ parcmb1_sat<tok><tok>
 val
 p_ltr0 =
 fp_sat
-(p_token, fmemq(alpha))
+(p_token, fmemberq(alpha))
 val
 p_nltr =
 fp_sat
-(p_token, fnot(fmemq(alpha)))
+(p_token, fnot(fmemberq(alpha)))
 //
 (* ****** ****** *)
 
