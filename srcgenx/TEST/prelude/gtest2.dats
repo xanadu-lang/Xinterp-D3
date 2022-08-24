@@ -112,11 +112,13 @@ idropif$test<int>(i0, x0) = x0 <= 3 }
 (* ****** ****** *)
 
 val xs10 =
-gseq_z2map_list(xs1, xs1)
+gseq_z2map_list
+<list(int)
+,list(int)><int>(xs1, xs1)
 where
 {
 #impltmp
-z2map$fopr<int,int>(x0, y0) = x0 + y0 }
+z2map$fopr<int,int><int>(x0, y0) = x0 + y0 }
 
 (* ****** ****** *)
 

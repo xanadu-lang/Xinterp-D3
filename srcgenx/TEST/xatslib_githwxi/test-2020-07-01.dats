@@ -96,7 +96,7 @@ fp_ignore(p_nltr)
 fp_repeat1(p_ltr0)
 ,
 lam(cs) =>
-strn_make_list_vt(cs)
+strn_make_llist(cs)
 )
 val
 p_words = fp_repeat0(p_word)

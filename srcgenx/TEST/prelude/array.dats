@@ -65,8 +65,7 @@ gseq_rforeach of 110
 //
 (* ****** ****** *)
 //
-val A0 =
-a0ref_make(0)
+val A0 = a0ref(0)
 val x0 =
 a0ref_get<int>(A0)
 val () = print(A0)
@@ -77,15 +76,15 @@ a0ref_get<int>(A0)
 val () = print(A0)
 //
 (* ****** ****** *)
-
-val B1 =
-a1ref_make_nval<int>(10, 0)
-val y0 = get_at(B1, 0)
+//
+val B1 = a1ref(10, 0)
+//
+val y0 = get_at(B1, 0   )
 val () = set_at(B1, 1, 1)
-val y1 = get_at(B1, 1)
+val y1 = get_at(B1, 1   )
 val () = set_at(B1, 2, 2)
-val y2 = get_at(B1, 2)
-
+val y2 = get_at(B1, 2   )
+//
 (* ****** ****** *)
 
 val () =
