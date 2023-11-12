@@ -42,6 +42,15 @@ UN =
 "prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 //
+#impltmp
+<a:type>
+list_head_raw(xs) = (xs.0)
+#impltmp
+<a:type>
+list_tail_raw(xs) = (xs.1)
+//
+(* ****** ****** *)
+//
 val xs1 =
 list_cons(1,
 list_cons(2,
@@ -82,7 +91,7 @@ val xs5 = gseq_append(xs1, xs2)
 (* ****** ****** *)
 
 val xs6 =
-gseq_filter_list(xs5)
+gseq_filter_llist(xs5)
 where
 {
 #impltmp
@@ -91,7 +100,7 @@ filter$test<int>(x0) = x0 % 2 = 0 }
 (* ****** ****** *)
 
 val xs7 =
-gseq_filter_rlist(xs5)
+gseq_filter_rllist(xs5)
 where
 {
 #impltmp
@@ -112,16 +121,22 @@ idropif$test<int>(i0, x0) = x0 <= 3 }
 (* ****** ****** *)
 
 val xs10 =
+(*
+// HX-2022-07-05:
+// this one is buggy!
 gseq_z2map_list(xs1, xs1)
+*)
+gseq_z2map_llist
+<list(int)
+,list(int)><int,int>(xs1, xs1)
 where
 {
 #impltmp
 z2map$fopr<int,int>(x0, y0) = x0 + y0 }
 
 (* ****** ****** *)
-
 val xs11 =
-gseq_imap_list("abcde") where
+gseq_imap_llist("abcde") where
 {
 #impltmp
 imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i,c)

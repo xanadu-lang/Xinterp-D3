@@ -91,6 +91,23 @@ val add_xs = gseq_add(xs)
 val mul_xs = gseq_mul(xs)
 //
 (* ****** ****** *)
+#impltmp
+<xs><x0>
+gseq_copy_rlist
+  (xs) =
+list_vt2t
+(
+gseq_copy_rllist<xs><x0>(xs))
+#impltmp
+<xs><x0>
+gseq_copy_rllist(xs) =
+(
+  gseq_map_rllist
+  <xs><x0><x0>(xs)) where
+{
+  #impltmp
+  map$fopr<x0><x0>( x0 ) = x0 }
+(* ****** ****** *)
 
 val rev_x0 = gseq_copy_rlist(x0)
 val rev_xs = gseq_copy_rlist(xs)

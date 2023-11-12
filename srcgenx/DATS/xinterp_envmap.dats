@@ -1009,7 +1009,7 @@ end // end of [gint_fprint_uint]
 (* ****** ****** *)
 //
 fun
-gflt_i_dflt
+gflt_si_dflt
 (x: irval): irval =
 let
 val-IRVint(x) = x
@@ -1915,7 +1915,7 @@ the_d2cstdef_insert
 //
 val () =
 the_d2cstdef_insert
-(d2cst("XINTERP_gflt_i_dflt"),IRVfun(firfun1(gflt_i_dflt)))
+(d2cst("XINTERP_gflt_si_dflt"),IRVfun(firfun1(gflt_si_dflt)))
 //
 (* ****** ****** *)
 //

@@ -43,6 +43,14 @@
 "prelude/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
+#impltmp
+<xs><x0>
+gfun_memberq_gseq(xs) =
+(
+lam(x0)=>gseq_memberq<xs><x0>(xs,x0))
+
+(* ****** ****** *)
+
 val ans0 = fmemberq(5)(3)
 val ans1 = fmemberq("abcde")('a')
 val ans2 = fnot(fmemberq("abcde"))('z')
