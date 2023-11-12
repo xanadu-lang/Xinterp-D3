@@ -37,12 +37,12 @@ list_cons(5, list_nil())))))
 (* ****** ****** *)
 
 val xss = list_nchoose1(xs,2)
-val len = strm_vt_length(xss)
+val len = strm_vt_length0(xss)
 
 (* ****** ****** *)
 
 val xss2 = list_nchoose2(xs,2)
-val len2 = strm_vt_length(xss2)
+val len2 = strm_vt_length0(xss2)
 
 (* ****** ****** *)
 

@@ -132,21 +132,19 @@ gseq_z2map_llist
 where
 {
 #impltmp
-z2map$fopr<int,int>(x0, y0) = x0 + y0 }
+z2map$fopr<int,int><int>(x0, y0) = x0+y0 }
 
 (* ****** ****** *)
 val xs11 =
 gseq_imap_llist("abcde") where
 {
 #impltmp
-imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i,c)
-}
+imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i, c) }
 val xs12 =
 gseq_imap_rlist("abcde") where
 {
 #impltmp
-imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i,c)
-}
+imap$fopr<cgtz><(nint,cgtz)>(i,c) = (i, c) }
 
 (* ****** ****** *)
 

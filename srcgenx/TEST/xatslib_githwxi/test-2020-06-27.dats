@@ -13,6 +13,8 @@
 "xatslib/githwxi/DATS/dvdcnq0.dats"
 (* ****** ****** *)
 #staload _ =
+"prelude/DATS/rand000.dats"
+#staload _ =
 "xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 

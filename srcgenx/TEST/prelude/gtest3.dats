@@ -62,7 +62,7 @@ g_inp_line_list<>()
 (* ****** ****** *)
 
 val cs = g_inp_cstrm<>()
-val ln = strm_vt_length(cs)
+val ln = strm_vt_length0(cs)
 
 (* ****** ****** *)
 

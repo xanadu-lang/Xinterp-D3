@@ -34,7 +34,7 @@ list_cons(5, list_nil())))))
 (* ****** ****** *)
 
 val xss = list_permutize(xs)
-val len = strm_vt_length(xss)
+val len = strm_vt_length0(xss)
 
 (* ****** ****** *)
 

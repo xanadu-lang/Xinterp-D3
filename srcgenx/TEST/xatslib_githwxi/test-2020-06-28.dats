@@ -69,7 +69,7 @@ strn_fset_at(cs, i, c1)
 x2ifilter$test<x0,y0>
 (_, c0, _, c1) = (c0 != c1)
 in
-  gseq_x2imapopt_strm(cs, alpha)
+  gseq_x2imapopt_lstrm(cs, alpha)
 end (* end of [helper1] *)
 //
 (* ****** ****** *)
@@ -82,7 +82,7 @@ in
 val nword = length(helper1("water"))
 end
 *)
-val words = listize(helper1("water"))
+val words = listize0(helper1("water"))
 //
 (* ****** ****** *)
 

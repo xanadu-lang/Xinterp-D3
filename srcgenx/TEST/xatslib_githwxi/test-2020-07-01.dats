@@ -15,6 +15,12 @@
 #staload _ =
 "xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
+#impltmp
+<xs><x0>
+gfun_memberq_gseq(xs) =
+(
+lam(x0)=>gseq_memberq<xs><x0>(xs,x0))
+(* ****** ****** *)
 //
 val
 the_cstrm =
@@ -96,7 +102,7 @@ fp_ignore(p_nltr)
 fp_repeat1(p_ltr0)
 ,
 lam(cs) =>
-strn_make_list_vt(cs)
+strn_make0_llist(cs)
 )
 val
 p_words = fp_repeat0(p_word)

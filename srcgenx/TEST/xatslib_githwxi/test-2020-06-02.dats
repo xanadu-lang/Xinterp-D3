@@ -117,7 +117,7 @@ filter0$test<node>(xs) = size(xs) >= N
 
 (* ****** ****** *)
 
-val the_nsol = strm_vt_length(the_sols)
+val the_nsol = strm_vt_length0(the_sols)
 
 (* ****** ****** *)
 

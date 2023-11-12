@@ -14,6 +14,8 @@
 "xatslib/githwxi/DATS/mytest0.dats"
 (* ****** ****** *)
 #staload _ =
+"prelude/DATS/rand000.dats"
+#staload _ =
 "xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
@@ -52,7 +54,7 @@ local
 #impltmp
 g_rand<int>() =
 nint_rand_limit<>(2)
-in
+in//let
 val
 test1 = // true
 mytest_fun_asso(list_append<int>)

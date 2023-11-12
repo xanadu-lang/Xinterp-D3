@@ -17,13 +17,13 @@ strn_permutize
 ( cs
 : strn)
 : strm_vt(strn) =
-gseq_permutize<strn><cgtz>(cs)
+gseq_permutize_lstrm<strn><cgtz>(cs)
 //
 (* ****** ****** *)
 
 val cs1 = "12345"
 val css = strn_permutize(cs1)
-val css = strm_vt_listize(css)
+val css = strm_vt_listize0(css)
 
 (* ****** ****** *)
 

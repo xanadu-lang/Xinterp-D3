@@ -3,7 +3,9 @@
 "./../../..\
 /xshared/xinterp_prelude.hats"
 (* ****** ****** *)
-#staload
+#staload _ =
+"prelude/DATS/rand000.dats"
+#staload _ =
 "xatslib/githwxi/DATS/mygist0.dats"
 (* ****** ****** *)
 #impltmp
@@ -122,7 +124,7 @@ end // end of [helper2]
 
 (* ****** ****** *)
 //
-val nword = length(helper1("water"))
+val nword = length0(helper1("water"))
 //
 (* ****** ****** *)
 
