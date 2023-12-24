@@ -19,14 +19,20 @@
 "prelude/DATS/gint000.dats"
 //
 (* ****** ****** *)
-//
 #staload _ =
-"prelude/DATS/list000.dats"
+"prelude/DATS/strn000.dats"
+(* ****** ****** *)
+//
 #staload _ =
 "prelude/DATS/arrn000.dats"
 #staload _ =
-"prelude/DATS/strn000.dats"
+"prelude/DATS/arrn001.dats"
 //
+(* ****** ****** *)
+#staload _ =
+"prelude/DATS/list000.dats"
+#staload _ =
+"prelude/DATS/optn000.dats"
 (* ****** ****** *)
 #staload _ =
 "prelude/DATS/synoug0.dats"

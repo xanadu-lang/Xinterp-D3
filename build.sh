@@ -3,7 +3,7 @@
 ######
 #
 # Author:
-# Richar Kent (https://github.com/sparverius)
+# Richard Kent (https://github.com/sparverius)
 #
 ######
 
