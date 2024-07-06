@@ -1,39 +1,66 @@
 (* ****** ****** *)
+(* ****** ****** *)
 //
 #staload
-"prelude/DATS/gbas000.dats"
+"srcgen1\
+/prelude/DATS/gbas000.dats"
 #staload
-"prelude/DATS/gnum000.dats"
+"srcgen1\
+/prelude/DATS/gnum000.dats"
 #staload
-"prelude/DATS/gseq000.dats"
-#staload
-"prelude/DATS/unsafex.dats"
+"srcgen1\
+/prelude/DATS/gseq000.dats"
 //
+(* ****** ****** *)
+(* ****** ****** *)
+//
+#staload
+"srcgen1\
+/prelude/DATS/unsafex.dats"
+//
+(* ****** ****** *)
 (* ****** ****** *)
 //
 #staload _ =
-"prelude/DATS/bool000.dats"
+"srcgen1\
+/prelude/DATS/bool000.dats"
 #staload _ =
-"prelude/DATS/char000.dats"
+"srcgen1\
+/prelude/DATS/char000.dats"
 #staload _ =
-"prelude/DATS/gint000.dats"
+"srcgen1\
+/prelude/DATS/gint000.dats"
 #staload _ =
-"prelude/DATS/list000.dats"
+"srcgen1\
+/prelude/DATS/list000.dats"
 #staload _ =
-"prelude/DATS/strn000.dats"
+"srcgen1\
+/prelude/DATS/strn000.dats"
 //
+(* ****** ****** *)
 (* ****** ****** *)
 //
 #staload _ =
-"prelude/DATS/VT/list000_vt.dats"
+"srcgen1\
+/prelude/DATS/VT/list000_vt.dats"
 #staload _ =
-"prelude/DATS/VT/strm000_vt.dats"
+"srcgen1\
+/prelude/DATS/VT/strm000_vt.dats"
 #staload _ =
-"prelude/DATS/VT/strn000_vt.dats"
+"srcgen1\
+/prelude/DATS/VT/strn000_vt.dats"
 //
 (* ****** ****** *)
-#staload _ =
-"prelude/DATS/CATS/Xint/basics0.dats"
+(* ****** ****** *)
+//
+#staload // _ =
+"srcgen1\
+/prelude/DATS/CATS/Xint/basics0.dats"
+//
+#staload // _ =
+"srcgen1\
+/xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
+//
 (* ****** ****** *)
 
 val a = 'a'
@@ -101,12 +128,14 @@ list_cons
 ,
 list_cons
 ('c', list_nil())))
+//
 val a = abc[0]
 and b = abc[1]
 and c = abc[2]
 //
 val
 abc = strn_make_list(abc)
+//
 val a = abc[0]
 and b = abc[1]
 and c = abc[2]
@@ -144,4 +173,4 @@ val () =
 //
 (* ****** ****** *)
 
-(* end of [prelude_chars.dats] *)
+(* end of [ATS3-Xanadu/srcgen1/xats2js/srcgen1/TEST/prelude_chars.dats] *)

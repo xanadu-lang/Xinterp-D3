@@ -1158,6 +1158,10 @@ val-IRVflt(y) = y in IRVflt(x % y) end
 // in prelude/SATS/string.sats
 //
 (* ****** ****** *)
+fun
+strn_vt2t
+(x: irval): irval = ( x )
+(* ****** ****** *)
 //
 fun
 strn_head_opt
@@ -1990,6 +1994,14 @@ the_d2cstdef_insert
 // For
 // some functions declared
 // in prelude/SATS/string.sats
+//
+(* ****** ****** *)
+//
+val () =
+the_d2cstdef_insert
+(
+d2cst
+("XINTERP_strn_vt2t"),IRVfun(firfun1(strn_vt2t)))
 //
 (* ****** ****** *)
 //

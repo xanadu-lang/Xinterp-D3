@@ -1,10 +1,16 @@
 (* ****** ****** *)
-#staload _ =
-"prelude/DATS/bool000.dats"
 (* ****** ****** *)
-#staload _ =
-"prelude\
-/DATS/CATS/Xint/basics0.dats"
+#staload // _ =
+"srcgen1\
+/prelude/DATS/bool000.dats"
+(* ****** ****** *)
+#staload // _ =
+"srcgen1\
+/prelude/DATS/CATS/Xint/basics0.dats"
+(* ****** ****** *)
+#staload // _ =
+"srcgen1\
+/xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
 (* ****** ****** *)
 
 val b0 = true
@@ -15,5 +21,6 @@ val () = g_print(b0 + b1)
 val () = g_print(b0 * b1)
 
 (* ****** ****** *)
+(* ****** ****** *)
 
-(* end of [prelude_bools.dats] *)
+(* end of [ATS3-Xanadu/srcgen1/xats2js/srcgen1/TEST/prelude_bools.dats] *)

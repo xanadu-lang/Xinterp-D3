@@ -1,7 +1,17 @@
 (* ****** ****** *)
-#staload _ =
-"prelude\
-/DATS/CATS/Xint/basics0.dats"
+(* ****** ****** *)
+#staload // _ =
+"srcgen1\
+/prelude/DATS/bool000.dats"
+(* ****** ****** *)
+#staload // _ =
+"srcgen1\
+/prelude/DATS/CATS/Xint/basics0.dats"
+(* ****** ****** *)
+#staload // _ =
+"srcgen1\
+/xatslib/githwxi/DATS/CATS/Xint/basics0.dats"
+(* ****** ****** *)
 (* ****** ****** *)
 
 fun
@@ -87,4 +97,4 @@ val fact10 = fact(10)
 
 (* ****** ****** *)
 
-(* end of [prelude_cbref.dats] *)
+(* end of [ATS3-Xanadu/srcgen1/xats2js/srcgen1/TEST/prelude_cbref.dats] *)

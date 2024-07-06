@@ -479,7 +479,7 @@ println!
 val-
 IREfcst(d2c) = ire0.node()
 //
-in
+in//let
 //
 if
 $D2E.d2cst_fcastq(d2c)
